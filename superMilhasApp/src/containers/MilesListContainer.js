@@ -2,6 +2,7 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { NavigationScreenProp } from "react-navigation";
+import MilesListItem from "../components/MilesListItem";
 
 type State = {};
 
@@ -19,7 +20,7 @@ class MilesListContainer extends React.Component<Props, State> {
   render() {
     return (
       <View>
-        <Text> Carregando... </Text>
+        <MilesListItem/>
       </View>
     );
   }

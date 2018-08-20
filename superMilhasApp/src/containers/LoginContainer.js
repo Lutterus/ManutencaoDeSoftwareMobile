@@ -16,7 +16,10 @@ import { NavigationScreenProp } from "react-navigation";
 import CardButton from "../components/GenericComponents/CardButton";
 import CardView from "../components/GenericComponents/CardView";
 
-type State = {};
+type State = {
+  email: string,
+  senha: string
+};
 
 type Props = {
   navigation: NavigationScreenProp<{}>
