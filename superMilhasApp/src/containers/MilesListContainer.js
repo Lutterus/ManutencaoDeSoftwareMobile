@@ -21,7 +21,8 @@ class MilesListContainer extends React.Component<Props, State> {
       milesAgency: {
         agencyName: "Livelo",
         agencyImage: "../assets/images/livelo.png",
-        expirationDate: "12/12/2012"
+        expirationDate: "12/12/2012",
+        miles: "13000"
       }
     };
   }

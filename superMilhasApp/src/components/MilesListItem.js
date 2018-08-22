@@ -11,10 +11,18 @@ const MilesListItem = ({ milesAgency }: MilesAgency) => {
         borderRadius={47}
         source={{ uri: milesAgency.agencyImage }}
       />
-      <Text>{milesAgency.agencyName}</Text>
-      <Text>{milesAgency.expirationDate}</Text>
+      <View style={{ flexDirection: "column" }}>
+        <Text style={styles.programName}>{milesAgency.agencyName}</Text>
+        <Text style={styles.date}>{milesAgency.expirationDate}</Text>
+      </View>
+      <Text style={styles.miles}>{milesAgency.miles}</Text>
     </View>
   );
 };
+const styles = StyleSheet.create({
+  programName: {},
+  date: {},
+  miles: {}
+});
 
 export default MilesListItem;

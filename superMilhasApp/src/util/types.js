@@ -1,7 +1,8 @@
 type MilesAgency = {
   agencyName: string,
   agencyImage: string,
-  expirationData: Date
+  expirationData: Date,
+  miles: int
 };
 
 export { MilesAgency };
