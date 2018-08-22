@@ -11,7 +11,7 @@ type State = {
 
 type Props = {
   navigation: NavigationScreenProp<{}>
-};  
+};
 
 class MilesListContainer extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -19,9 +19,9 @@ class MilesListContainer extends React.Component<Props, State> {
 
     this.state = {
       milesAgency: {
-        agencyName: 'Livelo',
-        agencyImage: '../assets/images/livelo.png',
-        expirationDate: '12/12/2012'
+        agencyName: "Livelo",
+        agencyImage: "../assets/images/livelo.png",
+        expirationDate: "12/12/2012"
       }
     };
   }
@@ -29,7 +29,7 @@ class MilesListContainer extends React.Component<Props, State> {
   render() {
     return (
       <View>
-        <MilesListItem/>
+        <MilesListItem milesAgency={this.state.milesAgency} />
       </View>
     );
   }
