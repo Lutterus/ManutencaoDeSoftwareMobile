@@ -1,6 +1,6 @@
 type MilesAgency = {
     agencyName: string,
-    agencyImage: ImageData,
+    agencyImage: string,
     expirationData: string
 }
 

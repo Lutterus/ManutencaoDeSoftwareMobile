@@ -9,7 +9,7 @@ const MilesListItem = ({ milesAgency }: MilesAgency) => {
             <Image
                 style={{ width: 94, height: 94, marginHorizontal: 10 }}
                 borderRadius={47}
-                source={milesAgency.agencyImage}/>
+                source={require(milesAgency.agencyImage)}/>
             <Text>{milesAgency.agencyName}</Text>
             <Text>{milesAgency.expirationDate}</Text>
         </View>
