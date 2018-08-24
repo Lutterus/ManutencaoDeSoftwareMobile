@@ -17,6 +17,14 @@ class MilesListScreen extends React.Component<Props, State> {
     this.state = {};
   }
 
+  static navigationOptions = {
+    title: 'Milhas',
+    headerTitleStyle: {
+      textAlign: 'center',
+      flex: 1
+    }
+  };
+
   render() {
     return <MilesListContainer navigation={this.props.navigation} />;
   }

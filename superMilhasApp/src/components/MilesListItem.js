@@ -5,24 +5,33 @@ import type { MilesAgency } from "../util/types";
 
 const MilesListItem = ({ milesAgency }: MilesAgency) => {
   return (
-    <View style={{ flexDirection: "row" }}>
-      <Image
-        style={{ width: 94, height: 94, marginHorizontal: 10 }}
-        borderRadius={47}
-        source={{ uri: milesAgency.agencyImage }}
-      />
-      <View style={{ flexDirection: "column" }}>
-        <Text style={styles.programName}>{milesAgency.agencyName}</Text>
-        <Text style={styles.date}>{milesAgency.expirationDate}</Text>
+    <View style={{ flexDirection: "row", borderRadius: 10, marginTop: 10, backgroundColor: "white", marginHorizontal: 10 }}>
+      <View style={{ flex: 1/2 }}>
+        <Image style={{ width: 64, height: 64, margin: 10 }}
+          borderRadius={12}
+          source={{ uri: milesAgency.agencyImage }}
+        />
       </View>
-      <Text style={styles.miles}>{milesAgency.miles}</Text>
+      <View style={{ flexDirection: "column", flex: 1 }} >
+        <View style={{ flex: 1 , justifyContent: 'center', alignItems: 'center'}}>
+          <Text style={styles.programName}>{milesAgency.agencyName}</Text>
+          <Text style={styles.date}>{milesAgency.expirationDate}</Text>
+        </View>
+      </View>
+      <View style={{ flex: 1 , justifyContent: 'center', alignItems: 'center'}}>
+        <Text style={styles.miles}>{milesAgency.miles}</Text>
+      </View>
     </View>
   );
 };
 const styles = StyleSheet.create({
-  programName: {},
+  programName: {
+    fontSize: 24
+  },
   date: {},
-  miles: {}
+  miles: {
+    fontSize: 30
+  }
 });
 
 export default MilesListItem;
