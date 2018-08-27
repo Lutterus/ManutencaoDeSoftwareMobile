@@ -1,6 +1,6 @@
 //@flow
 import React from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import MilesListContainer from "../containers/MilesListContainer";
 import { NavigationScreenProp } from "react-navigation";
 
