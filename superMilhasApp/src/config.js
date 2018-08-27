@@ -1,5 +1,5 @@
 const URLS = {
-    LOCAL: "http://localhost:8024/",
+    LOCAL: "192.168.0.134:8024/",
   };
   
   const config = {
