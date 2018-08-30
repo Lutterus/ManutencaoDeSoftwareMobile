@@ -4,7 +4,7 @@ import AbstractService from "./AbstractService";
 /**
  * BASE URLS of the service used on Category Service.
  */
-const BASE_URL = "api/getPrograms/3";
+const BASE_URL = "api/getPrograms/1";
 
 /**
  * URLS of the service used on Category Service.

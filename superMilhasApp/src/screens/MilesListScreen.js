@@ -1,8 +1,9 @@
 //@flow
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import MilesListContainer from "../containers/MilesListContainer";
 import { NavigationScreenProp } from "react-navigation";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 type State = {};
 
@@ -22,7 +23,19 @@ class MilesListScreen extends React.Component<Props, State> {
     headerTitleStyle: {
       textAlign: 'center',
       flex: 1
-    }
+    },
+    headerRight:(
+      <TouchableOpacity
+      style={{
+        paddingHorizontal: 20,
+        marginLeft: 10
+      }}>
+        <Icon
+        name={'plus'}
+        size={20}
+        color="black" />
+      </TouchableOpacity>
+    )
   };
 
   render() {
