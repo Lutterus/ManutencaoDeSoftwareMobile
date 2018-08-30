@@ -15,7 +15,7 @@ const MilesListItem = ({ milesAgency }: MilesAgency) => {
       </View>
       <View style={styles.column}>
         <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          style={{ flex: 1, justifyContent: "center" }}
         >
           <Text style={styles.programName}>{milesAgency.agencyName}</Text>
           <Text style={styles.date}>{milesAgency.expirationDate}</Text>
@@ -45,9 +45,12 @@ const styles = StyleSheet.create({
      flex: 1 
   },
   programName: {
-    fontSize: 24
+    fontSize: 24,
+    textAlign: 'left'
   },
-  date: {},
+  date: {
+    textAlign: 'left'
+  },
   miles: {
     fontSize: 30
   }
