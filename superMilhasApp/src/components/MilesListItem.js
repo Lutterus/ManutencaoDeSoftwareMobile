@@ -15,8 +15,7 @@ const MilesListItem = ({ milesAgency }: MilesAgency) => {
       </View>
       <View style={styles.column}>
         <View
-          style={{ flex: 1, justifyContent: "center" }}
-        >
+          style={{ flex: 1, justifyContent: "center", marginLeft: 10 }}>
           <Text style={styles.programName}>{milesAgency.agencyName}</Text>
           <Text style={styles.date}>{milesAgency.expirationDate}</Text>
         </View>
