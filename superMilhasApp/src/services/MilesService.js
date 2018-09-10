@@ -4,13 +4,13 @@ import AbstractService from "./AbstractService";
 /**
  * BASE URLS of the service used on Category Service.
  */
-const BASE_URL = "api/getPrograms/1";
+const BASE_URL = "api/";
 
 /**
  * URLS of the service used on Category Service.
  */
 const RESOURCES = {
-  MILES_LIST: BASE_URL
+  GET_MILES: BASE_URL + 'getMiles'
 };
 
 /**
@@ -32,7 +32,7 @@ class MilesService extends AbstractService {
    * @param {*} dateEnd
    */
   listMiles() {
-    let URL = RESOURCES.MILES_LIST;
+    let URL = RESOURCES.GET_LIST;
 
     return this.axios
       .get(URL)
