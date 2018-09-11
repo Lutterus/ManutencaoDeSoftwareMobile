@@ -11,4 +11,4 @@ type Response = {
   messages: Array<String>
 };
 
-export { MilesAgency };
+export { MilesAgency, Response };
