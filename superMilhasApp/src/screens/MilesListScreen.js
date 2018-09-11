@@ -8,16 +8,13 @@ import MilesService from '../services/MilesService';
 
 type State = {};
 
-type Props = {
-  navigation: NavigationScreenProp<{}>
-};
+type Props = {};
 
 class MilesListScreen extends React.Component<Props, State> {
   milesService;
   constructor(props: Props) {
-    this.milesService = new MilesService();
     super(props);
-
+    this.milesService = new MilesService();
     this.state = {
       milesList: []
     };
@@ -27,12 +24,10 @@ class MilesListScreen extends React.Component<Props, State> {
     this.updateMilesList();
   }
 
-
   updateMilesList = async () => {
-    const list = await this.milesService.listEntry();
+    const list = await this.milesService.listMiles();
     this.setState({ milesList: list });
   };
-
 
   static navigationOptions = {
     title: 'Milhas',
@@ -55,7 +50,7 @@ class MilesListScreen extends React.Component<Props, State> {
   };
 
   render() {
-    return <MilesListContainer navigation={this.props.navigation} />;
+    return <MilesListContainer milesAgencyList={this.state.milesList} />;
   }
 }
 
