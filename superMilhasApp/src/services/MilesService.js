@@ -40,8 +40,8 @@ class MilesService extends AbstractService {
     return this.axios
       .get(URL)
       .then((result: Response) => {
-        if (result.data.success) {
-          return result.data.content;
+        if (result.data) {
+          return result.data;
         }
       })
       .catch((error: Response) => {

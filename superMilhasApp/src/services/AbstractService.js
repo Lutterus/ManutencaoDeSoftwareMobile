@@ -6,7 +6,7 @@ export default class AbstractService {
 
   constructor() {
     this.axios = axios.create({
-      baseURL: config.LUCAS
+      baseURL: config.server
     });
   }
 }

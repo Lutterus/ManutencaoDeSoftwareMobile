@@ -27,6 +27,7 @@ class MilesListScreen extends React.Component<Props, State> {
   updateMilesList = async () => {
     const list = await this.milesService.listMiles();
     this.setState({ milesList: list });
+    console.warn(this.milesList)
   };
 
   static navigationOptions = {
