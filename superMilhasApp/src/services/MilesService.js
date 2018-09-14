@@ -11,7 +11,7 @@ const BASE_URL = "api/";
  * URLS of the service used on Category Service.
  */
 const RESOURCES = {
-  MILES_LIST: BASE_URL + 'getMiles'
+  MILES_LIST: BASE_URL + 'getPrograms/'
 };
 
 /**
@@ -37,12 +37,12 @@ class MilesService extends AbstractService {
    */
   listMiles() {
     let URL = RESOURCES.MILES_LIST;
+
     return this.axios
       .get(URL)
-      .then((result: Response) => {
-        if (result.data) {
-          return result.data;
-        }
+      .then((response: Response) => {
+        console.warn(response.data)
+        return response.data;
       })
       .catch((error: Response) => {
         return error.messages;

@@ -1,8 +1,8 @@
 type MilesAgency = {
-  agencyName: string,
-  agencyImage: string,
-  expirationData: string,
-  miles: int
+  nome: string,
+  somaMilhas: number,
+  milha_expiracao_maisProxima: Date,
+  imagem: string
 };
 
 type Response = {

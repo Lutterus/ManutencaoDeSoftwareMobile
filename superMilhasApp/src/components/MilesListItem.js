@@ -16,12 +16,12 @@ const MilesListItem = ({ milesAgency }: MilesAgency) => {
       <View style={styles.column}>
         <View
           style={{ flex: 1, justifyContent: "center", marginLeft: 10 }}>
-          <Text style={styles.programName}>{milesAgency.agencyName}</Text>
-          <Text style={styles.date}>{milesAgency.expirationDate}</Text>
+          <Text style={styles.programName}>{milesAgency.nome}</Text>
+          <Text style={styles.date}>{milesAgency.milha_expiracao_maisProxima}</Text>
         </View>
       </View>
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text style={styles.miles}>{milesAgency.miles}</Text>
+        <Text style={styles.miles}>{milesAgency.somaMilhas}</Text>
       </View>
     </View>
   );
