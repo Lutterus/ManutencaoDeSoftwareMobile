@@ -1,21 +1,25 @@
 import axios from "axios";
+import type { Response } from "../util/types";
 import AbstractService from "./AbstractService";
 
 /**
  * BASE URLS of the service used on Category Service.
  */
-const BASE_URL = "api/getPrograms/1";
+const BASE_URL = "api/";
 
 /**
  * URLS of the service used on Category Service.
  */
 const RESOURCES = {
-  MILES_LIST: BASE_URL
+  MILES_LIST: BASE_URL + 'getPrograms/'
 };
 
 /**
  * Params used on services methods.
  */
+const PARAMS = {
+  SID: "sid"
+};
 
 /**
  * Class containing the http requests related to
@@ -36,11 +40,12 @@ class MilesService extends AbstractService {
 
     return this.axios
       .get(URL)
-      .then((result: Response) => {
-        return result.data.content;
+      .then((response: Response) => {
+        console.warn(response.data)
+        return response.data;
       })
-      .catch(error => {
-        return error.response.data.message;
+      .catch((error: Response) => {
+        return error.messages;
       });
   }
 }

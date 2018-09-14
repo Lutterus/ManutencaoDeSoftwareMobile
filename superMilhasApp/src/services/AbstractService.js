@@ -6,7 +6,7 @@ export default class AbstractService {
 
   constructor() {
     this.axios = axios.create({
-      baseURL: "http://192.168.43.101:3000/"
+      baseURL: config.server
     });
   }
 }

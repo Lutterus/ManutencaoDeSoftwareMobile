@@ -1,10 +1,10 @@
 const URLS = {
-    AGES: "192.168.0.134:8024/",
-    CI: "10.96.127.114:3000/"
+    LUCAS: "http://192.168.0.131:3000/",
+    LEO: "http://192.168.0.105:3000/"
   };
   
   const config = {
-    server: URLS.CI
+    server: URLS.LUCAS
   };
   
   export default config;

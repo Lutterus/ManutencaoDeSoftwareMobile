@@ -4,19 +4,30 @@ import { View, Text, TouchableOpacity } from "react-native";
 import MilesListContainer from "../containers/MilesListContainer";
 import { NavigationScreenProp } from "react-navigation";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import MilesService from '../services/MilesService';
 
 type State = {};
 
-type Props = {
-  navigation: NavigationScreenProp<{}>
-};
+type Props = {};
 
 class MilesListScreen extends React.Component<Props, State> {
+  milesService;
   constructor(props: Props) {
     super(props);
-
-    this.state = {};
+    this.milesService = new MilesService();
+    this.state = {
+      milesList: []
+    };
   }
+
+  componentDidMount() {
+    this.updateMilesList();
+  }
+
+  updateMilesList = async () => {
+    const list = await this.milesService.listMiles();
+    this.setState({ milesList: list });
+  };
 
   static navigationOptions = {
     title: 'Milhas',
@@ -39,7 +50,7 @@ class MilesListScreen extends React.Component<Props, State> {
   };
 
   render() {
-    return <MilesListContainer navigation={this.props.navigation} />;
+    return <MilesListContainer milesAgencyList={this.state.milesList} />;
   }
 }
 
