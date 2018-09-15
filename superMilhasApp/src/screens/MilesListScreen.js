@@ -40,7 +40,9 @@ class MilesListScreen extends React.Component<Props, State> {
       style={{
         paddingHorizontal: 20,
         marginLeft: 10
-      }}>
+      }}
+      onPress={() => this.props.navigation.navigate("MileAddItem")}
+      >
         <Icon
         name={'plus'}
         size={20}
