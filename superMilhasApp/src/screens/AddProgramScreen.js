@@ -1,15 +1,17 @@
 //@flow
 import React from "react";
 import { View } from "react-native";
-import MileAddContainer from "../containers/MileAddContainer";
+import AddProgramContainer from "../containers/AddProgramContainer";
 import { NavigationScreenProp } from "react-navigation";
+import MilesService from "../services/MilesService";
 
 type State = {};
 
 type Props = {
   navigation: NavigationScreenProp<{}>
 };
-class MileAddScreen extends React.Component<Props, State> {
+
+class AddProgramScreen extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -25,8 +27,8 @@ class MileAddScreen extends React.Component<Props, State> {
   };
 
   render () {
-      return <MileAddContainer navigation={this.props.navigation} />;
+      return <AddProgramContainer navigation={this.props.navigation} />;
   }
 }
 
-export default MileAddScreen;
+export default AddProgramScreen;

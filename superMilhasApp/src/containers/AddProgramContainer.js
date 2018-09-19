@@ -17,6 +17,7 @@ import CardView from "../components/GenericComponents/CardView";
 import CardButton from "../components/GenericComponents/CardButton";
 import MilesListItem from "../components/MilesListItem";
 
+
 type State = {
   quantidade: number,
   vencimento: Date,
@@ -27,7 +28,7 @@ type Props = {
   navigation: NavigationScreenProp<{}>
 };
 
-class MileAddItemContainer extends React.Component<Props, State> {
+class AddProgramContainer extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -44,7 +45,6 @@ class MileAddItemContainer extends React.Component<Props, State> {
         <Picker style={{ height: 50, width: 100 }}>
 
           <Picker.Item label="Java" value="java" />
-          <Picker.Item label="JavaScript" value="js" />
         </Picker>
         <View>
           <TextInput placeholder="Quantidade"/>
@@ -83,4 +83,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default MileAddItemContainer;
+export default AddProgramContainer;

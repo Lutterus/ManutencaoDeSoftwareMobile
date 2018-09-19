@@ -11,8 +11,10 @@ const BASE_URL = "api/";
  * URLS of the service used on Category Service.
  */
 const RESOURCES = {
-  MILES_LIST: BASE_URL + 'getPrograms/'
+  MILES_LIST: BASE_URL + 'getPrograms/',
+  PROGRAMS_LIST: BASE_URL + 'getProgramsDefault/'
 };
+
 
 /**
  * Params used on services methods.
@@ -47,6 +49,20 @@ class MilesService extends AbstractService {
       .catch((error: Response) => {
         return error.messages;
       });
+  }
+
+  listPrograms() {
+    let URL = RESOURCES.PROGRAMS_LIST;
+
+    return this.axios
+    .get(URL)
+    .then((response: Response) => {
+      console.warn(response.data)
+      return response.data;
+    })
+    .catch((error: Response) => {
+      return error.messages;
+    });
   }
 }
 

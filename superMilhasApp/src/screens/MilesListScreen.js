@@ -5,6 +5,7 @@ import MilesListContainer from "../containers/MilesListContainer";
 import { NavigationScreenProp } from "react-navigation";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MilesService from '../services/MilesService';
+import AddProgramScreen from '../screens/AddProgramScreen';
 
 type State = {};
 
@@ -41,7 +42,7 @@ class MilesListScreen extends React.Component<Props, State> {
         paddingHorizontal: 20,
         marginLeft: 10
       }}
-      onPress={() => this.props.navigation.navigate("MileAdd")}
+      onPress={() => this.props.navigation.navigate("AddProgram")}
       >
         <Icon
         name={'plus'}
