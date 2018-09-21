@@ -73,6 +73,7 @@ class LoginContainer extends React.Component<Props, State> {
             <Text style={styles.text}>Senha</Text>
             <CardView style={styles.inputView}>
               <TextInput
+                secureTextEntry
                 underlineColorAndroid={"#0000"}
                 style={styles.textStyle}
               />
