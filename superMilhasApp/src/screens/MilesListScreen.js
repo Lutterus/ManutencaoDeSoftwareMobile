@@ -30,7 +30,8 @@ class MilesListScreen extends React.Component<Props, State> {
     this.setState({ milesList: list });
   };
 
-  static navigationOptions = {
+  static navigationOptions= ({navigation}) => {
+    return{
     title: 'Milhas',
     headerTitleStyle: {
       textAlign: 'center',
@@ -42,7 +43,7 @@ class MilesListScreen extends React.Component<Props, State> {
         paddingHorizontal: 20,
         marginLeft: 10
       }}
-      onPress={() => this.props.navigation.navigate("AddProgram")}
+      onPress={() => navigation.navigate("AddProgram")}
       >
         <Icon
         name={'plus'}
@@ -50,6 +51,7 @@ class MilesListScreen extends React.Component<Props, State> {
         color="black" />
       </TouchableOpacity>
     )
+  }
   };
 
   render() {
