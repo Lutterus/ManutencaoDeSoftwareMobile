@@ -2,8 +2,13 @@ type MilesAgency = {
   nome: string,
   somaMilhas: number,
   milha_expiracao_maisProxima: Date,
-  imagem: string
+  programa_default: Array<ProgramDefault>
 };
+
+type ProgramDefault = {
+  nome: string,
+  imagem: string
+}
 
 type Response = {
   success: boolean,

@@ -10,7 +10,7 @@ const MilesListItem = ({ milesAgency }: MilesAgency) => {
         <Image
           style={styles.image}
           borderRadius={12}
-          source={{ uri: milesAgency.agencyImage }}
+          source={{ uri: milesAgency.programa_default.imagem }}
         />
       </View>
       <View style={styles.column}>
