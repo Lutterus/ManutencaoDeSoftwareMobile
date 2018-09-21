@@ -41,23 +41,47 @@ class AddProgramContainer extends React.Component<Props, State> {
 
   render() {
     return (
-      <View>
-        <Picker style={{ height: 50, width: 100 }}>
+      <View style={{ justifyContent: 'space-evenly', alignItems: 'center'}}>
+        
+        <View style={{marginTop: 55 }}>
+            <CardView>
+            <Picker 
+              selectedValue={this.state.programa} 
+              style={{ height: 50, width: 300,}}
+              onValueChange={(itemValue, itemIndex) => this.setState({programa: itemValue})}>
+            <Picker.Item label="Programa" value="programa" />
+            <Picker.Item label="Smiles" value="smiles" />
+            <Picker.Item label="Livelo" value="livelo" />
+            <Picker.Item label="Amigo" value="amigo" />
+            <Picker.Item label="Multiplus" value="multiplus" />
+            </Picker>
+            </CardView>
+        </View>
 
-          <Picker.Item label="Java" value="java" />
-        </Picker>
-        <View>
-          <TextInput placeholder="Quantidade"/>
+        <View style={{justifyContent: 'space-between', marginTop: 15}}>
+          <CardView style={styles.inputView}>
+            <TextInput 
+              keyboardType = 'numeric'
+              placeholder="Quantidade" 
+              underlineColorAndroid={"#0000"}/>
+          </CardView>
         </View>
-        <View>
-          <TextInput placeholder="Vencimento"/>
+
+        <View style={{marginTop: 15}}>
+          <CardView style={styles.inputView}>
+          <TextInput 
+            placeholder="Vencimento"
+            underlineColorAndroid={"#0000"}/>
+          </CardView>
         </View>
-        <View>
+
+        <View style={{marginTop: 150}}>
           <CardButton
             text="CADASTRAR"
             onPress={() =>this.props.navigation.navigate("MilesList")}
           />
         </View>
+
       </View>
 
     );
@@ -66,21 +90,20 @@ class AddProgramContainer extends React.Component<Props, State> {
 
 const styles = StyleSheet.create({
   text: {
-    color: "white",
     fontSize: 16,
+    color: "black",
+    textAlign: "left"
+  },
+  view: {
     flexDirection: "column",
-    textAlign: "left",
-    alignSelf: "stretch"
+    justifyContent: "space-between"
   },
   inputView: {
-    borderRadius: 4,
-    marginTop: 1,
-    padding: 2
-  },
-  textStyles: {
-    fontSize: 14,
-    textAlign: "center"
+    borderRadius: 7,
+    marginTop: 4,
+    padding: 6
   }
+
 });
 
 export default AddProgramContainer;

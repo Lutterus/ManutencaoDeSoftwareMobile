@@ -21,7 +21,7 @@ class AddProgramScreen extends React.Component<Props, State> {
   static navigationOptions = {
     title: 'Cadastrar Milhas',  
     headerTitleStyle: {
-        textAlign: 'center',
+        textAlign: 'left',
         flex: 1
       }
   };
