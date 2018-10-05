@@ -77,6 +77,8 @@ class AddProgramContainer extends React.Component<Props, State> {
 
         <View style={{marginTop: 150}}>
           <CardButton
+            viewStyle={{backgroundColor: "black"}}
+            textStyle={{color: "white"}}
             text="CADASTRAR"
             onPress={() =>this.props.navigation.navigate("MilesList")}
           />
