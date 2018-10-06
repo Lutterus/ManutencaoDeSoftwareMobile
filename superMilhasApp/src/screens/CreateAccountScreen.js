@@ -29,8 +29,10 @@ class CreateAccountScreen extends React.Component<Props, State> {
   static navigationOptions = {
     title: 'Cadastro',  
     headerTitleStyle: {
+        fontSize: 22,
+        color: "#083b66",
         textAlign: 'left',
-        flex: 1
+        flex: 2
       },
     test: (
         <View style={{width: 250, height: 2}}></View>

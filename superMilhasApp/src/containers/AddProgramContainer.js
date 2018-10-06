@@ -16,7 +16,7 @@ import { NavigationScreenProp } from "react-navigation";
 import CardView from "../components/GenericComponents/CardView";
 import CardButton from "../components/GenericComponents/CardButton";
 import MilesListItem from "../components/MilesListItem";
-import { TextInputMask } from 'react-native-masked-text'
+import { TextInputMask } from 'react-native-masked-text';
 
 type State = {
   quantidade: number,
@@ -89,7 +89,7 @@ class AddProgramContainer extends React.Component<Props, State> {
               width: Dimensions.get("window").width * 0.4,
               height: Dimensions.get("window").height * 0.1
             }}
-            textStyle={{ color: "white", fontSize: 20, textAlign: "center"}}
+            textStyle={{ color: "white", fontSize: 20, textAlign: "center", justifyContent: "center", alignItems: "center"}}
             text="Cadastrar"
             onPress={() => this.props.navigation.navigate("MilesList")}
           />

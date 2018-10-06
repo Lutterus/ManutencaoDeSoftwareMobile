@@ -44,14 +44,13 @@ class LoginContainer extends React.Component<Props, State> {
           justifyContent: "center"
         }}
       >
-        { /*Logo*/}  
-        <View style={{ flex: 4 / 5}}>
+        {/*Logo*/}
+        <View style={{ flex: 4 / 5 }}>
           <Image
             source={require("../assets/images/Logo.png")}
-            style={styles.styleTitle} />
-          <View 
-          style={{width: 370, height: 2, backgroundColor: "black"}}>
-          </View>
+            style={styles.styleTitle}
+          />
+          <View style={{ width: 400, height: 2, backgroundColor: "#083b66" }} />
         </View>
 
         {/* Email */}
@@ -83,7 +82,7 @@ class LoginContainer extends React.Component<Props, State> {
             viewStyle={{
               marginVertical: 20,
               width: Dimensions.get("window").width * 0.3,
-              backgroundColor: "black"
+              backgroundColor: "#083b66"
             }}
             textStyle={{ fontSize: 16, color: "white" }}
             text="Login"
@@ -91,12 +90,21 @@ class LoginContainer extends React.Component<Props, State> {
           />
         </View>
 
+        {/* Esqueci minha senha */}
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate("CreateAccount")}
+        >
+          <Text style={styles.signUp} viewStyle={{ marginTop: 40 }}>
+            Esqueci minha senha
+          </Text>
+        </TouchableOpacity>
+
         {/* Cadastre-se */}
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate("CreateAccount")}
         >
-          <Text style={styles.signUp} viewStyle={{marginTop: 15}}>
-           Criar uma conta
+          <Text style={styles.signUp} viewStyle={{ marginTop: 40 }}>
+            Criar uma conta
           </Text>
         </TouchableOpacity>
       </View>
@@ -106,12 +114,12 @@ class LoginContainer extends React.Component<Props, State> {
 
 const styles = StyleSheet.create({
   text: {
-    color: "black",
+    color: "#083b66",
     fontSize: 22,
     flexDirection: "column",
     textAlign: "left",
     alignSelf: "stretch",
-    fontWeight: 'bold'
+    fontWeight: "bold"
   },
   inputView: {
     borderRadius: 4,
@@ -123,15 +131,15 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   signUp: {
-    color: "black",
+    color: "#083b66",
     fontSize: 13,
     textAlign: "center",
     marginBottom: 5,
     fontWeight: "bold"
   },
   styleTitle: {
-    width: Dimensions.get("window").width * 1.0,
-    height: Dimensions.get("window").height * 0.30
+    width: Dimensions.get("window").width * 1.1,
+    height: Dimensions.get("window").height * 0.3
   }
 });
 

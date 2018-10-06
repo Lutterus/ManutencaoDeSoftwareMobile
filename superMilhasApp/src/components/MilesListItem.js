@@ -6,7 +6,7 @@ import type { MilesAgency } from "../util/types";
 const MilesListItem = ({ milesAgency }: MilesAgency) => {
   return (
     <View style={styles.generalView}>
-      <View style={{ flex: 1/2, borderColor: 'midnightblue', borderWidth: 1, borderRadius: 10}}>
+      <View style={{ flex: 1/2, borderColor: "#083b66", borderWidth: 1, borderRadius: 10}}>
         <Image
           style={styles.image}
           borderRadius={20}
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: 'auto',
     margin: 10,
-    color: 'midnightblue',    
+    color: "#083b66",    
     fontWeight: 'bold'
   },
 
@@ -70,13 +70,13 @@ const styles = StyleSheet.create({
     color: 'darkgray',
     paddingTop: 10,
     borderTopWidth: 1,
-    borderTopColor: 'midnightblue'
+    borderTopColor: "#083b66"
   },
 
   miles: {
     fontSize: 30,
     textAlign: 'center',
-    color: 'midnightblue',
+    color: "#083b66",
     fontWeight: 'bold'
   }
 });
