@@ -102,7 +102,7 @@ class LoginContainer extends React.Component<Props, State> {
 
         {/* Esqueci minha senha */}
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("CreateAccount")}
+          onPress={() => this.props.navigation.navigate("Password")}
         >
           <Text style={styles.signUp} viewStyle={{ marginTop: 40 }}>
             Esqueci minha senha
