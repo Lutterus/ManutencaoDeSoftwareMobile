@@ -6,22 +6,28 @@ import type { MilesAgency } from "../util/types";
 const MilesListItem = ({ milesAgency }: MilesAgency) => {
   return (
     <View style={styles.generalView}>
-      <View style={{ flex: 1 / 2 }}>
+      <View style={{ flex: 1/2, borderColor: 'midnightblue', borderWidth: 1, borderRadius: 10}}>
         <Image
           style={styles.image}
-          borderRadius={12}
+          borderRadius={20}
           source={{ uri: milesAgency.programa_default.imagem }}
         />
       </View>
-      <View style={styles.column}>
-        <View
-          style={{ flex: 1, justifyContent: "center", marginLeft: 10 }}>
-          <Text style={styles.programName}>{milesAgency.nome}</Text>
-          <Text style={styles.date}>{milesAgency.milha_expiracao_maisProxima}</Text>
+      <View style={styles.columnView}>
+        <View style={{ flex: 1}}>
+          <Text style={styles.programName}> {milesAgency.nome} </Text>
+        </View>
+        <View style={{ flex: 1}}>
+          <Text style={styles.date}>
+            {milesAgency.milha_expiracao_maisProxima}500 vencem em 20/03/2018 {milesAgency.date}
+          </Text>
         </View>
       </View>
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text style={styles.miles}>{milesAgency.somaMilhas}</Text>
+      <View style={{ flex: 1 / 2, justifyContent: "center", alignItems: "center"}}>
+        <Text style={styles.miles}>
+          <Text style ={{fontSize: 15, color: "darkgray"}}> total: </Text>
+          {milesAgency.somaMilhas}
+        </Text>
       </View>
     </View>
   );
@@ -32,26 +38,46 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 10,
     backgroundColor: "white",
-    marginHorizontal: 10
+    marginHorizontal: 10    
   },
-  image: { 
+
+  image: {     
     width: 64, 
     height: 64, 
-    margin: 10 
+    margin: 10,
+    resizeMode: 'contain'
   },
+  
   columnView: { 
     flexDirection: "column",
-     flex: 1 
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
+
   programName: {
     fontSize: 24,
-    textAlign: 'left'
+    textAlign: 'auto',
+    margin: 10,
+    color: 'midnightblue',    
+    fontWeight: 'bold'
   },
+
   date: {
-    textAlign: 'left'
+    fontSize: 10,
+    textAlign: 'center',
+    height: 30,
+    color: 'darkgray',
+    paddingTop: 10,
+    borderTopWidth: 1,
+    borderTopColor: 'midnightblue'
   },
+
   miles: {
-    fontSize: 30
+    fontSize: 30,
+    textAlign: 'center',
+    color: 'midnightblue',
+    fontWeight: 'bold'
   }
 });
 

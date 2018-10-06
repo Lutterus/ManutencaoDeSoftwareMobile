@@ -16,6 +16,7 @@ import { NavigationScreenProp } from "react-navigation";
 import CardView from "../components/GenericComponents/CardView";
 import CardButton from "../components/GenericComponents/CardButton";
 import MilesListItem from "../components/MilesListItem";
+import { TextInputMask } from 'react-native-masked-text'
 
 type State = {
   quantidade: number,
@@ -71,10 +72,13 @@ class AddProgramContainer extends React.Component<Props, State> {
 
         <View style={{ marginTop: 15 }}>
           <CardView style={styles.inputView}>
-            <TextInput
+            <TextInputMask
               placeholder="Vencimento"
               underlineColorAndroid={"#0000"}
-            />
+              type={'datetime'}
+              options={{
+                format: 'DD/MM/YYYY'
+              }}/>
           </CardView>
         </View>
 
@@ -90,6 +94,7 @@ class AddProgramContainer extends React.Component<Props, State> {
             onPress={() => this.props.navigation.navigate("MilesList")}
           />
         </View>
+        
       </View>
     );
   }
