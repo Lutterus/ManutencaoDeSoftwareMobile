@@ -1,4 +1,4 @@
-//@flow
+﻿﻿//@flow
 import React from "react";
 import {
   View,
@@ -37,90 +37,81 @@ class LoginContainer extends React.Component<Props, State> {
 
   render() {
     return (
-      // BackGround
-      <ImageBackground
-        source={require("../assets/images/aviao.png")}
-        style={styles.backgroundImage}
+      <View
+        style={{
+          flex: 4 / 5,
+          alignItems: "center",
+          justifyContent: "center"
+        }}
       >
-        {/* Título */}
-        <View style={{ flex: 1 / 5 }}>
+        { /*Logo*/}  
+        <View style={{ flex: 4 / 5}}>
           <Image
-            source={require("../assets/images/logo.png")}
-            style={styles.styleTitle}
+            source={require("../assets/images/Logo.png")}
+            style={styles.styleTitle} />
+          <View 
+          style={{width: 370, height: 2, backgroundColor: "black"}}>
+          </View>
+        </View>
+
+        {/* Email */}
+        <View>
+          <Text style={styles.text}>E-mail</Text>
+          <CardView style={styles.inputView}>
+            <TextInput
+              underlineColorAndroid={"#0000"}
+              style={styles.textStyle}
+            />
+          </CardView>
+        </View>
+
+        {/* Senha */}
+        <View>
+          <Text style={styles.text}>Senha</Text>
+          <CardView style={styles.inputView}>
+            <TextInput
+              secureTextEntry
+              underlineColorAndroid={"#0000"}
+              style={styles.textStyle}
+            />
+          </CardView>
+        </View>
+
+        {/* Botão de Login */}
+        <View>
+          <CardButton
+            viewStyle={{
+              marginVertical: 20,
+              width: Dimensions.get("window").width * 0.3,
+              backgroundColor: "black"
+            }}
+            textStyle={{ fontSize: 16, color: "white" }}
+            text="Login"
+            onPress={() => this.props.navigation.navigate("MilesList")}
           />
         </View>
 
-        <View
-          style={{
-            flex: 4 / 5,
-            alignItems: "center",
-            justifyContent: "center"
-          }}
+        {/* Cadastre-se */}
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate("CreateAccount")}
         >
-          {/* Email */}
-          <View>
-            <Text style={styles.text}>E-mail</Text>
-            <CardView style={styles.inputView}>
-              <TextInput
-                underlineColorAndroid={"#0000"}
-                style={styles.textStyle}
-              />
-            </CardView>
-          </View>
-
-          {/* Senha */}
-          <View>
-            <Text style={styles.text}>Senha</Text>
-            <CardView style={styles.inputView}>
-              <TextInput
-                secureTextEntry
-                underlineColorAndroid={"#0000"}
-                style={styles.textStyle}
-              />
-            </CardView>
-          </View>
-
-          {/* Botão de Login */}
-          <View>
-            <CardButton
-              viewStyle={{
-                marginVertical: 20,
-                width: Dimensions.get("window").width * 0.3
-              }}
-              textStyle={{ fontSize: 16 }}
-              text="Login"
-              onPress={() => this.props.navigation.navigate("MilesList")}
-            />
-          </View>
-
-          {/* Cadastre-se */}
-          <TouchableOpacity
-            onPress={() => Linking.openURL("https://supermilhas.tur.br/")}
-          >
-            <Text style={styles.signUp}>
-              Ainda não possui uma conta? Cadastre-se.
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </ImageBackground>
+          <Text style={styles.signUp} viewStyle={{marginTop: 15}}>
+           Criar uma conta
+          </Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-    width: undefined,
-    height: undefined,
-    alignItems: "center",
-    justifyContent: "center"
-  },
   text: {
-    color: "white",
+    color: "black",
     fontSize: 22,
     flexDirection: "column",
     textAlign: "left",
-    alignSelf: "stretch"
+    alignSelf: "stretch",
+    fontWeight: 'bold'
   },
   inputView: {
     borderRadius: 4,
@@ -139,9 +130,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   styleTitle: {
-    marginTop: 90,
-    width: Dimensions.get("window").width * 0.9,
-    height: Dimensions.get("window").height * 0.12
+    width: Dimensions.get("window").width * 1.0,
+    height: Dimensions.get("window").height * 0.30
   }
 });
 
