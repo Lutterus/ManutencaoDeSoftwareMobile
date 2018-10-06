@@ -52,7 +52,8 @@ class LoginContainer extends React.Component<Props, State> {
           />
           <View style={{ width: 400, height: 2, backgroundColor: "#083b66" }} />
         </View>
-
+        
+        <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
         {/* Email */}
         <View>
           <Text style={styles.text}>E-mail</Text>
@@ -90,15 +91,6 @@ class LoginContainer extends React.Component<Props, State> {
           />
         </View>
 
-        {/* Esqueci minha senha */}
-        <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("CreateAccount")}
-        >
-          <Text style={styles.signUp} viewStyle={{ marginTop: 40 }}>
-            Esqueci minha senha
-          </Text>
-        </TouchableOpacity>
-
         {/* Cadastre-se */}
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate("CreateAccount")}
@@ -107,6 +99,16 @@ class LoginContainer extends React.Component<Props, State> {
             Criar uma conta
           </Text>
         </TouchableOpacity>
+
+        {/* Esqueci minha senha */}
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate("CreateAccount")}
+        >
+          <Text style={styles.signUp} viewStyle={{ marginTop: 40 }}>
+            Esqueci minha senha
+          </Text>
+        </TouchableOpacity>
+        </View>
       </View>
     );
   }
