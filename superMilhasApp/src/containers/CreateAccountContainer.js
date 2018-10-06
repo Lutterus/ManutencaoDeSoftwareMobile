@@ -65,6 +65,7 @@ type State = {
                     <Text style={styles.text}>Senha</Text>
                         <CardView style={styles.inputView}>
                             <TextInput 
+                                secureTextEntry
                                 underlineColorAndroid={"#0000"}/>
                         </CardView>
                 </View>
@@ -73,6 +74,7 @@ type State = {
                     <Text style={styles.text}>Confirmar senha</Text>
                         <CardView style={styles.inputView}>
                             <TextInput 
+                                secureTextEntry
                                 underlineColorAndroid={"#0000"}/>
                         </CardView>
                 </View>
