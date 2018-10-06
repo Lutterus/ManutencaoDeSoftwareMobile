@@ -30,7 +30,7 @@ type State = {
       this.state = {
         email: "",
         senha: "",
-        telefone: NaN
+        telefone: ""
       };
     }
 

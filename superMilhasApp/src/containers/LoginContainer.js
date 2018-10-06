@@ -45,13 +45,15 @@ class LoginContainer extends React.Component<Props, State> {
         }}
       >
         { /*Logo*/}  
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 4 / 5}}>
           <Image
             source={require("../assets/images/Logo.png")}
             style={styles.styleTitle} />
-          </View>
           <View 
-          style={{width: 370, height: 2, backgroundColor: "black"}}></View>
+          style={{width: 370, height: 2, backgroundColor: "black"}}>
+          </View>
+        </View>
+
         {/* Email */}
         <View>
           <Text style={styles.text}>E-mail</Text>
@@ -103,13 +105,6 @@ class LoginContainer extends React.Component<Props, State> {
 }
 
 const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-    width: undefined,
-    height: undefined,
-    alignItems: "center",
-    justifyContent: "center"
-  },
   text: {
     color: "black",
     fontSize: 22,
@@ -135,9 +130,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   styleTitle: {
-    marginTop: 25,
     width: Dimensions.get("window").width * 1.0,
-    height: Dimensions.get("window").height * 0.37
+    height: Dimensions.get("window").height * 0.30
   }
 });
 

@@ -17,7 +17,6 @@ import CardView from "../components/GenericComponents/CardView";
 import CardButton from "../components/GenericComponents/CardButton";
 import MilesListItem from "../components/MilesListItem";
 
-
 type State = {
   quantidade: number,
   vencimento: Date,
@@ -35,57 +34,63 @@ class AddProgramContainer extends React.Component<Props, State> {
     this.state = {
       quantidade: 0,
       vencimento: new Date(),
-      programa: ''
+      programa: ""
     };
   }
 
   render() {
     return (
-      <View style={{ justifyContent: 'space-evenly', alignItems: 'center'}}>
-        
-        <View style={{marginTop: 55 }}>
-            <CardView>
-            <Picker 
-              selectedValue={this.state.programa} 
-              style={{ height: 50, width: 300,}}
-              onValueChange={(itemValue, itemIndex) => this.setState({programa: itemValue})}>
-            <Picker.Item label="Programa" value="programa" />
-            <Picker.Item label="Smiles" value="smiles" />
-            <Picker.Item label="Livelo" value="livelo" />
-            <Picker.Item label="Amigo" value="amigo" />
-            <Picker.Item label="Multiplus" value="multiplus" />
+      <View style={{ justifyContent: "space-evenly", alignItems: "center" }}>
+        <View style={{ marginTop: 55 }}>
+          <CardView>
+            <Picker
+              selectedValue={this.state.programa}
+              style={{ height: 50, width: 300 }}
+              onValueChange={(itemValue, itemIndex) =>
+                this.setState({ programa: itemValue })
+              }
+            >
+              <Picker.Item label="Programa" value="programa" />
+              <Picker.Item label="Smiles" value="smiles" />
+              <Picker.Item label="Livelo" value="livelo" />
+              <Picker.Item label="Amigo" value="amigo" />
+              <Picker.Item label="Multiplus" value="multiplus" />
             </Picker>
-            </CardView>
-        </View>
-
-        <View style={{justifyContent: 'space-between', marginTop: 15}}>
-          <CardView style={styles.inputView}>
-            <TextInput 
-              keyboardType = 'numeric'
-              placeholder="Quantidade" 
-              underlineColorAndroid={"#0000"}/>
           </CardView>
         </View>
 
-        <View style={{marginTop: 15}}>
+        <View style={{ justifyContent: "space-between", marginTop: 15 }}>
           <CardView style={styles.inputView}>
-          <TextInput 
-            placeholder="Vencimento"
-            underlineColorAndroid={"#0000"}/>
+            <TextInput
+              keyboardType="numeric"
+              placeholder="Quantidade"
+              underlineColorAndroid={"#0000"}
+            />
           </CardView>
         </View>
 
-        <View style={{marginTop: 150}}>
+        <View style={{ marginTop: 15 }}>
+          <CardView style={styles.inputView}>
+            <TextInput
+              placeholder="Vencimento"
+              underlineColorAndroid={"#0000"}
+            />
+          </CardView>
+        </View>
+
+        <View style={{ marginTop: 100 }}>
           <CardButton
-            viewStyle={{backgroundColor: "black"}}
-            textStyle={{color: "white"}}
-            text="CADASTRAR"
-            onPress={() =>this.props.navigation.navigate("MilesList")}
+            viewStyle={{
+              backgroundColor: "#1BB194",
+              width: Dimensions.get("window").width * 0.4,
+              height: Dimensions.get("window").height * 0.1
+            }}
+            textStyle={{ color: "white", fontSize: 20, textAlign: "center"}}
+            text="Cadastrar"
+            onPress={() => this.props.navigation.navigate("MilesList")}
           />
         </View>
-
       </View>
-
     );
   }
 }
@@ -104,8 +109,12 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     marginTop: 4,
     padding: 6
-  }
+  },
 
+  styleTitle: {
+    width: Dimensions.get("window").width * 0.5,
+    height: Dimensions.get("window").height * 0.3
+  }
 });
 
 export default AddProgramContainer;
