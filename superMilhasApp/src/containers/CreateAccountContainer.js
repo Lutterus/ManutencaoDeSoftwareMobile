@@ -6,7 +6,8 @@ import {
   Text,
   TextInput,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  KeyboardAvoidingView
 } from "react-native";
 import CardView from "../components/GenericComponents/CardView";
 import CardButton from "../components/GenericComponents/CardButton";
@@ -44,41 +45,38 @@ class CreateAccountContainer extends React.Component<Props, State> {
         }}
       >
         <View style={{ marginTop: 20 }}>
-          <Text style={styles.text}>E-mail</Text>
-          <CardView>
-            <TextInput underlineColorAndroid={"#0000"} />
+          <CardView style={styles.inputView}>
+            <TextInput placeholder="Email" underlineColorAndroid={"#0000"} />
           </CardView>
         </View>
 
+        <KeyboardAvoidingView behavior="padding">
         <View style={{ marginTop: 20 }}>
-          <Text style={styles.text}>Telefone</Text>
           <CardView style={styles.inputView}>
-          <TextInputMask
+            <TextInputMask
+              placeholder="Telefone"
               underlineColorAndroid={"#0000"}
-              type={'cel-phone'}
+              type={"cel-phone"}
               options={{
-                format: 'dddMask'
-              }}/>
-
-            
+                format: "dddMask"
+              }}
+            />
           </CardView>
         </View>
 
         <View style={{ marginTop: 20 }}>
-          <Text style={styles.text}>Senha</Text>
           <CardView style={styles.inputView}>
-            <TextInput secureTextEntry underlineColorAndroid={"#0000"} />
+            <TextInput placeholder="Senha" secureTextEntry underlineColorAndroid={"#0000"} />
           </CardView>
         </View>
 
         <View style={{ marginTop: 20 }}>
-          <Text style={styles.text}>Confirmar senha</Text>
           <CardView style={styles.inputView}>
-            <TextInput secureTextEntry underlineColorAndroid={"#0000"} />
+            <TextInput placeholder="Confirmar senha" secureTextEntry underlineColorAndroid={"#0000"} />
           </CardView>
         </View>
 
-        <View style={{ marginTop: 20 }}>
+        <View style={{ marginTop: 20, justifyContent: "center", alignSelf: "center" }}>
           <CardButton
             viewStyle={{
               marginVertical: 20,
@@ -90,6 +88,8 @@ class CreateAccountContainer extends React.Component<Props, State> {
             onPress={() => this.props.navigation.navigate("Login")}
           />
         </View>
+
+      </KeyboardAvoidingView>
       </View>
     );
   }
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   inputView: {
     borderRadius: 4,
     marginTop: 3,
-    padding: 2
+    padding: 10
   },
   text: {
     color: "#083b66",

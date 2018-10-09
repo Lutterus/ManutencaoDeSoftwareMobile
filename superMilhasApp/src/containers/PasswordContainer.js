@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   inputView: {
     borderRadius: 4,
     marginTop: 30,
-    padding: 2
+    padding: 10
   },
   signUp: {
     color: "#083b66",

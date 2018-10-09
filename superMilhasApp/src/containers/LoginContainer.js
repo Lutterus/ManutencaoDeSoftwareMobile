@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
   Linking,
   Image,
-  Dimensions
+  Dimensions,
+  KeyboardAvoidingView
 } from "react-native";
 import TextField from "../components/GenericComponents/TextField";
 import { NavigationScreenProp } from "react-navigation";
@@ -55,15 +56,13 @@ class LoginContainer extends React.Component<Props, State> {
         
         <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
         {/* Email */}
-        <View>
           <Text style={styles.text}>E-mail</Text>
           <CardView style={styles.inputView}>
             <TextInput
               underlineColorAndroid={"#0000"}
               style={styles.textStyle}
             />
-          </CardView>
-        </View>
+          </CardView> 
 
         {/* Senha */}
         <View>

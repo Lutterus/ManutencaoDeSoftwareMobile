@@ -46,7 +46,7 @@ class AddProgramContainer extends React.Component<Props, State> {
           <CardView>
             <Picker
               selectedValue={this.state.programa}
-              style={{ height: 50, width: 300 }}
+              style={{ height: 40, width: 300 }}
               onValueChange={(itemValue, itemIndex) =>
                 this.setState({ programa: itemValue })
               }
@@ -86,8 +86,7 @@ class AddProgramContainer extends React.Component<Props, State> {
           <CardButton
             viewStyle={{
               backgroundColor: "#1BB194",
-              width: Dimensions.get("window").width * 0.4,
-              height: Dimensions.get("window").height * 0.1
+              width: Dimensions.get("window").width * 0.4
             }}
             textStyle={{ color: "white", fontSize: 20, textAlign: "center", justifyContent: "center", alignItems: "center"}}
             text="Cadastrar"
