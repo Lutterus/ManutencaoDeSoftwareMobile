@@ -68,7 +68,6 @@ class LoginContainer extends React.Component<Props, State> {
             <Text style={styles.text}>E-mail</Text>
             <CardView style={styles.inputView}>
               <TextInput
-                autoCapitalize
                 underlineColorAndroid={"#0000"}
                 style={styles.textStyle}
               />
