@@ -15,6 +15,7 @@ import TextField from "../components/GenericComponents/TextField";
 import { NavigationScreenProp } from "react-navigation";
 import CardButton from "../components/GenericComponents/CardButton";
 import CardView from "../components/GenericComponents/CardView";
+import PasswordInput from "../components/GenericComponents/PasswordInput";
 
 type State = {
   email: string,
@@ -34,6 +35,12 @@ class LoginContainer extends React.Component<Props, State> {
       senha: ""
     };
   }
+
+  onChange = event => {
+    const { name, value } = event.target;
+
+    this.setState({ [name]: value });
+  };
 
   render() {
     return (
@@ -61,6 +68,7 @@ class LoginContainer extends React.Component<Props, State> {
             <Text style={styles.text}>E-mail</Text>
             <CardView style={styles.inputView}>
               <TextInput
+                autoCapitalize
                 underlineColorAndroid={"#0000"}
                 style={styles.textStyle}
               />
@@ -71,11 +79,7 @@ class LoginContainer extends React.Component<Props, State> {
           <View>
             <Text style={styles.text}>Senha</Text>
             <CardView style={styles.inputView}>
-              <TextInput
-                secureTextEntry
-                underlineColorAndroid={"#0000"}
-                style={styles.textStyle}
-              />
+              <PasswordInput />
             </CardView>
           </View>
 
