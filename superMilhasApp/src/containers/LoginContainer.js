@@ -15,6 +15,7 @@ import TextField from "../components/GenericComponents/TextField";
 import { NavigationScreenProp } from "react-navigation";
 import CardButton from "../components/GenericComponents/CardButton";
 import CardView from "../components/GenericComponents/CardView";
+import PasswordInput from "../components/GenericComponents/PasswordInput";
 
 type State = {
   email: string,
@@ -35,6 +36,12 @@ class LoginContainer extends React.Component<Props, State> {
     };
   }
 
+  onChange = event => {
+    const { name, value } = event.target;
+
+    this.setState({ [name]: value });
+  };
+
   render() {
     return (
       <View
@@ -47,67 +54,65 @@ class LoginContainer extends React.Component<Props, State> {
         {/*Logo*/}
         <View style={{ flex: 4 / 5 }}>
           <Image
-            source={require("../assets/images/Logo.png")}
+            source={require("../assets/images/logo.png")}
             style={styles.styleTitle}
           />
           <View style={{ width: 400, height: 2, backgroundColor: "#083b66" }} />
         </View>
-        
-        <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
-        {/* Email */}
-        <View>
-          <Text style={styles.text}>E-mail</Text>
-          <CardView style={styles.inputView}>
-            <TextInput
-              underlineColorAndroid={"#0000"}
-              style={styles.textStyle}
-            />
-          </CardView>
-        </View>
 
-        {/* Senha */}
-        <View>
-          <Text style={styles.text}>Senha</Text>
-          <CardView style={styles.inputView}>
-            <TextInput
-              secureTextEntry
-              underlineColorAndroid={"#0000"}
-              style={styles.textStyle}
-            />
-          </CardView>
-        </View>
-
-        {/* Botão de Login */}
-        <View>
-          <CardButton
-            viewStyle={{
-              marginVertical: 20,
-              width: Dimensions.get("window").width * 0.3,
-              backgroundColor: "#083b66"
-            }}
-            textStyle={{ fontSize: 16, color: "white" }}
-            text="Login"
-            onPress={() => this.props.navigation.navigate("MilesList")}
-          />
-        </View>
-
-        {/* Cadastre-se */}
-        <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("CreateAccount")}
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
-          <Text style={styles.signUp} viewStyle={{ marginTop: 40 }}>
-            Criar uma conta
-          </Text>
-        </TouchableOpacity>
+          {/* Email */}
+          <View>
+            <Text style={styles.text}>E-mail</Text>
+            <CardView style={styles.inputView}>
+              <TextInput
+                underlineColorAndroid={"#0000"}
+                style={styles.textStyle}
+              />
+            </CardView>
+          </View>
 
-        {/* Esqueci minha senha */}
-        <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("Password")}
-        >
-          <Text style={styles.signUp} viewStyle={{ marginTop: 40 }}>
-            Esqueci minha senha
-          </Text>
-        </TouchableOpacity>
+          {/* Senha */}
+          <View>
+            <Text style={styles.text}>Senha</Text>
+            <CardView style={styles.inputView}>
+              <PasswordInput />
+            </CardView>
+          </View>
+
+          {/* Botão de Login */}
+          <View>
+            <CardButton
+              viewStyle={{
+                marginVertical: 20,
+                width: Dimensions.get("window").width * 0.3,
+                backgroundColor: "#083b66"
+              }}
+              textStyle={{ fontSize: 16, color: "white" }}
+              text="Login"
+              onPress={() => this.props.navigation.navigate("MilesList")}
+            />
+          </View>
+
+          {/* Cadastre-se */}
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("CreateAccount")}
+          >
+            <Text style={styles.signUp} viewStyle={{ marginTop: 40 }}>
+              Criar uma conta
+            </Text>
+          </TouchableOpacity>
+
+          {/* Esqueci minha senha */}
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("Password")}
+          >
+            <Text style={styles.signUp} viewStyle={{ marginTop: 40 }}>
+              Esqueci minha senha
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
