@@ -19,6 +19,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@material-ui/core": "^3.2.0",
     "axios": "^0.18.0",
     "expo": "^27.0.1",
     "flow-bin": "^0.78.0",
