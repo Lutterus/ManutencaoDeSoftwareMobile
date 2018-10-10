@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-
 import {
   View,
   TextInput,
   StyleSheet,
   TextField,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from "react-native";
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 import CardButton from "./CardButton";
 
 class PasswordInput extends Component {
@@ -31,16 +31,19 @@ class PasswordInput extends Component {
           underlineColorAndroid={"#0000"}
           style={styles.placeInput}
         />
-
-        <CardButton
+        <TouchableOpacity
           viewStyle={{
             width: Dimensions.get("window").width * 0.17,
             backgroundColor: "#083b66"
           }}
-          textStyle={{ fontSize: 15, color: "white" }}
-          text="Mostrar"
-          onPress={this.togglePasswordHandler}
+          onPress={this.togglePasswordHandler}  
+        >
+        <Icon 
+          name={"eye-slash"}
+          size={15}
+          color="black"
         />
+        </TouchableOpacity>
       </View>
     );
   }
