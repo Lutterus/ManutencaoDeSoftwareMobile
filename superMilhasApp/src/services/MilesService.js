@@ -11,7 +11,7 @@ const BASE_URL = "api/";
  * URLS of the service used on Category Service.
  */
 const RESOURCES = {
-  MILES_LIST: BASE_URL + 'getPrograms/',
+  MILES_LIST: BASE_URL + 'getPrograms/fulano@hotmail.com',
   PROGRAMS_LIST: BASE_URL + 'getProgramsDefault/'
 };
 

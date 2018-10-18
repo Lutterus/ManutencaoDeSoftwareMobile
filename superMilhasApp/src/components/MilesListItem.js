@@ -19,7 +19,7 @@ const MilesListItem = ({ milesAgency }: MilesAgency) => {
         </View>
         <View style={{ flex: 1}}>
           <Text style={styles.date}>
-            {milesAgency.milha_expiracao_maisProxima}500 vencem em 20/03/2018 {milesAgency.date}
+            {milesAgency.milha_expiracao_maisProxima.quantidade} vencem em {milesAgency.milha_expiracao_maisProxima.dt_expiracao}
           </Text>
         </View>
       </View>
