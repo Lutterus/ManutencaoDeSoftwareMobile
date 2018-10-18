@@ -16,7 +16,7 @@ type Milha = {
 }
 
 type Response = {
-  success: bolean,
+  success: boolean,
   content: Object,
   messages: Array<String>
 };
