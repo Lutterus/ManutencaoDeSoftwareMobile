@@ -6,6 +6,7 @@ import { NavigationScreenProp } from "react-navigation";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MilesService from '../services/MilesService';
 import AddProgramScreen from '../screens/AddProgramScreen';
+import { AsyncStorage } from "react-native"
 
 type State = {};
 
@@ -22,11 +23,14 @@ class MilesListScreen extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    this.updateMilesList();
+    AsyncStorage.getItem('login', (err, result) => {
+    }).then(res => {
+      this.updateMilesList(res);
+    });
+    
   }
-
-  updateMilesList = async () => {
-    const list = await this.milesService.listMiles();
+  updateMilesList = async (currentUser) => {
+    const list = await this.milesService.listMiles(currentUser);
     this.setState({ milesList: list });
   };
 

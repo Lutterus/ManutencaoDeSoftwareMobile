@@ -1,5 +1,5 @@
 ﻿﻿//@flow
-import React from "react";
+import React, { Component } from "react";
 import {
   View,
   ImageBackground,
@@ -16,9 +16,12 @@ import TextField from "../components/GenericComponents/TextField";
 import { NavigationScreenProp } from "react-navigation";
 import CardButton from "../components/GenericComponents/CardButton";
 import CardView from "../components/GenericComponents/CardView";
-import PasswordInput from "../components/GenericComponents/PasswordInput";
+import Icon from 'react-native-vector-icons/FontAwesome';
+import LoginService from '../services/LoginService';
+import { AsyncStorage } from "react-native"
 
 type State = {
+  showPassword: boolean,
   email: string,
   senha: string
 };
@@ -28,19 +31,37 @@ type Props = {
 };
 
 class LoginContainer extends React.Component<Props, State> {
+  LoginService;
   constructor(props: Props) {
     super(props);
-
+    this.loginService = new LoginService();
     this.state = {
+      showPassword: true,
       email: "",
       senha: ""
     };
   }
 
+  togglePasswordHandler = () => {
+    this.setState({ showPassword: !this.state.showPassword });
+  };
+
   onChange = event => {
     const { name, value } = event.target;
 
     this.setState({ [name]: value });
+  };
+
+  loginTest = async () => {
+    AsyncStorage.setItem('login', this.state.email)
+    AsyncStorage.setItem('password', this.state.senha)
+    var res = await this.loginService.login(this.state.email, this.state.senha)
+
+    if(res===true){
+      this.props.navigation.navigate("MilesList")
+    }else{
+      console.warn("As credenciais estão incorretas")
+    }
   };
 
   render() {
@@ -65,23 +86,51 @@ class LoginContainer extends React.Component<Props, State> {
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
           {/* Email */}
-          <View>
+          <KeyboardAvoidingView behavior = "padding">
             <Text style={styles.text}>E-mail</Text>
             <CardView style={styles.inputView}>
               <TextInput
+                returnKeyType="next"
+                onSubmitEditing={() => this.passwordInput.focus()}
                 underlineColorAndroid={"#0000"}
                 style={styles.textStyle}
+                keyboardType="email-address"
+                autoCorrect={false}
+                autoCapitalize="none"
+                onChangeText={(TextInput)=> this.setState({email: TextInput})}
               />
             </CardView>
-          </View>
+          </KeyboardAvoidingView>
 
           {/* Senha */}
-          <View>
+          <KeyboardAvoidingView behavior = "padding">
             <Text style={styles.text}>Senha</Text>
             <CardView style={styles.inputView}>
-              <PasswordInput />
+              <TextInput 
+                returnKeyLabel="go"
+                secureTextEntry={this.state.showPassword}
+                underlineColorAndroid={"#0000"}
+                style={styles.textStyle}
+                autoCorrect={false}
+                autoCapitalize="none"
+                ref={(input) => this.passwordInput = input}
+                onChangeText={(TextInput)=> this.setState({senha: TextInput})}
+              />
+              <TouchableOpacity
+                viewStyle={{
+                  width: Dimensions.get("window").width * 0.17,
+                  backgroundColor: "#083b66"
+                }}
+                onPress={this.togglePasswordHandler}  
+              >
+              <Icon 
+                name={"eye-slash"}
+                size={15}
+                color="black"
+              />
+              </TouchableOpacity>
             </CardView>
-          </View>
+          </KeyboardAvoidingView>
 
           {/* Botão de Login */}
           <View>
@@ -93,7 +142,7 @@ class LoginContainer extends React.Component<Props, State> {
               }}
               textStyle={{ fontSize: 16, color: "white" }}
               text="Login"
-              onPress={() => this.props.navigation.navigate("MilesList")}
+              onPress={this.loginTest}
             />
           </View>
 
