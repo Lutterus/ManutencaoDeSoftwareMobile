@@ -39,6 +39,11 @@ class AddProgramContainer extends React.Component<Props, State> {
     };
   }
 
+  onGoFocus() {
+		// when you call getElement method, the instance of native TextInput will returned.
+		this.refs['myText'].getElement().focus();
+	}
+
   render() {
     return (
       <View style={{ justifyContent: "space-evenly", alignItems: "center" }}>
@@ -63,6 +68,8 @@ class AddProgramContainer extends React.Component<Props, State> {
         <View style={{ justifyContent: "space-between", marginTop: 15 }}>
           <CardView style={styles.inputView}>
             <TextInput
+              returnKeyType="next"
+              onSubmitEditing={this.onGoFocus.bind(this)}
               keyboardType="numeric"
               placeholder="Quantidade"
               underlineColorAndroid={"#0000"}
@@ -73,6 +80,8 @@ class AddProgramContainer extends React.Component<Props, State> {
         <View style={{ marginTop: 15 }}>
           <CardView style={styles.inputView}>
             <TextInputMask
+              returnKeyLabel="go"
+              ref='myText'
               placeholder="Vencimento"
               underlineColorAndroid={"#0000"}
               type={'datetime'}
