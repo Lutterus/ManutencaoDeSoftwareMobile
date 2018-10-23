@@ -116,20 +116,15 @@ class LoginContainer extends React.Component<Props, State> {
                 ref={(input) => this.passwordInput = input}
                 onChangeText={(TextInput)=> this.setState({senha: TextInput})}
               />
-              <TouchableOpacity
-                viewStyle={{
-                  width: Dimensions.get("window").width * 0.17,
-                  backgroundColor: "#083b66"
-                }}
-                onPress={this.togglePasswordHandler}  
-              >
               <Icon 
+                style={styles.eyeButton}
                 name={"eye-slash"}
                 size={15}
                 color="black"
+                onPress={this.togglePasswordHandler}
               />
-              </TouchableOpacity>
             </CardView>
+            
           </KeyboardAvoidingView>
 
           {/* Botão de Login */}
@@ -181,11 +176,15 @@ const styles = StyleSheet.create({
   inputView: {
     borderRadius: 4,
     marginTop: 3,
-    padding: 2
+    padding: 2,
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    paddingBottom: 10
   },
   textStyle: {
     fontSize: 16,
-    textAlign: "center"
+    textAlign: "center",
+    flex: 1
   },
   signUp: {
     color: "#083b66",
@@ -197,6 +196,16 @@ const styles = StyleSheet.create({
   styleTitle: {
     width: Dimensions.get("window").width * 1.1,
     height: Dimensions.get("window").height * 0.3
+  },
+  eyeButton:{
+    //width: Dimensions.get("window").width * 0.17,
+    //backgroundColor: "#083b66",
+    //borderRadius: 400,
+    //marginTop: 0,
+    //padding: 1
+    //textAlign: "right",
+    //padding: 10,
+    
   }
 });
 
