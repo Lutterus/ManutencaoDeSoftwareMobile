@@ -10,7 +10,8 @@ import {
   Linking,
   Image,
   Dimensions,
-  Picker
+  Picker,
+  Alert
 } from "react-native";
 import { NavigationScreenProp } from "react-navigation";
 import CardView from "../components/GenericComponents/CardView";
@@ -38,7 +39,7 @@ class AddProgramContainer extends React.Component<Props, State> {
     super(props);
     this.programService = new ProgramService();
     this.state = {
-      quantidade: null,
+      quantidade: 0,
       date: null,
       programa: null
     };
@@ -59,17 +60,36 @@ class AddProgramContainer extends React.Component<Props, State> {
   }
   
   addProgram = async (accountLogin)  => {
-    console.log("vai tentar criar usando o login: " + accountLogin)
-    console.log("programa: " + this.state.programa)
-    console.log("quantidade: " + this.state.quantidade)
-    console.log("vencimento: " + this.state.date)
-    var res = await this.programService.addProgram(this.state.programa, accountLogin, this.state.quantidade, this.state.vencimento);
-
-    if(res===true){
-      //popUp Confirmando e depois redirecionamento
-      this.props.navigation.navigate("MilesList")
+    if(this.state.quantidade!=0 &&
+      this.state.programa!= null &&
+      this.state.date!= null){
+        var res = await this.programService.addProgram(this.state.programa, accountLogin, this.state.quantidade, this.state.vencimento);
+        if(res===true){
+          Alert.alert(
+            'Sucesso',
+            'Milhas adicionadas com sucesso',
+            [
+              {text: 'OK', onPress: () => this.props.navigation.navigate("MilesList")}
+            ],
+          )
+          
+        }else{
+          Alert.alert(
+            'Falha',
+            'Ocorreu um erro durante o cadastro das milhas, favor verificar sua conexão com a internet',
+            [
+              {text: 'OK'}
+            ],
+          )
+        }
     }else{
-      //console.warn("As credenciais estão incorretas")
+      Alert.alert(
+        'Atenção',
+        'Para cadastrar milhas, é necessário preencher todos os campos',
+        [
+          {text: 'OK'}
+        ],
+      )
     }
   };
 
@@ -109,7 +129,7 @@ class AddProgramContainer extends React.Component<Props, State> {
           <DatePicker
             style={{width: 200}}
             mode="date"
-            placeholder="Vencimento"
+            placeholder="Data de vencimento"
             format="DD-MM-YYYY" 
             minDate = {new Date()}
             confirmBtnText="Confirm"

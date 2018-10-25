@@ -55,7 +55,6 @@ class MilesService extends AbstractService {
     return this.axios
     .get(URL)
     .then((response: Response) => {
-      console.warn(response.data)
       return response.data;
     })
     .catch((error: Response) => {

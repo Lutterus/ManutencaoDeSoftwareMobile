@@ -38,15 +38,12 @@ class LoginService extends AbstractService {
    */
   addProgram(programName, accountLogin, quantity, dtExpiratio) {
     let URL = RESOURCES.LOGIN;
-    console.log("entrou pra enviar")
     return this.axios
     .post(URL, {program: programName, user: accountLogin, miles: quantity, expirationDate: dtExpiratio })
     .then(function(response){
-        console.log("FOIIIIIIIIIIII")
         return true;
      })
      .catch((response) => {
-         console.log("NAO FOIIIIIIIIIII")
        return false;
      });
       

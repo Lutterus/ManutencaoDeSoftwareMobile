@@ -10,7 +10,8 @@ import {
   Linking,
   Image,
   Dimensions,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Alert
 } from "react-native";
 import TextField from "../components/GenericComponents/TextField";
 import { NavigationScreenProp } from "react-navigation";
@@ -60,8 +61,13 @@ class LoginContainer extends React.Component<Props, State> {
     if(res===true){
       this.props.navigation.navigate("MilesList")
     }else{
-      //popUp Informando o erro
-      console.warn("As credenciais estão incorretas")
+      Alert.alert(
+        'Erro durante o login',
+        'Alguma das credenciais está incorreta',
+        [
+          {text: 'OK'}
+        ],
+      )
     }
   };
 
