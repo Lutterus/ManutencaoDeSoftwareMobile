@@ -18,7 +18,7 @@ import CardButton from "../components/GenericComponents/CardButton";
 import CardView from "../components/GenericComponents/CardView";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LoginService from '../services/LoginService';
-import { AsyncStorage } from "react-native"
+import { AsyncStorage } from "react-native";
 
 type State = {
   showPassword: boolean,
@@ -53,13 +53,14 @@ class LoginContainer extends React.Component<Props, State> {
   };
 
   loginTest = async () => {
-    AsyncStorage.setItem('login', this.state.email)
-    AsyncStorage.setItem('password', this.state.senha)
-    var res = await this.loginService.login(this.state.email, this.state.senha)
+    AsyncStorage.setItem('login', this.state.email);
+    AsyncStorage.setItem('password', this.state.senha);
+    var res = await this.loginService.login(this.state.email, this.state.senha);
 
     if(res===true){
       this.props.navigation.navigate("MilesList")
     }else{
+      //popUp Informando o erro
       console.warn("As credenciais estão incorretas")
     }
   };
