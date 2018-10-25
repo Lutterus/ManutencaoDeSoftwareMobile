@@ -1,7 +1,6 @@
 import axios from "axios";
 import type { Response } from "../util/types";
 import AbstractService from "./AbstractService";
-import AddProgramContainer from "../containers/AddProgramContainer";
 
 /**
  * BASE URLS of the service used on Category Service.

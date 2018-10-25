@@ -19,11 +19,12 @@ import MilesListItem from "../components/MilesListItem";
 import { TextInputMask } from 'react-native-masked-text';
 import ProgramService from '../services/ProgramService';
 import { AsyncStorage } from "react-native";
-import DatePicker from 'react-native';
+import DatePicker from 'react-native-datepicker'
+
 
 type State = {
   quantidade: number,
-  vencimento: Date,
+  date: Date,
   programa: string
 };
 
@@ -37,9 +38,9 @@ class AddProgramContainer extends React.Component<Props, State> {
     super(props);
     this.programService = new ProgramService();
     this.state = {
-      quantidade: 0,
-      date: new Date(),
-      programa: ""
+      quantidade: null,
+      date: null,
+      programa: null
     };
   }
 
@@ -48,11 +49,6 @@ class AddProgramContainer extends React.Component<Props, State> {
 
     this.setState({ [name]: value });
   };
-
-  onGoFocus() {
-		// when you call getElement method, the instance of native TextInput will returned.
-		this.refs['myText'].getElement().focus();
-  }
 
   componentDidMount() {
     AsyncStorage.getItem('login', (err, result) => {
@@ -66,9 +62,8 @@ class AddProgramContainer extends React.Component<Props, State> {
     console.log("vai tentar criar usando o login: " + accountLogin)
     console.log("programa: " + this.state.programa)
     console.log("quantidade: " + this.state.quantidade)
-    console.log("vencimento: " + this.state.vencimento)
-    var res = false
-    //var res = await this.programService.addProgram(this.state.programa, accountLogin, this.state.quantidade, this.state.vencimento);
+    console.log("vencimento: " + this.state.date)
+    var res = await this.programService.addProgram(this.state.programa, accountLogin, this.state.quantidade, this.state.vencimento);
 
     if(res===true){
       //popUp Confirmando e depois redirecionamento
@@ -100,28 +95,37 @@ class AddProgramContainer extends React.Component<Props, State> {
         <View style={{ justifyContent: "space-between", marginTop: 15 }}>
           <CardView style={styles.inputView}>
             <TextInput
-              returnKeyType="next"
-              onSubmitEditing={this.onGoFocus.bind(this)}
+              returnKeyType="done"
               keyboardType="numeric"
               placeholder="Quantidade"
               underlineColorAndroid={"#0000"}
-              onDateChange={(date) => {this.setState({vencimento: date})}}
+              onChangeText={(TextInput) => {this.setState({quantidade: TextInput})}}
             />
           </CardView>
         </View>
 
         <View style={{ marginTop: 15 }}>
           <CardView style={styles.inputView}>
-          <TextInputMask
-              returnKeyLabel="go"
-              ref='myText'
-              placeholder="Vencimento"
-              underlineColorAndroid={"#0000"}
-              type={'datetime'}
-              options={{
-                format: 'DD/MM/YYYY'
-              }}
-              onChangeRaw={(Input)=> this.setState({vencimento: Input})}
+          <DatePicker
+            style={{width: 200}}
+            mode="date"
+            placeholder="Vencimento"
+            format="DD-MM-YYYY" 
+            minDate = {new Date()}
+            confirmBtnText="Confirm"
+            cancelBtnText="Cancel"
+            customStyles={{
+              dateIcon: {
+                position: 'absolute',
+                left: 0,
+                top: 4,
+                marginLeft: 0
+              },
+              dateInput: {
+                marginLeft: 36
+              }
+            }}
+            onDateChange={(date) => {this.setState({date: date})}}
           />
               
           </CardView>
