@@ -11,7 +11,7 @@ const BASE_URL = "api/";
  * URLS of the service used on Category Service.
  */
 const RESOURCES = {
-    LOGIN: BASE_URL + 'addMile',
+    LOGIN: BASE_URL + 'addUser',
 };
 
 
@@ -26,7 +26,7 @@ const PARAMS = {
  * Class containing the http requests related to
  * category service.
  */
-class ProgramService extends AbstractService {
+class CreateAccountService extends AbstractService {
   constructor() {
     super();
   }
@@ -36,10 +36,17 @@ class ProgramService extends AbstractService {
    * @param {*} dateBegin
    * @param {*} dateEnd
    */
-  addProgram(programName, accountLogin, quantity, dtExpiratio) {
+  addUser(useremail, usernome, usertelefone, useraviso_expiracao_telefone, useraviso_expiracao_email, useroferta_compra) {
     let URL = RESOURCES.LOGIN;
+
     return this.axios
-    .post(URL, {program: programName, user: accountLogin, miles: quantity, expirationDate: dtExpiratio })
+    .post(URL, {email: useremail, 
+        nome: usernome, 
+        telefone: usertelefone, 
+        aviso_expiracao_telefone: useraviso_expiracao_telefone, 
+        aviso_expiracao_email: useraviso_expiracao_email,
+        oferta_compra: useroferta_compra
+    })
     .then(function(response){
         return true;
      })
@@ -50,4 +57,4 @@ class ProgramService extends AbstractService {
   }
 }
 
-export default ProgramService;
+export default CreateAccountService;

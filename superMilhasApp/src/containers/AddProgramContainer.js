@@ -106,8 +106,7 @@ class AddProgramContainer extends React.Component<Props, State> {
               <Picker.Item label="Programa" value="programa" />
               <Picker.Item label="Smiles" value="smiles" />
               <Picker.Item label="Livelo" value="livelo" />
-              <Picker.Item label="Amigo" value="amigo" />
-              <Picker.Item label="Multiplus" value="multiplus" />
+              <Picker.Item label="Azul" value="Azul" />
             </Picker>
           </CardView>
         </View>
