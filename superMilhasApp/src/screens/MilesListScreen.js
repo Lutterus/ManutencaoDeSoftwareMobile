@@ -37,6 +37,7 @@ class MilesListScreen extends React.Component<Props, State> {
   static navigationOptions= ({navigation}) => {
     return{
     title: 'Milhas',
+    headerLeft: null,
     headerTitleStyle: {
       textAlign: 'center',
       flex: 1
