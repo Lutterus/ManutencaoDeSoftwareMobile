@@ -37,15 +37,15 @@ class ProgramService extends AbstractService {
    * @param {*} dateEnd
    */
   resetPassword(emailUser) {
-    //let URL = RESOURCES.LOGIN;
-    //return this.axios
-    //.post(URL, {email: emailUser})
-    //.then(function(response){
-     //   return true;
-    // })
-    // .catch((response) => {
+    let URL = RESOURCES.LOGIN;
+    return this.axios
+    .post(URL, {email: emailUser})
+    .then(function(response){
+        return true;
+     })
+     .catch((response) => {
        return false;
-    // });
+     });
       
   }
 }
