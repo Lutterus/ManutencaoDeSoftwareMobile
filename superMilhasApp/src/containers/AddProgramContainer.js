@@ -11,7 +11,8 @@ import {
   Image,
   Dimensions,
   Picker,
-  Alert
+  Alert,
+  KeyboardAvoidingView
 } from "react-native";
 import { NavigationScreenProp } from "react-navigation";
 import CardView from "../components/GenericComponents/CardView";
@@ -96,7 +97,7 @@ class AddProgramContainer extends React.Component<Props, State> {
   render() {
     return (
       <View style={{ justifyContent: "space-evenly", alignItems: "center" }}>
-        <View style={{ marginTop: 55 }}>
+        <KeyboardAvoidingView behavior = "padding" style={{ marginTop: 55 }}>
           <CardView>
             <Picker
               selectedValue={this.state.programa}
@@ -109,9 +110,9 @@ class AddProgramContainer extends React.Component<Props, State> {
               <Picker.Item label="Azul" value="Azul" />
             </Picker>
           </CardView>
-        </View>
+        </KeyboardAvoidingView>
 
-        <View style={{ justifyContent: "space-between", marginTop: 15 }}>
+        <KeyboardAvoidingView behavior = "padding" style={{ justifyContent: "space-between", marginTop: 15 }}>
           <CardView style={styles.inputView}>
             <TextInput
               returnKeyType="done"
@@ -121,9 +122,9 @@ class AddProgramContainer extends React.Component<Props, State> {
               onChangeText={(TextInput) => {this.setState({quantidade: TextInput})}}
             />
           </CardView>
-        </View>
+        </KeyboardAvoidingView>
 
-        <View style={{ marginTop: 15 }}>
+        <KeyboardAvoidingView behavior = "padding" style={{ marginTop: 15 }}>
           <CardView style={styles.inputView}>
           <DatePicker
             style={{width: 200}}
@@ -148,9 +149,9 @@ class AddProgramContainer extends React.Component<Props, State> {
           />
               
           </CardView>
-        </View>
+        </KeyboardAvoidingView>
 
-        <View style={{ marginTop: 100 }}>
+        <KeyboardAvoidingView behavior = "padding" style={{ marginTop: 100 }}>
           <CardButton
             viewStyle={{
               backgroundColor: "#1BB194",
@@ -160,7 +161,7 @@ class AddProgramContainer extends React.Component<Props, State> {
             text="Cadastrar"
             onPress={() => this.componentDidMount()}            
             />
-        </View>
+        </KeyboardAvoidingView>
         
       </View>
     );
