@@ -42,17 +42,6 @@ class CreateAccountContainer extends React.Component<Props, State> {
     };
   }
 
-  onChange = event => {
-    const { name, value } = event.target;
-
-    this.setState({ [name]: value });
-  };
-
-
-  onChangeText(text) {
-    this.setState({telefone: text})
-  };
-
   onGoFocus() {
     console.log()
 		// when you call getElement method, the instance of native TextInput will returned.
@@ -69,8 +58,7 @@ class CreateAccountContainer extends React.Component<Props, State> {
     this.state.senha!= "" &&
     this.state.telefone!="" &&
     this.confirmaSenha!= ""){
-      //var res = await this.createAccountService.addUser(this.state.nome, this.state.email, this.state.senha, this.state.telefone);
-      var res = false
+      var res = await this.createAccountService.addUser(this.state.email, this.state.nome, this.state.telefone, this.state.senha, );
       if(res===true){
         Alert.alert(
           'Sucesso',
@@ -121,7 +109,7 @@ class CreateAccountContainer extends React.Component<Props, State> {
          <View style={{ marginTop: 20 }}>
           <CardView style={styles.inputView}>
             <TextInput 
-              returnKeyType="next"
+              returnKeyType="go"
               //onSubmitEditing={this.onGoFocus.bind(this)}
               underlineColorAndroid={"#0000"}
               placeholder="Nome" 
@@ -135,7 +123,7 @@ class CreateAccountContainer extends React.Component<Props, State> {
         <KeyboardAvoidingView behavior="padding" style={{ marginTop: 20 }}>
           <CardView style={styles.inputView}>
             <TextInput 
-              returnKeyType="next"
+              returnKeyType="go"
               //onSubmitEditing={this.onGoFocus.bind(this)}
               underlineColorAndroid={"#0000"}
               placeholder="Email" 
@@ -152,17 +140,18 @@ class CreateAccountContainer extends React.Component<Props, State> {
           <CardView style={styles.inputView}>
             <TextInputMask
               ref='telefone'
-              returnKeyType="next"
+              returnKeyType="go"
               //onSubmitEditing={this.onGoFocus.bind('senha')}
               placeholder="Telefone"
               underlineColorAndroid={"#0000"}
+              value={this.state.telefone}
               keyboardType="phone-pad"
               type={'custom'}
               options={{
                 mask  : '(99) 99999-9999'
               }}
               //onChangeText={this.onChangeText.bind(this)}
-              onChangeText={(TextInput)=> this.setState({telefone: TextInput})}
+              onChangeText={telefone => this.setState({ telefone })}
             />
           </CardView>
         </View>
@@ -172,7 +161,7 @@ class CreateAccountContainer extends React.Component<Props, State> {
             <TextInput 
               placeholder="Senha" 
               secureTextEntry underlineColorAndroid={"#0000"} 
-              returnKeyType="next"
+              returnKeyType="go"
               //onSubmitEditing={this.onGoFocus.bind('confirmaSenha')}
               ref='senha'
               onChangeText={(TextInput)=> this.setState({senha: TextInput})}
@@ -199,6 +188,7 @@ class CreateAccountContainer extends React.Component<Props, State> {
               width: Dimensions.get("window").width * 0.5,
               backgroundColor: "#083b66"
             }}
+            returnKeyType="go"
             textStyle={{ fontSize: 16, color: "white" }}
             text="Cadastrar"
             onPress={() => this.CreateAccount()}
