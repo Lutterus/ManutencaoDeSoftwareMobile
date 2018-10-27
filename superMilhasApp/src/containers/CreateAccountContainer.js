@@ -17,6 +17,7 @@ import { TextInputMask } from "react-native-masked-text";
 import CreateAccountService from '../services/CreateAccountService';
 
 type State = {
+  nome: String,
   email: string,
   senha: string,
   telefone: number,
@@ -33,6 +34,7 @@ class CreateAccountContainer extends React.Component<Props, State> {
     super(props);
     this.createAccountService = new CreateAccountService();
     this.state = {
+      nome: "",
       email: "",
       senha: "",
       telefone: "",
@@ -46,6 +48,11 @@ class CreateAccountContainer extends React.Component<Props, State> {
     this.setState({ [name]: value });
   };
 
+
+  onChangeText(text) {
+    this.setState({telefone: text})
+  };
+
   onGoFocus() {
     console.log()
 		// when you call getElement method, the instance of native TextInput will returned.
@@ -53,6 +60,7 @@ class CreateAccountContainer extends React.Component<Props, State> {
   };
 
   CreateAccount = async () => {
+    console.log(this.state.nome)
     console.log(this.state.email)
     console.log(this.state.senha)
     console.log(this.state.telefone)
@@ -61,7 +69,7 @@ class CreateAccountContainer extends React.Component<Props, State> {
     this.state.senha!= "" &&
     this.state.telefone!="" &&
     this.confirmaSenha!= ""){
-      //var res = await this.createAccountService.addUser();//verificar campos
+      //var res = await this.createAccountService.addUser(this.state.nome, this.state.email, this.state.senha, this.state.telefone);
       var res = false
       if(res===true){
         Alert.alert(
@@ -81,6 +89,15 @@ class CreateAccountContainer extends React.Component<Props, State> {
           ],
         )
       }
+    }else if(this.state.senha!=this.state.confirmaSenha){
+      Alert.alert(
+        'Erro durante a criação',
+        'As senhas preenchidas não são iguais',
+        [
+          {text: 'OK'}
+        ],
+      )
+    
     }else{
       Alert.alert(
         'Erro durante a criação',
@@ -101,6 +118,20 @@ class CreateAccountContainer extends React.Component<Props, State> {
           justifyContent: "center"
         }}
       >
+         <View style={{ marginTop: 20 }}>
+          <CardView style={styles.inputView}>
+            <TextInput 
+              returnKeyType="next"
+              //onSubmitEditing={this.onGoFocus.bind(this)}
+              underlineColorAndroid={"#0000"}
+              placeholder="Nome" 
+              autoCorrect={false}
+              autoCapitalize="none"
+              onChangeText={(TextInput)=> this.setState({nome: TextInput})}
+            />
+          </CardView>
+        </View>
+       
         <KeyboardAvoidingView behavior="padding" style={{ marginTop: 20 }}>
           <CardView style={styles.inputView}>
             <TextInput 
@@ -125,11 +156,13 @@ class CreateAccountContainer extends React.Component<Props, State> {
               //onSubmitEditing={this.onGoFocus.bind('senha')}
               placeholder="Telefone"
               underlineColorAndroid={"#0000"}
-              type={"cel-phone"}
+              keyboardType="phone-pad"
+              type={'custom'}
               options={{
-                format: "dddMask"
+                mask  : '(99) 99999-9999'
               }}
-              //onChange={(TextInput)=> this.setState({telefone: TextInput})}
+              //onChangeText={this.onChangeText.bind(this)}
+              onChangeText={(TextInput)=> this.setState({telefone: TextInput})}
             />
           </CardView>
         </View>

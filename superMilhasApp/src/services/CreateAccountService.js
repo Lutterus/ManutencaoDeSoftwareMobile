@@ -36,16 +36,14 @@ class CreateAccountService extends AbstractService {
    * @param {*} dateBegin
    * @param {*} dateEnd
    */
-  addUser(useremail, usernome, usertelefone, useraviso_expiracao_telefone, useraviso_expiracao_email, useroferta_compra) {
+  addUser(useremail, usernome, usertelefone, usersenha) {
     let URL = RESOURCES.LOGIN;
 
     return this.axios
     .post(URL, {email: useremail, 
         nome: usernome, 
         telefone: usertelefone, 
-        aviso_expiracao_telefone: useraviso_expiracao_telefone, 
-        aviso_expiracao_email: useraviso_expiracao_email,
-        oferta_compra: useroferta_compra
+        senha: usersenha
     })
     .then(function(response){
         return true;
