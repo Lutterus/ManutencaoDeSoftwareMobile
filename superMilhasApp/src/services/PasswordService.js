@@ -11,7 +11,7 @@ const BASE_URL = "api/";
  * URLS of the service used on Category Service.
  */
 const RESOURCES = {
-    LOGIN: BASE_URL + 'aaaaa',
+    LOGIN: BASE_URL + 'resetPassword',
 };
 
 
