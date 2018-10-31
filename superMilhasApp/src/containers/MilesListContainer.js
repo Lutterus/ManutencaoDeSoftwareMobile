@@ -1,6 +1,6 @@
 //@flow
 import React from "react";
-import { View, StyleSheet, Text, FlatList } from "react-native";
+import { View, StyleSheet, Text, FlatList , TouchableOpacity} from "react-native";
 import { NavigationScreenProp } from "react-navigation";
 import MilesListItem from "../components/MilesListItem";
 import type { MilesAgency } from "../util/types";
@@ -10,6 +10,7 @@ type State = {
 };
 
 type Props = {
+  navigation: NavigationScreenProp<{}>,
   milesAgencyList: Array<MilesAgency>
 };
 
@@ -22,12 +23,14 @@ class MilesListContainer extends React.Component<Props, State> {
 
   render() {
     return (
+
       <View>
         <FlatList
         data={this.props.milesAgencyList}
-        renderItem={({item}) => <MilesListItem milesAgency={item}/>}
+        renderItem={({item}) => <TouchableOpacity onPress={() => /*this.props.navigation.navigate('DetailProgram')*/ alert("Milha Clicada")} ><MilesListItem milesAgency={item}/></TouchableOpacity>}
         />
       </View>
+
     );
   }
 }
