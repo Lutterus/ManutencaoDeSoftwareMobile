@@ -28,7 +28,7 @@ type State = {
 };
 
 type Props = {
-  navigation: NavigationScreenProp<{}>
+  navigation: NavigationScreenProp<{}>,
 };
 
 class LoginContainer extends React.Component<Props, State> {
@@ -41,7 +41,8 @@ class LoginContainer extends React.Component<Props, State> {
       email: "",
       senha: ""
     };
-  }
+    }
+  
 
   togglePasswordHandler = () => {
     this.setState({ showPassword: !this.state.showPassword });
@@ -126,7 +127,7 @@ class LoginContainer extends React.Component<Props, State> {
               <Icon 
                 style={styles.eyeButton}
                 name={"eye-slash"}
-                size={15}
+                size={25}
                 color="black"
                 onPress={this.togglePasswordHandler}
               />
