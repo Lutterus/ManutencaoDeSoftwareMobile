@@ -49,11 +49,6 @@ class CreateAccountContainer extends React.Component<Props, State> {
   };
 
   CreateAccount = async () => {
-    console.log(this.state.nome)
-    console.log(this.state.email)
-    console.log(this.state.senha)
-    console.log(this.state.telefone)
-    console.log(this.state.confirmaSenha)
     if(this.state.email!="" &&
     this.state.senha!= "" &&
     this.state.telefone!="" &&

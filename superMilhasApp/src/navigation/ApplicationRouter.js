@@ -7,6 +7,7 @@ import AddProgramScreen from "../screens/AddProgramScreen";
 import CreateAccountScreen from "../screens/CreateAccountScreen";
 import PasswordScreen from "../screens/PasswordScreen";
 //import DetailProgramScreen from "../screens/DetailProgramScreen";
+import EditMilesListScreen from "../screens/EditMilesListScreen";
 
 export const AppStack = createStackNavigator({
   Login: {
@@ -26,5 +27,8 @@ export const AppStack = createStackNavigator({
   },
   /*DetailProgram: {
     screen : DetailProgramScreen
-  }*/
+  },*/
+  EditMilesList: {
+    screen: EditMilesListScreen
+  }
 });
