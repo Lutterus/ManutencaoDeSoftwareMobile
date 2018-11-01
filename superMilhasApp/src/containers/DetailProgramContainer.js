@@ -14,7 +14,7 @@ import { NavigationScreenProp } from "react-navigation";
 import CardView from "../components/GenericComponents/CardView";
 import CardButton from "../components/GenericComponents/CardButton";
 import DetailListItem from "../components/DetailListItem";
-//import DetailService from "../services/DetailService";
+import DetailService from "../services/DetailService";
 
 type State = {
   quantidade: number,
@@ -42,7 +42,7 @@ class DetailProgramContainer extends React.Component<Props, State> {
       <View>
         <FlatList
         data={this.props.milesList}
-        renderItem={({item}) => <TouchableOpacity onPress={() => /*this.props.navigation.navigate('DetailProgram')*/ alert("Milha Clicada")} ><DetailListItem milesAgency={item}/></TouchableOpacity>}
+        renderItem={({item}) => <TouchableOpacity onPress={() => /*this.props.navigation.navigate('DetailProgram')*/ alert("Milha Clicada")} ><DetailListItem Milha={item}/></TouchableOpacity>}
         />
       </View>
     );

@@ -1,10 +1,10 @@
 //@flow
 import React from "react";
 import { View, StyleSheet, Text, Image } from "react-native";
-import type { MilesAgency } from "../util/types";
+import type { MilesAgency, Milha } from "../util/types";
 
 
-const DetailListItem = ({ milesAgency }: MilesAgency) => {
+const DetailListItem = ({ milesAgency }: MilesAgency, {Milha}: Milha ) => {
   return (
 
     <View style={styles.titleView}>
@@ -28,14 +28,14 @@ const DetailListItem = ({ milesAgency }: MilesAgency) => {
 
       <View style={{ flex: 1 / 2, justifyContent: "center", alignItems: "center"}}>
         <Text style={styles.miles}>
-          <Text style ={{fontSize: 15, color: "darkgray"}}> total: </Text>
-          {milesAgency.somaMilhas}
+          <Text style ={{fontSize: 15, color: "darkgray"}}> Milhas: </Text>
+          {Milha.quantidade}
         </Text>
       </View>
 
       <View style={{ flex: 1}}>
           <Text style={styles.date}>
-            {milesAgency.milha_expiracao_maisProxima.quantidade} vencem em {milesAgency.milha_expiracao_maisProxima.dt_expiracao}
+            vencem em: {Milha.dt_expiracao}
           </Text>
       </View>
 
