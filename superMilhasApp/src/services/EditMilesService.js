@@ -26,7 +26,7 @@ const PARAMS = {
  * Class containing the http requests related to
  * category service.
  */
-class ProgramService extends AbstractService {
+class EditMilesService extends AbstractService {
   constructor() {
     super();
   }
@@ -50,4 +50,4 @@ class ProgramService extends AbstractService {
   }
 }
 
-export default ProgramService;
+export default EditMilesService;

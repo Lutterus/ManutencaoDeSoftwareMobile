@@ -1,9 +1,9 @@
 //@flow
 import React from "react";
 import { View } from "react-native";
-import AddProgramContainer from "../containers/AddProgramContainer";
+import EditMilesContainer from "../containers/EditMilesListContainer";
 import { NavigationScreenProp } from "react-navigation";
-import MilesService from "../services/MilesService";
+import EditMilesService from "../services/EditMilesService";
 
 type State = {};
 
@@ -11,7 +11,7 @@ type Props = {
   navigation: NavigationScreenProp<{}>
 };
 
-class AddProgramScreen extends React.Component<Props, State> {
+class EditMilesScreen extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -19,7 +19,7 @@ class AddProgramScreen extends React.Component<Props, State> {
   }
 
   static navigationOptions = {
-    title: 'Cadastrar Milhas',  
+    title: 'Editar Milhas',  
     headerTitleStyle: {
         textAlign: 'left',
         flex: 1
@@ -27,8 +27,8 @@ class AddProgramScreen extends React.Component<Props, State> {
   };
 
   render () {
-      return <AddProgramContainer navigation={this.props.navigation} />;
+      return <EditMilesListContainer navigation={this.props.navigation} />;
   }
 }
 
-export default AddProgramScreen;
+export default EditMilesScreen;

@@ -17,9 +17,8 @@ import {
 import { NavigationScreenProp } from "react-navigation";
 import CardView from "../components/GenericComponents/CardView";
 import CardButton from "../components/GenericComponents/CardButton";
-import MilesListItem from "../components/MilesListItem";
 import { TextInputMask } from 'react-native-masked-text';
-import ProgramService from '../services/ProgramService';
+import EditMilesService from '../services/EditMilesService';
 import { AsyncStorage } from "react-native";
 import DatePicker from 'react-native-datepicker'
 
@@ -34,11 +33,11 @@ type Props = {
   navigation: NavigationScreenProp<{}>
 };
 
-class AddProgramContainer extends React.Component<Props, State> {
-  ProgramService;
+class EditMilesContainer extends React.Component<Props, State> {
+  EditMilesService;
   constructor(props: Props) {
     super(props);
-    this.programService = new ProgramService();
+    this.editMilesService = new EditMilesService();
     this.state = {
       quantidade: 0,
       date: null,
@@ -151,18 +150,40 @@ class AddProgramContainer extends React.Component<Props, State> {
           </CardView>
         </KeyboardAvoidingView>
 
+        
         <KeyboardAvoidingView behavior = "padding" style={{ marginTop: 100 }}>
           <CardButton
             viewStyle={{
               backgroundColor: "#1BB194",
               width: Dimensions.get("window").width * 0.4
             }}
-            textStyle={{ color: "white", fontSize: 20, textAlign: "center", justifyContent: "center", alignItems: "center"}}
-            text="Cadastrar"
+            textStyle={{ color: "white", fontSize: 20, textAlign: "center", justifyContent: "left", alignItems: "left"}}
+            text="Salvar"
+            onPress={() => this.componentDidMount()}            
+            />
+            <CardButton
+            viewStyle={{
+              backgroundColor: "#1BB194",
+              width: Dimensions.get("window").width * 0.4
+            }}
+            textStyle={{ color: "white", fontSize: 20, textAlign: "center", justifyContent: "right", alignItems: "right"}}
+            text="Excluir"
             onPress={() => this.componentDidMount()}            
             />
         </KeyboardAvoidingView>
-        
+
+         <KeyboardAvoidingView behavior = "padding" style={{ marginTop: 100 }}>
+          <CardButton
+            viewStyle={{
+              backgroundColor: "#1BB194",
+              width: Dimensions.get("window").width * 0.4
+            }}
+            textStyle={{ color: "white", fontSize: 20, textAlign: "center", justifyContent: "center", alignItems: "center"}}
+            text="Cancelar"
+            onPress={() => this.componentDidMount()}            
+            />
+          </KeyboardAvoidingView>
+
       </View>
     );
   }
@@ -190,4 +211,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AddProgramContainer;
+export default EditMilesContainer;
