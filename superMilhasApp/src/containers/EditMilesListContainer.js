@@ -13,6 +13,7 @@ import { NavigationScreenProp } from "react-navigation";
 import CardView from "../components/GenericComponents/CardView";
 import CardButton from "../components/GenericComponents/CardButton";
 import EditMilesService from '../services/EditMilesService';
+import ExcludeMilesService from '../services/DeleteMilesService';
 import { AsyncStorage } from "react-native";
 import DatePicker from 'react-native-datepicker'
 
@@ -29,9 +30,11 @@ type Props = {
 
 class EditMilesContainer extends React.Component<Props, State> {
   EditMilesService;
+  ExcludeMilesService;
   constructor(props: Props) {
     super(props);
     this.editMilesService = new EditMilesService();
+    this.excludeMilesService = new ExcludeMilesService();
     this.state = {
       quantidade: 0,
       date: null,
@@ -45,23 +48,51 @@ class EditMilesContainer extends React.Component<Props, State> {
     this.setState({ [name]: value });
   };
 
-  componentDidMount() {
+  componentDidMount(index) {
     AsyncStorage.getItem('login', (err, result) => {
     }).then(res => {
-      this.addProgram(res);
+      if(index===1){
+        this.editMile(res);
+      }else if(index===2){
+        this.excludeMile(res);
+      }else if(index===3){
+        this.props.navigation.navigate("MilesList")
+      }
+      
     });
-    
-  }
+  };
+
+  excludeMile = async (accountLogin)  => {
+    var res = await this.excludeMilesService.excludeMile("aaaa", accountLogin);
+    if(res===true){
+      Alert.alert(
+        'Sucesso',
+        'Milhas excluídas com sucesso',
+        [
+          {text: 'OK', onPress: () => this.props.navigation.navigate("MilesList")}
+        ],
+      )
+      
+    }else{
+      Alert.alert(
+        'Falha',
+        'Ocorreu um erro durante a exclusão das milhas, favor verificar sua conexão com a internet',
+        [
+          {text: 'OK'}
+        ],
+      )
+    }
+  };
   
-  addProgram = async (accountLogin)  => {
+  editMile = async (accountLogin)  => {
     if(this.state.quantidade!=0 &&
       this.state.programa!= null &&
       this.state.date!= null){
-        var res = await this.programService.addProgram(this.state.programa, accountLogin, this.state.quantidade, this.state.vencimento);
+        var res = await this.editMilesService.editMile(null, accountLogin, this.state.quantidade, this.state.vencimento);
         if(res===true){
           Alert.alert(
             'Sucesso',
-            'Milhas adicionadas com sucesso',
+            'Milhas editadas com sucesso',
             [
               {text: 'OK', onPress: () => this.props.navigation.navigate("MilesList")}
             ],
@@ -70,7 +101,7 @@ class EditMilesContainer extends React.Component<Props, State> {
         }else{
           Alert.alert(
             'Falha',
-            'Ocorreu um erro durante o cadastro das milhas, favor verificar sua conexão com a internet',
+            'Ocorreu um erro durante a edição das milhas, favor verificar sua conexão com a internet',
             [
               {text: 'OK'}
             ],
@@ -79,7 +110,7 @@ class EditMilesContainer extends React.Component<Props, State> {
     }else{
       Alert.alert(
         'Atenção',
-        'Para cadastrar milhas, é necessário preencher todos os campos',
+        'Para editar milhas, é necessário que todos os campos estejam preenchidos',
         [
           {text: 'OK'}
         ],
@@ -158,7 +189,7 @@ class EditMilesContainer extends React.Component<Props, State> {
             justifyContent: 'space-between', 
             alignItems: 'flex-start'}}
             text="Salvar"
-            onPress={() => this.componentDidMount()}            
+            onPress={() => this.componentDidMount(1)}            
             />
             <CardButton
             viewStyle={{
@@ -172,7 +203,7 @@ class EditMilesContainer extends React.Component<Props, State> {
             justifyContent: 'space-between', 
             alignItems: 'flex-start'}}
             text="Cancelar"
-            onPress={() => this.componentDidMount()}           
+            onPress={() => this.componentDidMount(3)}           
             />
             <CardButton
             viewStyle={{
@@ -186,7 +217,7 @@ class EditMilesContainer extends React.Component<Props, State> {
             justifyContent: 'space-between', 
             alignItems: 'flex-start'}}
             text="Excluir"
-            onPress={() => this.componentDidMount()}           
+            onPress={() => this.componentDidMount(2)}           
             />
         </View>
       </View>

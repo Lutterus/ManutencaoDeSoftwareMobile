@@ -11,7 +11,7 @@ const BASE_URL = "api/";
  * URLS of the service used on Category Service.
  */
 const RESOURCES = {
-    LOGIN: BASE_URL + 'editMile',
+    LOGIN: BASE_URL + 'deleteMile',
 };
 
 
@@ -26,7 +26,7 @@ const PARAMS = {
  * Class containing the http requests related to
  * category service.
  */
-class EditMilesService extends AbstractService {
+class DeleteMilesService extends AbstractService {
   constructor() {
     super();
   }
@@ -36,10 +36,10 @@ class EditMilesService extends AbstractService {
    * @param {*} dateBegin
    * @param {*} dateEnd
    */
-  editMile(cod_milha, user, quantidade, expiracao) {
+  excludeMile(cod_milha, user) {
     let URL = RESOURCES.LOGIN;
     return this.axios
-    .post(URL, {cod_milha: cod_milha, user: user, quantidade: quantidade, expiracao: expiracao })
+    .post(URL, {cod_milha: cod_milha, user: user})
     .then(function(response){
         return true;
      })
@@ -50,4 +50,4 @@ class EditMilesService extends AbstractService {
   }
 }
 
-export default EditMilesService;
+export default DeleteMilesService;
