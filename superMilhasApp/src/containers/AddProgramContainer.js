@@ -121,6 +121,7 @@ class AddProgramContainer extends React.Component<Props, State> {
           <CardView style={styles.inputView}>
           <DatePicker
             style={{width: 200}}
+            date={this.state.date}
             mode="date"
             placeholder="Data de vencimento"
             format="DD-MM-YYYY" 
