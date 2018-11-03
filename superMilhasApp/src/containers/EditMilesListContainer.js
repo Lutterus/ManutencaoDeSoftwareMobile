@@ -15,8 +15,9 @@ import CardButton from "../components/GenericComponents/CardButton";
 import EditMilesService from '../services/EditMilesService';
 import ExcludeMilesService from '../services/DeleteMilesService';
 import GetMileService from '../services/GetMileService';
+import DefaultProgramsService from '../services/DefaultProgramService'
 import { AsyncStorage } from "react-native";
-import DatePicker from 'react-native-datepicker'
+import DatePicker from 'react-native-datepicker';
 
 
 type State = {
@@ -29,15 +30,18 @@ type Props = {
   navigation: NavigationScreenProp<{}>
 };
 
+var programsList= []
 class EditMilesContainer extends React.Component<Props, State> {
   EditMilesService;
   ExcludeMilesService;
-  GetMileService
+  GetMileService;
+  DefaultProgramsService;
   constructor(props: Props) {
     super(props);
     this.editMilesService = new EditMilesService();
     this.excludeMilesService = new ExcludeMilesService();
     this.getMileService = new GetMileService();
+    this.defaultProgramsService = new DefaultProgramsService();
     this.state = {
       json:  this.componentDidMount(4),
       quantidade: "",
@@ -48,9 +52,15 @@ class EditMilesContainer extends React.Component<Props, State> {
 
   getMile = async (accountLogin, mile)  => {
     const res = await this.getMileService.getMile(mile, accountLogin);
+    const list = await this.defaultProgramsService.getDefaultPrograms();
     this.setState({quantidade: res.quantidade})
     this.setState({date: res.expiracao})
     this.setState({programa: res.nomePrograma})
+     for (i in list) {
+       if(list[i].nome!=this.state.programa){
+        programsList.push(list[i].nome)
+       }
+    } 
   };
 
   onChange = event => {
@@ -59,6 +69,7 @@ class EditMilesContainer extends React.Component<Props, State> {
   };
 
   componentDidMount(index) {
+    AsyncStorage.setItem('miles', "1012");
     AsyncStorage.getItem('login', (err, result) => {
     }).then(res => {
       AsyncStorage.getItem('miles', (err, result) => {
@@ -138,16 +149,16 @@ class EditMilesContainer extends React.Component<Props, State> {
       <View style={{ justifyContent: "space-evenly", alignItems: "center" }}>
         <KeyboardAvoidingView behavior = "padding" style={{ marginTop: 55 }}>
           <CardView>
-            <Picker
-              selectedValue={this.state.programa}
-              style={{ height: 40, width: 300 }}a
-              onValueChange={(itemValue, itemIndex) => this.setState({programa: itemValue})}
-            >
-              <Picker.Item label={this.state.programa} value={this.state.programa} />
-              <Picker.Item label="Smiles" value="smiles" />
-              <Picker.Item label="Livelo" value="livelo" />
-              <Picker.Item label="Azul" value="Azul" />
-            </Picker>
+          <Picker
+          selectedValue={this.state.programa}
+          style={{ height: 40, width: 300 }}
+          onValueChange={(itemValue, itemIndex) => this.setState({programa: itemValue})}
+          >
+          <Picker.Item label={this.state.programa} value={this.state.programa} />
+          {programsList.map((itemValue, itemIndex) => {
+            return (<Picker.Item label={itemValue} value={itemValue} key={itemValue}/>) 
+          })}
+          </Picker>
           </CardView>
         </KeyboardAvoidingView>
 
