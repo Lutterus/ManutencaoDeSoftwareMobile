@@ -15,7 +15,7 @@ import CardButton from "../components/GenericComponents/CardButton";
 import EditMilesService from '../services/EditMilesService';
 import ExcludeMilesService from '../services/DeleteMilesService';
 import GetMileService from '../services/GetMileService';
-import DefaultProgramsService from '../services/DefaultProgramService'
+import DefaultProgramsService from '../services/DefaultProgramService';
 import { AsyncStorage } from "react-native";
 import DatePicker from 'react-native-datepicker';
 

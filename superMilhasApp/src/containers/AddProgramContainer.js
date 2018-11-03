@@ -14,7 +14,8 @@ import CardView from "../components/GenericComponents/CardView";
 import CardButton from "../components/GenericComponents/CardButton";
 import ProgramService from '../services/ProgramService';
 import { AsyncStorage } from "react-native";
-import DatePicker from 'react-native-datepicker'
+import DatePicker from 'react-native-datepicker';
+import DefaultProgramsService from '../services/DefaultProgramService';
 
 
 type State = {
@@ -27,16 +28,28 @@ type Props = {
   navigation: NavigationScreenProp<{}>
 };
 
+var programsList= []
 class AddProgramContainer extends React.Component<Props, State> {
   ProgramService;
+  DefaultProgramsService;
   constructor(props: Props) {
     super(props);
     this.programService = new ProgramService();
+    this.defaultProgramsService = new DefaultProgramsService();
     this.state = {
+      json:  this.componentDidMount(2),
       quantidade: 0,
       date: null,
       programa: null
     };
+  }
+
+  setProgramsDefault = async ()  => {
+    const list = await this.defaultProgramsService.getDefaultPrograms();
+    for (i in list) {
+      programsList.push(list[i].nome)
+      console.log(list[i].nome)
+    } 
   }
 
   onChange = event => {
@@ -45,12 +58,15 @@ class AddProgramContainer extends React.Component<Props, State> {
     this.setState({ [name]: value });
   };
 
-  componentDidMount() {
-    AsyncStorage.getItem('login', (err, result) => {
-    }).then(res => {
-      this.addProgram(res);
-    });
-    
+  componentDidMount(index) {
+      AsyncStorage.getItem('login', (err, result) => {
+      }).then(res => {
+        if(index===1){
+          this.addProgram(res);
+        }else if(index===2){
+          this.setProgramsDefault()
+        }
+      });   
   }
   
   addProgram = async (accountLogin)  => {
@@ -93,14 +109,13 @@ class AddProgramContainer extends React.Component<Props, State> {
         <KeyboardAvoidingView behavior = "padding" style={{ marginTop: 55 }}>
           <CardView>
             <Picker
-              selectedValue={this.state.programa}
-              style={{ height: 40, width: 300 }}a
-              onValueChange={(itemValue, itemIndex) => this.setState({programa: itemValue})}
+            selectedValue={this.state.programa}
+            style={{ height: 40, width: 300 }}
+            onValueChange={(itemValue, itemIndex) => this.setState({programa: itemValue})}
             >
-              <Picker.Item label="Programa" value="programa" />
-              <Picker.Item label="Smiles" value="smiles" />
-              <Picker.Item label="Livelo" value="livelo" />
-              <Picker.Item label="Azul" value="Azul" />
+            {programsList.map((itemValue, itemIndex) => {
+              return (<Picker.Item label={itemValue} value={itemValue} key={itemValue}/>) 
+            })}
             </Picker>
           </CardView>
         </KeyboardAvoidingView>
@@ -124,7 +139,7 @@ class AddProgramContainer extends React.Component<Props, State> {
             date={this.state.date}
             mode="date"
             placeholder="Data de vencimento"
-            format="DD-MM-YYYY" 
+            format="YYYY-MM-DD"
             minDate = {new Date()}
             confirmBtnText="Confirm"
             cancelBtnText="Cancel"
@@ -153,7 +168,7 @@ class AddProgramContainer extends React.Component<Props, State> {
             }}
             textStyle={{ color: "white", fontSize: 20, textAlign: "center", justifyContent: "center", alignItems: "center"}}
             text="Cadastrar"
-            onPress={() => this.componentDidMount()}            
+            onPress={() => this.componentDidMount(1)}            
             />
         </KeyboardAvoidingView>
         
