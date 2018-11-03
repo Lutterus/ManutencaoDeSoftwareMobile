@@ -1,9 +1,7 @@
 //@flow
 import React from "react";
-import { View } from "react-native";
 import EditMilesContainer from "../containers/EditMilesListContainer";
 import { NavigationScreenProp } from "react-navigation";
-import EditMilesService from "../services/EditMilesService";
 
 type State = {};
 
@@ -27,7 +25,7 @@ class EditMilesScreen extends React.Component<Props, State> {
   };
 
   render () {
-      return <EditMilesListContainer navigation={this.props.navigation} />;
+      return <EditMilesContainer navigation={this.props.navigation} />;
   }
 }
 

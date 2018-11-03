@@ -2,13 +2,8 @@
 import React from "react";
 import {
   View,
-  ImageBackground,
   StyleSheet,
-  Text,
   TextInput,
-  TouchableOpacity,
-  Linking,
-  Image,
   Dimensions,
   Picker,
   Alert,
@@ -17,7 +12,6 @@ import {
 import { NavigationScreenProp } from "react-navigation";
 import CardView from "../components/GenericComponents/CardView";
 import CardButton from "../components/GenericComponents/CardButton";
-import { TextInputMask } from 'react-native-masked-text';
 import EditMilesService from '../services/EditMilesService';
 import { AsyncStorage } from "react-native";
 import DatePicker from 'react-native-datepicker'
@@ -151,39 +145,50 @@ class EditMilesContainer extends React.Component<Props, State> {
         </KeyboardAvoidingView>
 
         
-        <KeyboardAvoidingView behavior = "padding" style={{ marginTop: 100 }}>
+        <View style={{ marginTop: 20}}>
           <CardButton
             viewStyle={{
               backgroundColor: "#1BB194",
-              width: Dimensions.get("window").width * 0.4
+              width: Dimensions.get("window").width * 0.4,
+              marginBottom: 30,
+              marginRight: 0
             }}
-            textStyle={{ color: "white", fontSize: 20, textAlign: "center", justifyContent: "left", alignItems: "left"}}
+            textStyle={{ color: "white", fontSize: 20,
+            textAlign: 'center', 
+            justifyContent: 'space-between', 
+            alignItems: 'flex-start'}}
             text="Salvar"
             onPress={() => this.componentDidMount()}            
             />
             <CardButton
             viewStyle={{
               backgroundColor: "#1BB194",
-              width: Dimensions.get("window").width * 0.4
+              width: Dimensions.get("window").width * 0.4,
+              marginBottom: 30,
+              padding: 10
             }}
-            textStyle={{ color: "white", fontSize: 20, textAlign: "center", justifyContent: "right", alignItems: "right"}}
-            text="Excluir"
-            onPress={() => this.componentDidMount()}            
-            />
-        </KeyboardAvoidingView>
-
-         <KeyboardAvoidingView behavior = "padding" style={{ marginTop: 100 }}>
-          <CardButton
-            viewStyle={{
-              backgroundColor: "#1BB194",
-              width: Dimensions.get("window").width * 0.4
-            }}
-            textStyle={{ color: "white", fontSize: 20, textAlign: "center", justifyContent: "center", alignItems: "center"}}
+            textStyle={{ color: "white", fontSize: 20, 
+            textAlign: 'center', 
+            justifyContent: 'space-between', 
+            alignItems: 'flex-start'}}
             text="Cancelar"
-            onPress={() => this.componentDidMount()}            
+            onPress={() => this.componentDidMount()}           
             />
-          </KeyboardAvoidingView>
-
+            <CardButton
+            viewStyle={{
+              backgroundColor: "#ff0000",
+              width: Dimensions.get("window").width * 0.4,
+              marginBottom: 10,
+              padding: 10
+            }}
+            textStyle={{ color: "white", fontSize: 20,
+            textAlign: 'center', 
+            justifyContent: 'space-between', 
+            alignItems: 'flex-start'}}
+            text="Excluir"
+            onPress={() => this.componentDidMount()}           
+            />
+        </View>
       </View>
     );
   }

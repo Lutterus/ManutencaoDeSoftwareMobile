@@ -2,13 +2,8 @@
 import React from "react";
 import {
   View,
-  ImageBackground,
   StyleSheet,
-  Text,
   TextInput,
-  TouchableOpacity,
-  Linking,
-  Image,
   Dimensions,
   Picker,
   Alert,
@@ -17,8 +12,6 @@ import {
 import { NavigationScreenProp } from "react-navigation";
 import CardView from "../components/GenericComponents/CardView";
 import CardButton from "../components/GenericComponents/CardButton";
-import MilesListItem from "../components/MilesListItem";
-import { TextInputMask } from 'react-native-masked-text';
 import ProgramService from '../services/ProgramService';
 import { AsyncStorage } from "react-native";
 import DatePicker from 'react-native-datepicker'

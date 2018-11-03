@@ -1,9 +1,7 @@
 //@flow
 import React from "react";
-import { View } from "react-native";
 import AddProgramContainer from "../containers/AddProgramContainer";
 import { NavigationScreenProp } from "react-navigation";
-import MilesService from "../services/MilesService";
 
 type State = {};
 
