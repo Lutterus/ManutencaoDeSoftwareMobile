@@ -11,6 +11,7 @@ type ProgramDefault = {
 }
 
 type Milha = {
+  programaNome: string,
   dt_expiracao: Date,
   quantidade: number
 }

@@ -36,10 +36,10 @@ class DeleteMilesService extends AbstractService {
    * @param {*} dateBegin
    * @param {*} dateEnd
    */
-  excludeMile(cod_milha, user) {
+  excludeMile(cod_milha, user, program) {
     let URL = RESOURCES.LOGIN;
     return this.axios
-    .post(URL, {cod_milha: cod_milha, user: user})
+    .post(URL, {cod_milha: cod_milha, user: user, program: program})
     .then(function(response){
         return true;
      })

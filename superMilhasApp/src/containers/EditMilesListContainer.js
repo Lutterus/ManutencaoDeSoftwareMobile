@@ -14,6 +14,7 @@ import CardView from "../components/GenericComponents/CardView";
 import CardButton from "../components/GenericComponents/CardButton";
 import EditMilesService from '../services/EditMilesService';
 import ExcludeMilesService from '../services/DeleteMilesService';
+import GetMileService from '../services/GetMileService';
 import { AsyncStorage } from "react-native";
 import DatePicker from 'react-native-datepicker'
 
@@ -31,39 +32,53 @@ type Props = {
 class EditMilesContainer extends React.Component<Props, State> {
   EditMilesService;
   ExcludeMilesService;
+  GetMileService
   constructor(props: Props) {
     super(props);
     this.editMilesService = new EditMilesService();
     this.excludeMilesService = new ExcludeMilesService();
+    this.getMileService = new GetMileService();
     this.state = {
-      quantidade: 0,
-      date: null,
-      programa: null
+      json:  this.componentDidMount(4),
+      quantidade: "",
+      date: "",
+      programa: ""
     };
   }
 
+  getMile = async (accountLogin, mile)  => {
+    const res = await this.getMileService.getMile(mile, accountLogin);
+    this.setState({quantidade: res.quantidade})
+    this.setState({date: res.expiracao})
+    this.setState({programa: res.nomePrograma})
+  };
+
   onChange = event => {
     const { name, value } = event.target;
-
     this.setState({ [name]: value });
   };
 
   componentDidMount(index) {
     AsyncStorage.getItem('login', (err, result) => {
     }).then(res => {
-      if(index===1){
-        this.editMile(res);
-      }else if(index===2){
-        this.excludeMile(res);
-      }else if(index===3){
-        this.props.navigation.navigate("MilesList")
-      }
+      AsyncStorage.getItem('miles', (err, result) => {
+      }).then(res2 => {
+        if(index===1){
+          this.editMile(res, res2);
+        }else if(index===2){
+          this.excludeMile(res, res2);
+        }else if(index===3){
+          this.props.navigation.navigate("MilesList")        
+        }else if(index===4){
+          this.getMile(res, res2)
+        }
+      })
       
     });
   };
 
-  excludeMile = async (accountLogin)  => {
-    var res = await this.excludeMilesService.excludeMile("aaaa", accountLogin);
+  excludeMile = async (accountLogin, mile)  => {
+    var res = await this.excludeMilesService.excludeMile(mile, accountLogin, this.state.programa);
     if(res===true){
       Alert.alert(
         'Sucesso',
@@ -84,11 +99,11 @@ class EditMilesContainer extends React.Component<Props, State> {
     }
   };
   
-  editMile = async (accountLogin)  => {
+  editMile = async (accountLogin, mile)  => {
     if(this.state.quantidade!=0 &&
       this.state.programa!= null &&
       this.state.date!= null){
-        var res = await this.editMilesService.editMile(null, accountLogin, this.state.quantidade, this.state.vencimento);
+        var res = await this.editMilesService.editMile(mile, accountLogin, this.state.quantidade, this.state.date, this.state.programa);
         if(res===true){
           Alert.alert(
             'Sucesso',
@@ -128,7 +143,7 @@ class EditMilesContainer extends React.Component<Props, State> {
               style={{ height: 40, width: 300 }}a
               onValueChange={(itemValue, itemIndex) => this.setState({programa: itemValue})}
             >
-              <Picker.Item label="Programa" value="programa" />
+              <Picker.Item label={this.state.programa} value={this.state.programa} />
               <Picker.Item label="Smiles" value="smiles" />
               <Picker.Item label="Livelo" value="livelo" />
               <Picker.Item label="Azul" value="Azul" />
@@ -139,9 +154,9 @@ class EditMilesContainer extends React.Component<Props, State> {
         <KeyboardAvoidingView behavior = "padding" style={{ justifyContent: "space-between", marginTop: 15 }}>
           <CardView style={styles.inputView}>
             <TextInput
+              value={this.state.quantidade}
               returnKeyType="done"
               keyboardType="numeric"
-              placeholder="Quantidade"
               underlineColorAndroid={"#0000"}
               onChangeText={(TextInput) => {this.setState({quantidade: TextInput})}}
             />
@@ -155,7 +170,8 @@ class EditMilesContainer extends React.Component<Props, State> {
             date={this.state.date}
             mode="date"
             placeholder="Data de vencimento"
-            format="DD-MM-YYYY" 
+            format ="YYYY-MM-DD"
+            //format="DD-MM-YYYY" 
             minDate = {new Date()}
             confirmBtnText="Confirm"
             cancelBtnText="Cancel"
@@ -204,7 +220,7 @@ class EditMilesContainer extends React.Component<Props, State> {
             justifyContent: 'space-between', 
             alignItems: 'flex-start'}}
             text="Cancelar"
-            onPress={() => this.componentDidMount(3)}           
+            onPress={() => this.props.navigation.navigate("MilesList")}           
             />
             <CardButton
             viewStyle={{
