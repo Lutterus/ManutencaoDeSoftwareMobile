@@ -31,7 +31,6 @@ class PasswordContainer extends React.Component<Props, State> {
   };
 
   resetEmail = async() => {
-    console.log(this.state.email)
     if(this.state.email!=""){
       var res = await this.passwordService.resetPassword(this.state.email);
       if(res===true){
