@@ -4,25 +4,9 @@ import { View, StyleSheet, Text, Image } from "react-native";
 import type { MilesAgency, Milha } from "../util/types";
 
 
-const DetailListItem = ({ milesAgency }: MilesAgency, {Milha}: Milha ) => {
+const DetailListItem = ({Milha}: Milha ) => {
   return (
-
-    <View style={styles.titleView}>
-      <View style={{ flex: 1/2, borderColor: "#083b66", borderWidth: 1, borderRadius: 10}}>
-        <Image
-          style={styles.image}
-          borderRadius={20}
-          source={{ uri: milesAgency.programa_default.imagem }}
-        />
-      </View>
-
-      <View style={styles.rowView}>
-        <View style={{ flex: 1}}>
-          <Text style={styles.programName}> {milesAgency.nome} </Text>
-        </View>
-      </View>
-    </View>
-
+    <View>
     <View style={styles.DetailItemView}>
 
 
@@ -40,6 +24,7 @@ const DetailListItem = ({ milesAgency }: MilesAgency, {Milha}: Milha ) => {
       </View>
 
     </View>
+    </View>
   );
 };
 
@@ -51,7 +36,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     backgroundColor: "white",
     marginHorizontal: 10,
-    borderBottonColor: "#083b66"
+    //borderBottomColor: "#083b66"
   },
 
   image: {     

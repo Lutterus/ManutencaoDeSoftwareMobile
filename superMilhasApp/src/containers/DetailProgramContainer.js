@@ -14,11 +14,10 @@ import { NavigationScreenProp } from "react-navigation";
 import CardView from "../components/GenericComponents/CardView";
 import CardButton from "../components/GenericComponents/CardButton";
 import DetailListItem from "../components/DetailListItem";
-import DetailService from "../services/DetailService";
+import GetMileService from "../services/GetMileService";
 
 type State = {
-  quantidade: number,
-  vencimento: Date
+  milesList: Array<DetailListItem>
 };
 
 type Props = {
@@ -27,14 +26,11 @@ type Props = {
 };
 
 class DetailProgramContainer extends React.Component<Props, State> {
-  //DetailService;
+  GetMileService;
   constructor(props: Props) {
     super(props);
-    //this.DetailService = new DetailService();
-    this.state = {
-      quantidade: 0,
-      vencimento: new Date()
-    };
+    this.GetMileService = new GetMileService();
+    this.state = {};
   }
 
   render() {

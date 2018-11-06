@@ -4,7 +4,7 @@ import { View, Image, Dimensions, StyleSheet, Text } from "react-native";
 import DetailProgramContainer from "../containers/DetailProgramContainer";
 import { NavigationScreenProp } from "react-navigation";
 import type { MilesAgency } from "../util/types";
-//import DetailService from "../services/DetailService";
+import DetailService from "../services/DetailService";
 
 type State = {};
 
@@ -16,13 +16,17 @@ class DetailProgramScreen extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      DetailList: []
+    };
   }
 
-
-
   render() {
-    return <DetailProgramContainer navigation={this.props.navigation} />;
+    return (
+    customHeader(),
+    <DetailProgramContainer navigation={this.props.navigation} />
+    
+    );
   }
 }
 
