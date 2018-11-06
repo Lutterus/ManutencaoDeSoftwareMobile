@@ -8,7 +8,7 @@ const URLS = {
   };
   
   const config = {
-    server: URLS.JOAO
+    server: URLS.HOMO
   };
   
   export default config;

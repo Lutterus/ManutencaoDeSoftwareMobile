@@ -48,7 +48,6 @@ class AddProgramContainer extends React.Component<Props, State> {
     const list = await this.defaultProgramsService.getDefaultPrograms();
     for (i in list) {
       programsList.push(list[i].nome)
-      console.log(list[i].nome)
     } 
   }
 

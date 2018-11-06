@@ -37,19 +37,13 @@ class EditMilesService extends AbstractService {
    * @param {*} dateEnd
    */
   editMile(cod_milha, user, quantidade, dt_expiracao, program) {
-    console.log(cod_milha)
-    console.log(user)
-    console.log(quantidade)
-    console.log(dt_expiracao)
     let URL = RESOURCES.LOGIN;
     return this.axios
     .post(URL, {cod_milha: cod_milha, user: user, quantidade: quantidade, dt_expiracao: dt_expiracao, program: program})
     .then(function(response){
-      console.log(response)
         return true;
      })
      .catch((response) => {
-      console.log(response)
        return false;
      });
       

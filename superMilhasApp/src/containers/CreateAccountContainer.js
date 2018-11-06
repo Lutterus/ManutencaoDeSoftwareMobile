@@ -43,7 +43,6 @@ class CreateAccountContainer extends React.Component<Props, State> {
   }
 
   onGoFocus() {
-    console.log()
 		// when you call getElement method, the instance of native TextInput will returned.
 		this.refs['telefone'].getElement().focus();
   };
