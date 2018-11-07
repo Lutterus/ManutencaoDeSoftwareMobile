@@ -43,7 +43,7 @@ class DetailProgramScreen extends React.Component<Props, State> {
   }
 
   updateDetailList = async (currentUser,cod_program) => {
-    const list = await this.DetailService.getMiles(currentUser,cod_program);
+    const list = await this.DetailService.getUserProgramMiles(currentUser,cod_program);
     this.setState({ DetailList: list });
   };
 
