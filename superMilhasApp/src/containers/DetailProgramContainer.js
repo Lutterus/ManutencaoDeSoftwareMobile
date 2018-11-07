@@ -14,12 +14,11 @@ import { NavigationScreenProp } from "react-navigation";
 import CardView from "../components/GenericComponents/CardView";
 import CardButton from "../components/GenericComponents/CardButton";
 import DetailListItem from "../components/DetailListItem";
-import GetMileService from "../services/GetMileService";
+import DetailService from "../services/DetailService";
+import { AsyncStorage } from "react-native";
 
 type State = {
   listDetail: Array<DetailListItem>,
-  programName: String,
-  programImage: String
 };
 
 type Props = {
@@ -28,13 +27,13 @@ type Props = {
 };
 
 class DetailProgramContainer extends React.Component<Props, State> {
-  //GetMileService;
+  //DetailService;
   constructor(props: Props) {
     super(props);
-    //this.getMileService = new GetMileService();
+    //this.DetailService = new DetailService();
     this.state = {
       /*programName: this.props.navigation.state.params.programName,
-      programImage: this.props.navigation.state.params.programName*/
+        programImage: this.props.navigation.state.params.programName*/
     };
   }
 
@@ -43,7 +42,7 @@ class DetailProgramContainer extends React.Component<Props, State> {
       <View>
         <FlatList
         data={this.props.listDetail}
-        renderItem={({item}) => <TouchableOpacity onPress={() =>  alert("Milha Clicada potato")} ><DetailListItem Milha={item}/></TouchableOpacity>}
+        renderItem={({item}) => <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailProgram') } ><DetailListItem Milha={item}/></TouchableOpacity>}
         />
       </View>
     );

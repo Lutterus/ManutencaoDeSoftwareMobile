@@ -10,7 +10,9 @@ import { AsyncStorage } from "react-native"
 
 type State = {};
 
-type Props = {};
+type Props = {
+  navigation: NavigationScreenProp<{}>
+};
 
 class MilesListScreen extends React.Component<Props, State> {
   milesService;
@@ -60,7 +62,9 @@ class MilesListScreen extends React.Component<Props, State> {
   };
 
   render() {
-    return <MilesListContainer milesAgencyList={this.state.milesList} />;
+    return <MilesListContainer 
+            milesAgencyList={this.state.milesList} 
+            navigation={this.props.navigation}/>;
   }
 }
 

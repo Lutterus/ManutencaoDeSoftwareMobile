@@ -9,7 +9,6 @@ const DetailListItem = ({Milha}: Milha ) => {
     <View>
     <View style={styles.DetailItemView}>
 
-
       <View style={{ flex: 1 / 2, justifyContent: "center", alignItems: "center"}}>
         <Text style={styles.miles}>
           <Text style ={{fontSize: 15, color: "darkgray"}}> Milhas: </Text>

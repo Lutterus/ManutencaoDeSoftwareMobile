@@ -11,7 +11,7 @@ const BASE_URL = "api/";
  * URLS of the service used on Category Service.
  */
 const RESOURCES = {
-    DETAIL: BASE_URL + 'detailProgram',
+    LOGIN: BASE_URL + 'getMile/',
 };
 
 
@@ -36,18 +36,17 @@ class DetailService extends AbstractService {
    * @param {*} dateBegin
    * @param {*} dateEnd
    */
-  
-  detailProgramService(programName, accountlogin, quantity, dtExpiratio) {
-    let URL = RESOURCES.DETAIL;
+
+  getMile(cod_milha, user) {
+    let URL = RESOURCES.LOGIN +user+"/"+cod_milha;
     return this.axios
-    .post(URL, {program: programName, user: accountlogin, miles: quantity, expirationDate: dtExpiratio })
-    .then(function(response){
-        return true;
-     })
-     .catch((response) => {
-       return false;
-     });
-      
+    .get(URL)
+      .then((response: Response) => {
+        return response.data;
+      })
+      .catch((error: Response) => {
+        return error.messages;
+      });      
   }
 }
 
