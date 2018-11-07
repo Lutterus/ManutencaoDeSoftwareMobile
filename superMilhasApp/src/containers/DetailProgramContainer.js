@@ -17,32 +17,39 @@ import DetailListItem from "../components/DetailListItem";
 import GetMileService from "../services/GetMileService";
 
 type State = {
-  milesList: Array<DetailListItem>
+  listDetail: Array<DetailListItem>,
+  programName: String,
+  programImage: String
 };
 
 type Props = {
   navigation: NavigationScreenProp<{}>,
-  milesList: Array<DetailListItem>
+  listDetail: Array<DetailListItem>
 };
 
 class DetailProgramContainer extends React.Component<Props, State> {
-  GetMileService;
+  //GetMileService;
   constructor(props: Props) {
     super(props);
-    this.GetMileService = new GetMileService();
-    this.state = {};
+    //this.getMileService = new GetMileService();
+    this.state = {
+      /*programName: this.props.navigation.state.params.programName,
+      programImage: this.props.navigation.state.params.programName*/
+    };
   }
 
   render() {
     return (
       <View>
         <FlatList
-        data={this.props.milesList}
-        renderItem={({item}) => <TouchableOpacity onPress={() => /*this.props.navigation.navigate('DetailProgram')*/ alert("Milha Clicada")} ><DetailListItem Milha={item}/></TouchableOpacity>}
+        data={this.props.listDetail}
+        renderItem={({item}) => <TouchableOpacity onPress={() =>  alert("Milha Clicada potato")} ><DetailListItem Milha={item}/></TouchableOpacity>}
         />
       </View>
     );
   };
 }
+
+
 
 export default DetailProgramContainer;

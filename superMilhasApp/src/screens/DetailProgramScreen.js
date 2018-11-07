@@ -6,7 +6,9 @@ import { NavigationScreenProp } from "react-navigation";
 import type { MilesAgency } from "../util/types";
 import DetailService from "../services/DetailService";
 
-type State = {};
+type State = {
+  milesAgency: MilesAgency
+};
 
 type Props = {
   navigation: NavigationScreenProp<{}>
@@ -21,9 +23,22 @@ class DetailProgramScreen extends React.Component<Props, State> {
     };
   }
 
+  static navigationOptions = {
+    title: 'Detalhes',  
+    headerTitleStyle: {
+        textAlign: 'center',
+        flex: 1
+      }
+  };
+
+  updateMilesList = async (currentUser) => {
+    const list = await this.milesService.listMiles(currentUser);
+    this.setState({ milesList: list });
+  };
+
   render() {
     return (
-    customHeader(),
+    customHeader(milesAgency),
     <DetailProgramContainer navigation={this.props.navigation} />
     
     );

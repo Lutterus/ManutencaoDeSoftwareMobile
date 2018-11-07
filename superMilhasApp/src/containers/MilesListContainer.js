@@ -27,7 +27,7 @@ class MilesListContainer extends React.Component<Props, State> {
       <View>
         <FlatList
         data={this.props.milesAgencyList}
-        renderItem={({item}) => <TouchableOpacity onPress={() => /*this.props.navigation.navigate('DetailProgram')*/ alert("Milha Clicada")} ><MilesListItem milesAgency={item}/></TouchableOpacity>}
+    renderItem={({item}) => <TouchableOpacity onPress={() => /*this.props.navigation.navigate('')*/ alert("milha foi clicada")} ><MilesListItem milesAgency={item}/></TouchableOpacity>}
         />
       </View>
 
