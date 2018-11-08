@@ -19,6 +19,7 @@ import { AsyncStorage } from "react-native";
 
 type State = {
   listDetail: Array<DetailListItem>,
+  quantidade
 };
 
 type Props = {
@@ -27,16 +28,17 @@ type Props = {
 };
 
 class DetailProgramContainer extends React.Component<Props, State> {
-  //DetailService;
+  DetailService;
   constructor(props: Props) {
     super(props);
-    //this.DetailService = new DetailService();
+    this.DetailService = new DetailService();
     this.state = {};
   }
 
+  saveStateBeforeLaunch({this.props.listDetail.cod_milha}){
+    AsyncStorage.setItem('cod_milha', cod_milha);
+    this.state.navigation.navigate('editMilesList')
 
-  componentDidMount(){
-    console.log('BBBBBBBBBBBBBBBBBBBBBB' + this.props.listDetail)
   }
 
   render() {
@@ -46,7 +48,7 @@ class DetailProgramContainer extends React.Component<Props, State> {
         
         <FlatList
         data={this.props.listDetail}
-    renderItem={({item}) => <TouchableOpacity onPress={() => alert('teste') } ><DetailListItem Milha={item}/> </TouchableOpacity>}
+    renderItem={({item}) => <TouchableOpacity onPress={() => this.saveStateBeforeLaunch() } ><DetailListItem Milha={item}/> </TouchableOpacity>}
         />
  
       </View>
