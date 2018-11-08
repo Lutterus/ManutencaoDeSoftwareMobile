@@ -5,8 +5,12 @@ import DetailProgramContainer from "../containers/DetailProgramContainer";
 import { NavigationScreenProp } from "react-navigation";
 import type { MilesAgency } from "../util/types";
 import DetailService from "../services/DetailService";
+import milesService from "../services/MilesService";
+import { AsyncStorage } from "react-native";
 
-type State = {};
+type State = {
+  milesAgency: MilesAgency
+};
 
 type Props = {
   navigation: NavigationScreenProp<{}>
@@ -21,10 +25,55 @@ class DetailProgramScreen extends React.Component<Props, State> {
     };
   }
 
+  static navigationOptions = {
+    title: 'Detalhes',  
+    headerTitleStyle: {
+        textAlign: 'center',
+        flex: 1
+      }
+  };
+
+  componentDidMount() {
+    AsyncStorage.getItem('nome_programa', (err, result) => {
+    }).then(res => {
+      console.log(res);
+      this.updateDetailList(res)
+    });
+    
+  }
+
+<<<<<<< HEAD
+  updateDetailListDemo = async (currentUser) => {
+    const list = await this.milesService.listMiles(currentUser);
+=======
+  updateDetailList = async (currentUser,cod_program) => {
+    const list = await this.DetailService.getUserProgramMiles(currentUser,cod_program);
+>>>>>>> a14846eb3edca088ea8fd7ac6700cb7832869316
+    this.setState({ DetailList: list });
+  };
+
+  
+  updateDetailList = async (currentUser,nome_programa) => {
+    const list = await this.DetailService.getMiles(currentUser,nome);
+    this.setState({ DetailList: list });
+  };
+
+
+  static navigationOptions= ({navigation}) => {
+    return{
+    title: 'Detalhes',
+    headerLeft: null,
+    headerTitleStyle: {
+      textAlign: 'center',
+      flex: 1
+    }
+  }
+  };
+
   render() {
     return (
-    customHeader(),
-    <DetailProgramContainer navigation={this.props.navigation} />
+
+    <DetailProgramContainer listDetail={this.state.DetailList}/>
     
     );
   }

@@ -14,35 +14,48 @@ import { NavigationScreenProp } from "react-navigation";
 import CardView from "../components/GenericComponents/CardView";
 import CardButton from "../components/GenericComponents/CardButton";
 import DetailListItem from "../components/DetailListItem";
-import GetMileService from "../services/GetMileService";
+import DetailService from "../services/DetailService";
+import { AsyncStorage } from "react-native";
 
 type State = {
-  milesList: Array<DetailListItem>
+  listDetail: Array<DetailListItem>,
+  quantidade
 };
 
 type Props = {
   navigation: NavigationScreenProp<{}>,
-  milesList: Array<DetailListItem>
+  listDetail: Array<DetailListItem>
 };
 
 class DetailProgramContainer extends React.Component<Props, State> {
-  GetMileService;
+  DetailService;
   constructor(props: Props) {
     super(props);
-    this.GetMileService = new GetMileService();
+    this.DetailService = new DetailService();
     this.state = {};
+  }
+
+  saveStateBeforeLaunch({this.props.listDetail.cod_milha}){
+    AsyncStorage.setItem('cod_milha', cod_milha);
+    this.state.navigation.navigate('editMilesList')
+
   }
 
   render() {
     return (
+
       <View>
+        
         <FlatList
-        data={this.props.milesList}
-        renderItem={({item}) => <TouchableOpacity onPress={() => /*this.props.navigation.navigate('DetailProgram')*/ alert("Milha Clicada")} ><DetailListItem Milha={item}/></TouchableOpacity>}
+        data={this.props.listDetail}
+    renderItem={({item}) => <TouchableOpacity onPress={() => this.saveStateBeforeLaunch() } ><DetailListItem Milha={item}/> </TouchableOpacity>}
         />
+ 
       </View>
     );
   };
 }
+
+
 
 export default DetailProgramContainer;

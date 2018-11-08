@@ -10,7 +10,9 @@ import { AsyncStorage } from "react-native"
 
 type State = {};
 
-type Props = {};
+type Props = {
+  navigation: NavigationScreenProp<{}>
+};
 
 class MilesListScreen extends React.Component<Props, State> {
   milesService;
@@ -28,11 +30,14 @@ class MilesListScreen extends React.Component<Props, State> {
       this.updateMilesList(res);
     });
     
-  }
+  };
+
   updateMilesList = async (currentUser) => {
     const list = await this.milesService.listMiles(currentUser);
     this.setState({ milesList: list });
+    console.log(this.state.milesList)
   };
+
 
   static navigationOptions= ({navigation}) => {
     return{
@@ -60,7 +65,9 @@ class MilesListScreen extends React.Component<Props, State> {
   };
 
   render() {
-    return <MilesListContainer milesAgencyList={this.state.milesList} />;
+    return <MilesListContainer 
+            milesAgencyList={this.state.milesList} 
+            navigation={this.props.navigation}/>;
   }
 }
 

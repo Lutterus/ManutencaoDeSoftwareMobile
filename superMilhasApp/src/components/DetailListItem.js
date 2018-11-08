@@ -2,28 +2,29 @@
 import React from "react";
 import { View, StyleSheet, Text, Image } from "react-native";
 import type { MilesAgency, Milha } from "../util/types";
-
+import { AsyncStorage } from "react-native";
 
 const DetailListItem = ({Milha}: Milha ) => {
+
+
   return (
-    <View>
-    <View style={styles.DetailItemView}>
+    <View style={{flex: 1, flexDirection:'row', alignItems: "center",paddingTop: 10}}>
 
-
-      <View style={{ flex: 1 / 2, justifyContent: "center", alignItems: "center"}}>
+      <View style={{ flex: 1, alignItems: "center",backgroundColor: "#083b66",paddingTop: 14,borderRadius: 15}}>
         <Text style={styles.miles}>
-          <Text style ={{fontSize: 15, color: "darkgray"}}> Milhas: </Text>
-          {Milha.quantidade}
+          <Text style ={{fontSize: 15, color: "white"}}> Milhas: </Text>
+          {}
         </Text>
       </View>
 
-      <View style={{ flex: 1}}>
-          <Text style={styles.date}>
-            vencem em: {Milha.dt_expiracao}
+      <View style={{ flex: 1,paddingLeft:10,alignItems:"center",paddingTop:14,backgroundColor:"darkgray",borderRadius: 15}}>
+          <Text style={styles.miles}>
+            Vencem em:
           </Text>
       </View>
-
-    </View>
+      <View>
+        {console.log(AsyncStorage.getItem('cod_programa'))}
+      </View>
     </View>
   );
 };
@@ -70,19 +71,18 @@ const styles = StyleSheet.create({
   },
 
   miles: {
-    fontSize: 30,
-    textAlign: 'center',
-    color: '#083b66',
+    fontSize: 15,
+    //color: '#083b66',
     fontWeight: 'bold'
-  },
+  }
 
-  DetailItemView: {
+  /*DetailItemView: {
     backgroundColor: 'darkgray',
     flexDirection: 'row',
     flex: 1,
     justifyContent: 'space-between',
-    paddingTop: '15'
-  }
+    paddingTop: 15
+  }*/
 
 });
 
