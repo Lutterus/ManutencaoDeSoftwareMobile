@@ -19,19 +19,19 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@material-ui/core": "^3.2.0",
+    "@material-ui/core": "^3.4.0",
     "axios": "^0.18.0",
     "expo": "^27.0.1",
     "flow-bin": "^0.78.0",
     "moment": "^2.22.2",
     "react": "16.3.1",
-    "react-datepicker": "^1.7.0",
+    "react-datepicker": "^1.8.0",
     "react-native": "~0.55.2",
     "react-native-datepicker": "^1.7.2",
-    "react-native-masked-text": "^1.9.1",
+    "react-native-masked-text": "^1.9.2",
     "react-native-text-input-mask": "^0.8.0",
     "react-native-ui-xg": "0.0.6",
     "react-native-vector-icons": "^5.0.0",
-    "react-navigation": "^2.11.2"
+    "react-navigation": "^2.18.2"
   }
 }

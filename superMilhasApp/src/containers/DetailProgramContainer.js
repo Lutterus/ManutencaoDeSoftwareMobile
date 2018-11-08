@@ -18,8 +18,7 @@ import DetailService from "../services/DetailService";
 import { AsyncStorage } from "react-native";
 
 type State = {
-  listDetail: Array<DetailListItem>,
-  quantidade
+  listDetail: Array<DetailListItem>
 };
 
 type Props = {

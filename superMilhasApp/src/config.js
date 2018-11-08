@@ -5,7 +5,7 @@ const URLS = {
     LUCAS_LEAL: "http://192.168.43.155:3000/",
     JOSEPH: "http://192.168.0.174:3000/",
     JOAO: "http://192.168.0.5:3000",
-    MATHEUS: "http://179.219.98.143"
+    MATHEUS: "http://201.54.143.73:3000/"
   };
   
   const config = {

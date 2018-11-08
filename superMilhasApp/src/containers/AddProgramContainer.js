@@ -58,7 +58,7 @@ class AddProgramContainer extends React.Component<Props, State> {
   };
 
   componentDidMount(index) {
-      AsyncStorage.getItem('login', (err, result) => {
+      AsyncStorage.getItem('login', (err, result) => { 
       }).then(res => {
         if(index===1){
           this.addProgram(res);

@@ -21,7 +21,7 @@ class DetailProgramScreen extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      DetailList: []
+      DetailList: []su
     };
   }
 
@@ -34,30 +34,21 @@ class DetailProgramScreen extends React.Component<Props, State> {
   };
 
   componentDidMount() {
-    AsyncStorage.getItem('nome_programa', (err, result) => {
+    AsyncStorage.getItem('login', (err, result) => {
     }).then(res => {
-      console.log(res);
-      this.updateDetailList(res)
+      AsyncStorage.getItem('nome_programa', (err, result) => {
+      }).then(res2 => {
+        console.log(res,res2)
+          this.updateDetailList(res, res2)
+      })
     });
-    
   }
 
-<<<<<<< HEAD
-  updateDetailListDemo = async (currentUser) => {
-    const list = await this.milesService.listMiles(currentUser);
-=======
+
   updateDetailList = async (currentUser,cod_program) => {
     const list = await this.DetailService.getUserProgramMiles(currentUser,cod_program);
->>>>>>> a14846eb3edca088ea8fd7ac6700cb7832869316
     this.setState({ DetailList: list });
   };
-
-  
-  updateDetailList = async (currentUser,nome_programa) => {
-    const list = await this.DetailService.getMiles(currentUser,nome);
-    this.setState({ DetailList: list });
-  };
-
 
   static navigationOptions= ({navigation}) => {
     return{
