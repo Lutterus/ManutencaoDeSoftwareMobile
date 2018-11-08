@@ -32,17 +32,19 @@ class DetailProgramContainer extends React.Component<Props, State> {
     super(props);
     //this.DetailService = new DetailService();
     this.state = {
-      /*programName: this.props.navigation.state.params.programName,
-        programImage: this.props.navigation.state.params.programName*/
+      //cod_program: this.props.navigation.state.params.cod_program
+        /*programImage: this.props.navigation.state.params.programName*/
     };
   }
 
   render() {
     return (
+
       <View>
+        <DetailListItem/>
         <FlatList
         data={this.props.listDetail}
-        renderItem={({item}) => <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailProgram') } ><DetailListItem Milha={item}/></TouchableOpacity>}
+    renderItem={({item}) => <TouchableOpacity onPress={() => alert('teste') } ><DetailListItem Milha={item}/> </TouchableOpacity>}
         />
       </View>
     );

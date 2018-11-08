@@ -4,6 +4,7 @@ import { View, StyleSheet, Text, FlatList , TouchableOpacity} from "react-native
 import { NavigationScreenProp } from "react-navigation";
 import MilesListItem from "../components/MilesListItem";
 import type { MilesAgency } from "../util/types";
+import { AsyncStorage } from "react-native"; 
 
 type State = {
   milesAgencyList: Array<MilesAgency>
@@ -18,7 +19,13 @@ class MilesListContainer extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    this.state = { navigation: this.props.navigation};
+    this.state = {navigation: this.props.navigation};
+  }
+
+  saveStateBeforeLaunch(){
+    AsyncStorage.setItem('cod_programa', this.props.milesAgencyList.data);
+    this.state.navigation.navigate('DetailProgram')
+
   }
 
   render() {
@@ -27,7 +34,7 @@ class MilesListContainer extends React.Component<Props, State> {
       <View>
         <FlatList
         data={this.props.milesAgencyList}
-    renderItem={({item}) => <TouchableOpacity onPress={() => this.state.navigation.navigate('DetailProgram')} ><MilesListItem milesAgency={item}/></TouchableOpacity>}
+    renderItem={({item}) => <TouchableOpacity onPress={() => this.saveStateBeforeLaunch()/*, cod_program: item.nome*/} ><MilesListItem milesAgency={item}/></TouchableOpacity>}
         />
       </View>
 

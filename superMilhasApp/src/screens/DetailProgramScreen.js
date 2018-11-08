@@ -5,6 +5,7 @@ import DetailProgramContainer from "../containers/DetailProgramContainer";
 import { NavigationScreenProp } from "react-navigation";
 import type { MilesAgency } from "../util/types";
 import DetailService from "../services/DetailService";
+import milesService from "../services/MilesService";
 import { AsyncStorage } from "react-native";
 
 type State = {
@@ -32,20 +33,20 @@ class DetailProgramScreen extends React.Component<Props, State> {
       }
   };
 
- 
-
   componentDidMount() {
     AsyncStorage.getItem('login', (err, result) => {
     }).then(res => {
-      this.updateDetailList(res);
+      console.log(res.data);
+      this.setState({DetailList: res.data});
     });
     
   }
 
-  updateDetailList = async (currentUser,cod_program) => {
-    const list = await this.DetailService.getMiles(currentUser,cod_program);
+  updateDetailList = async (currentUser) => {
+    const list = await this.milesService.listMiles(currentUser);
     this.setState({ DetailList: list });
   };
+
 
   static navigationOptions= ({navigation}) => {
     return{
@@ -61,7 +62,7 @@ class DetailProgramScreen extends React.Component<Props, State> {
   render() {
     return (
 
-    <DetailProgramContainer listDetail={this.state.DetailList}/>
+    <DetailProgramContainer /*listDetail={this.state.DetailList}*/ />
     
     );
   }
