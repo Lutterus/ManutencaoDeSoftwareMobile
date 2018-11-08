@@ -34,16 +34,22 @@ class DetailProgramScreen extends React.Component<Props, State> {
   };
 
   componentDidMount() {
-    AsyncStorage.getItem('login', (err, result) => {
+    AsyncStorage.getItem('nome_programa', (err, result) => {
     }).then(res => {
-      console.log(res.data);
-      this.setState({DetailList: res.data});
+      console.log(res);
+      this.updateDetailList(res)
     });
     
   }
 
-  updateDetailList = async (currentUser) => {
+  updateDetailListDemo = async (currentUser) => {
     const list = await this.milesService.listMiles(currentUser);
+    this.setState({ DetailList: list });
+  };
+
+  
+  updateDetailList = async (currentUser,nome_programa) => {
+    const list = await this.DetailService.getMiles(currentUser,nome);
     this.setState({ DetailList: list });
   };
 
@@ -62,7 +68,7 @@ class DetailProgramScreen extends React.Component<Props, State> {
   render() {
     return (
 
-    <DetailProgramContainer /*listDetail={this.state.DetailList}*/ />
+    <DetailProgramContainer listDetail={this.state.DetailList}/>
     
     );
   }

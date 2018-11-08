@@ -6,16 +6,18 @@ import { AsyncStorage } from "react-native";
 
 const DetailListItem = ({Milha}: Milha ) => {
 
+
   return (
     <View style={{flex: 1, flexDirection:'row', alignItems: "center",paddingTop: 10}}>
 
-      <View style={{ flex: 1, alignItems: "center",backgroundColor: "#083b66",paddingTop: 14}}>
+      <View style={{ flex: 1, alignItems: "center",backgroundColor: "#083b66",paddingTop: 14,borderRadius: 15}}>
         <Text style={styles.miles}>
           <Text style ={{fontSize: 15, color: "white"}}> Milhas: </Text>
+          {}
         </Text>
       </View>
 
-      <View style={{ flex: 1,paddingLeft:10,alignItems:"center",paddingTop:14,backgroundColor:"darkgray"}}>
+      <View style={{ flex: 1,paddingLeft:10,alignItems:"center",paddingTop:14,backgroundColor:"darkgray",borderRadius: 15}}>
           <Text style={styles.miles}>
             Vencem em:
           </Text>

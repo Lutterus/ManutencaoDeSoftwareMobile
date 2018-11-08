@@ -4,6 +4,7 @@ import { View, StyleSheet, Text, Image } from "react-native";
 import type { MilesAgency } from "../util/types";
 
 const MilesListItem = ({ milesAgency }: MilesAgency) => {
+
   return (
     <View style={styles.generalView}>
       <View style={{ flex: 1/2, borderColor: "#083b66", borderWidth: 1, borderRadius: 10}}>
@@ -32,6 +33,7 @@ const MilesListItem = ({ milesAgency }: MilesAgency) => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   generalView: {
     flexDirection: "row",

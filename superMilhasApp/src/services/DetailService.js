@@ -11,7 +11,7 @@ const BASE_URL = "api/";
  * URLS of the service used on Category Service.
  */
 const RESOURCES = {
-    LOGIN: BASE_URL + 'getMile/',
+    DETAIL: BASE_URL + 'getMiles/',
 };
 
 
@@ -37,8 +37,8 @@ class DetailService extends AbstractService {
    * @param {*} dateEnd
    */
 
-  getMile(cod_milha, user) {
-    let URL = RESOURCES.LOGIN +user+"/"+cod_milha;
+  getMiles(userId,ProgramName) {
+    let URL = RESOURCES.DETAIL + userId + "/" + ProgramName; //api/getMiles/userId/cod_program
     return this.axios
     .get(URL)
       .then((response: Response) => {
