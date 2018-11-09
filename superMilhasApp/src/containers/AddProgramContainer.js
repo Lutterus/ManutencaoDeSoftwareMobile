@@ -45,6 +45,7 @@ class AddProgramContainer extends React.Component<Props, State> {
   }
 
   setProgramsDefault = async ()  => {
+    programsList = []
     const list = await this.defaultProgramsService.getDefaultPrograms();
     for (i in list) {
       programsList.push(list[i].nome)

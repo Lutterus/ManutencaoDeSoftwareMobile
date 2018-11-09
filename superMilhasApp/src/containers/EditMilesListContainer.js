@@ -56,6 +56,7 @@ class EditMilesContainer extends React.Component<Props, State> {
     this.setState({quantidade: res.quantidade})
     this.setState({date: res.expiracao})
     this.setState({programa: res.nomePrograma})
+    programsList = []
      for (i in list) {
        if(list[i].nome!=this.state.programa){
         programsList.push(list[i].nome)
