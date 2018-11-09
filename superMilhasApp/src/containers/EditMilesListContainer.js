@@ -69,7 +69,6 @@ class EditMilesContainer extends React.Component<Props, State> {
   };
 
   componentDidMount(index) {
-    AsyncStorage.setItem('miles', "1012");
     AsyncStorage.getItem('login', (err, result) => {
     }).then(res => {
       AsyncStorage.getItem('miles', (err, result) => {

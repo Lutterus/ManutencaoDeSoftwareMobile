@@ -23,11 +23,8 @@ class MilesListContainer extends React.Component<Props, State> {
     this.state = {navigation: this.props.navigation};
   }
 
-  saveStateBeforeLaunch(){
-    const program_Name = this.state.milesAgencyList;
+  saveStateBeforeLaunch(program_Name){
     AsyncStorage.setItem('nome_programa', program_Name);
-    console.log('AAAAAA')
-    console.log(program_Name)
     this.state.navigation.navigate('DetailProgram')
 
   }
@@ -38,7 +35,8 @@ class MilesListContainer extends React.Component<Props, State> {
       <View>
         <FlatList
         data={this.props.milesAgencyList}
-    renderItem={({item}) => <TouchableOpacity onPress={() => this.saveStateBeforeLaunch()/*, cod_program: item.nome*/} ><MilesListItem milesAgency={item}/></TouchableOpacity>}
+        renderItem={({item}) => <TouchableOpacity onPress={() => this.saveStateBeforeLaunch(item.nome)} ><MilesListItem milesAgency={item}/></TouchableOpacity>}
+        keyExtractor={item => item.nome}
         />
       </View>
 

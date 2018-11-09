@@ -37,8 +37,8 @@ class DetailService extends AbstractService {
    * @param {*} dateEnd
    */
 
-  getUserProgramMiles(cod_program, user) {
-    let URL = RESOURCES.PROGRAM_MILES + user + "/" + cod_programa;
+  getUserProgramMiles(user, cod_program) {
+    let URL = RESOURCES.PROGRAM_MILES + user + "/" + cod_program;
     return this.axios
     .get(URL)
       .then((response: Response) => {

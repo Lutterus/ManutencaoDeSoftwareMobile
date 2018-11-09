@@ -1,29 +1,23 @@
 //@flow
-import React ,{ Component } from "react";
+import React from "react";
 import {
   View,
-  StyleSheet,
-  Text,
-  TextInput,
   TouchableOpacity,
-  Image,
-  Dimensions,
   FlatList
 } from "react-native";
 import { NavigationScreenProp } from "react-navigation";
-import CardView from "../components/GenericComponents/CardView";
-import CardButton from "../components/GenericComponents/CardButton";
 import DetailListItem from "../components/DetailListItem";
 import DetailService from "../services/DetailService";
+import type { Milha } from "../util/types";
 import { AsyncStorage } from "react-native";
 
 type State = {
-  listDetail: Array<DetailListItem>
+  listDetail: Array<Milha>
 };
 
 type Props = {
   navigation: NavigationScreenProp<{}>,
-  listDetail: Array<DetailListItem>
+  listDetail: Array<Milha>
 };
 
 class DetailProgramContainer extends React.Component<Props, State> {
@@ -34,22 +28,25 @@ class DetailProgramContainer extends React.Component<Props, State> {
     this.state = {};
   }
 
-  saveStateBeforeLaunch({this.props.listDetail.cod_milha}){
-    AsyncStorage.setItem('cod_milha', cod_milha);
-    this.state.navigation.navigate('editMilesList')
-
+  saveStateBeforeLaunch(currentMile){ 
+      AsyncStorage.setItem('miles', currentMile.cod_milha.toString());
+      this.props.navigation.navigate('EditMilesList')    
   }
 
   render() {
     return (
 
-      <View>
-        
+      <View>  
+        <FlatList
+        data={[{quantidade: 'Quantidade', dt_expiracao: "Vencimento"}]}
+        renderItem={({item}) => <DetailListItem milha={item}/>}
+        keyExtractor={item => item.quantidade}
+        />
         <FlatList
         data={this.props.listDetail}
-    renderItem={({item}) => <TouchableOpacity onPress={() => this.saveStateBeforeLaunch() } ><DetailListItem Milha={item}/> </TouchableOpacity>}
+        renderItem={({item}) => <TouchableOpacity onPress={() => this.saveStateBeforeLaunch(item)} ><DetailListItem milha={item}/></TouchableOpacity>}
+        keyExtractor={item => item.cod_milha.toString()}
         />
- 
       </View>
     );
   };

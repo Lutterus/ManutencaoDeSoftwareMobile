@@ -4,10 +4,9 @@ import { View, StyleSheet, Text, Image } from "react-native";
 import type { MilesAgency } from "../util/types";
 
 const MilesListItem = ({ milesAgency }: MilesAgency) => {
-
   return (
     <View style={styles.generalView}>
-      <View style={{ flex: 1/2, borderColor: "#083b66", borderWidth: 1, borderRadius: 10}}>
+      <View style={{ flex: 0.7, borderColor: "#083b66", borderWidth: 1, borderRadius: 10}}>
         <Image
           style={styles.image}
           borderRadius={20}
@@ -24,9 +23,9 @@ const MilesListItem = ({ milesAgency }: MilesAgency) => {
           </Text>
         </View>
       </View>
-      <View style={{ flex: 1 / 2, justifyContent: "center", alignItems: "center"}}>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center"}}>
         <Text style={styles.miles}>
-          <Text style ={{fontSize: 15, color: "darkgray"}}> total: </Text>
+          <Text style ={{fontSize: 14, color: "darkgray"}}> total: </Text>
           {milesAgency.somaMilhas}
         </Text>
       </View>
