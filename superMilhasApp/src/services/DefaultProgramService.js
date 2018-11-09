@@ -11,9 +11,8 @@ const BASE_URL = "api/";
  * URLS of the service used on Category Service.
  */
 const RESOURCES = {
-    LOGIN: BASE_URL + 'getProgramsDefault/',
+  LOGIN: BASE_URL + "getProgramsDefault/"
 };
-
 
 /**
  * Params used on services methods.
@@ -39,13 +38,13 @@ class DefaultProgramsService extends AbstractService {
   getDefaultPrograms() {
     let URL = RESOURCES.LOGIN;
     return this.axios
-    .get(URL)
+      .get(URL)
       .then((response: Response) => {
         return response.data;
       })
       .catch((error: Response) => {
         return error.messages;
-      });      
+      });
   }
 }
 

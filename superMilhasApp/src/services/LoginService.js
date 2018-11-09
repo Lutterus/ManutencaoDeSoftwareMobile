@@ -11,9 +11,8 @@ const BASE_URL = "api/";
  * URLS of the service used on Category Service.
  */
 const RESOURCES = {
-    LOGIN: BASE_URL + 'login',
+  LOGIN: BASE_URL + "login"
 };
-
 
 /**
  * Params used on services methods.
@@ -40,14 +39,13 @@ class LoginService extends AbstractService {
     let URL = RESOURCES.LOGIN;
 
     return this.axios
-    .post(URL, {username: loginCurrentUser, password: passWordCurrentUser })
-    .then(function(response){
+      .post(URL, { username: loginCurrentUser, password: passWordCurrentUser })
+      .then(function(response) {
         return true;
-     })
-     .catch((response) => {
-       return false;
-     });
-      
+      })
+      .catch(response => {
+        return false;
+      });
   }
 }
 

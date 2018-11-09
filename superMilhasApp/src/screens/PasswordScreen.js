@@ -4,7 +4,6 @@ import { View } from "react-native";
 import { NavigationScreenProp } from "react-navigation";
 import PasswordContainer from "../containers/PasswordContainer";
 
-
 type State = {};
 
 type Props = {

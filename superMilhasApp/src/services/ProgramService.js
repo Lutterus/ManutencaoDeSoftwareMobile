@@ -11,9 +11,8 @@ const BASE_URL = "api/";
  * URLS of the service used on Category Service.
  */
 const RESOURCES = {
-    LOGIN: BASE_URL + 'addMile',
+  LOGIN: BASE_URL + "addMile"
 };
-
 
 /**
  * Params used on services methods.
@@ -39,14 +38,18 @@ class ProgramService extends AbstractService {
   addProgram(programName, accountLogin, quantity, dtExpiratio) {
     let URL = RESOURCES.LOGIN;
     return this.axios
-    .post(URL, {program: programName, user: accountLogin, miles: quantity, expirationDate: dtExpiratio })
-    .then(function(response){
+      .post(URL, {
+        program: programName,
+        user: accountLogin,
+        miles: quantity,
+        expirationDate: dtExpiratio
+      })
+      .then(function(response) {
         return true;
-     })
-     .catch((response) => {
-       return false;
-     });
-      
+      })
+      .catch(response => {
+        return false;
+      });
   }
 }
 

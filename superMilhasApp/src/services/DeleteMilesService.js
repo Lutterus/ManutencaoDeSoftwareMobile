@@ -11,9 +11,8 @@ const BASE_URL = "api/";
  * URLS of the service used on Category Service.
  */
 const RESOURCES = {
-    LOGIN: BASE_URL + 'deleteMile',
+  LOGIN: BASE_URL + "deleteMile"
 };
-
 
 /**
  * Params used on services methods.
@@ -39,14 +38,13 @@ class DeleteMilesService extends AbstractService {
   excludeMile(cod_milha, user, program) {
     let URL = RESOURCES.LOGIN;
     return this.axios
-    .post(URL, {cod_milha: cod_milha, user: user, program: program})
-    .then(function(response){
+      .post(URL, { cod_milha: cod_milha, user: user, program: program })
+      .then(function(response) {
         return true;
-     })
-     .catch((response) => {
-       return false;
-     });
-      
+      })
+      .catch(response => {
+        return false;
+      });
   }
 }
 

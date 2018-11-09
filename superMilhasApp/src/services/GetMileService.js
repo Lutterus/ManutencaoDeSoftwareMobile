@@ -11,9 +11,8 @@ const BASE_URL = "api/";
  * URLS of the service used on Category Service.
  */
 const RESOURCES = {
-    LOGIN: BASE_URL + 'getMile/',
+  LOGIN: BASE_URL + "getMile/"
 };
-
 
 /**
  * Params used on services methods.
@@ -37,15 +36,15 @@ class GetMileService extends AbstractService {
    * @param {*} dateEnd
    */
   getMile(cod_milha, user) {
-    let URL = RESOURCES.LOGIN +user+"/"+cod_milha;
+    let URL = RESOURCES.LOGIN + user + "/" + cod_milha;
     return this.axios
-    .get(URL)
+      .get(URL)
       .then((response: Response) => {
         return response.data;
       })
       .catch((error: Response) => {
         return error.messages;
-      });      
+      });
   }
 }
 
