@@ -32,6 +32,7 @@ class CreateAccountContainer extends React.Component<Props, State> {
   CreateAccountService;
   constructor(props: Props) {
     super(props);
+    this.focusNextField = this.focusNextField.bind(this);
     this.createAccountService = new CreateAccountService();
     this.state = {
       nome: "",
@@ -40,11 +41,16 @@ class CreateAccountContainer extends React.Component<Props, State> {
       telefone: "",
       confirmaSenha: ""
     };
+    this.inputs = {};
   }
 
-  onGoFocus() {
-    // when you call getElement method, the instance of native TextInput will returned.
-    this.refs["telefone"].getElement().focus();
+  focusNextField(key) {
+    this.inputs[key].focus();
+  };
+
+  onSubmitEditing= () => {
+    // specify the key of the ref, as done in the previous section.
+    this.focusNextField('next-field');
   }
 
   CreateAccount = async () => {
@@ -95,17 +101,19 @@ class CreateAccountContainer extends React.Component<Props, State> {
           alignItems: "center",
           justifyContent: "center"
         }}
-      >
+      >   
         <View style={{ marginTop: 20 }}>
           <CardView style={styles.inputView}>
             <TextInput
-              returnKeyType="go"
-              //onSubmitEditing={this.onGoFocus.bind(this)}
+              returnKeyType="next"
+              onSubmitEditing={() => {this.focusNextField('Email');}}
+              blurOnSubmit={ false }
               underlineColorAndroid={"#0000"}
               placeholder="Nome"
               autoCorrect={false}
               autoCapitalize="none"
               onChangeText={TextInput => this.setState({ nome: TextInput })}
+              ref={ input => {this.inputs['Nome'] = input;}}
             />
           </CardView>
         </View>
@@ -113,8 +121,10 @@ class CreateAccountContainer extends React.Component<Props, State> {
         <KeyboardAvoidingView behavior="padding" style={{ marginTop: 20 }}>
           <CardView style={styles.inputView}>
             <TextInput
-              returnKeyType="go"
-              //onSubmitEditing={this.onGoFocus.bind(this)}
+              onSubmitEditing={() => {this.focusNextField('Telefone');}}
+              ref={ input => {this.inputs['Email'] = input;}}
+              blurOnSubmit={ false }
+              returnKeyType="next"
               underlineColorAndroid={"#0000"}
               placeholder="Email"
               keyboardType="email-address"
@@ -128,10 +138,12 @@ class CreateAccountContainer extends React.Component<Props, State> {
         <KeyboardAvoidingView behavior="padding">
           <View style={{ marginTop: 20 }}>
             <CardView style={styles.inputView}>
-              <TextInputMask
-                ref="telefone"
-                returnKeyType="go"
-                //onSubmitEditing={this.onGoFocus.bind('senha')}
+              <TextInputMask  
+                refInput={ (input) => {this.inputs["Telefone"] = input;}}
+                onSubmitEditing={() => {this.focusNextField('Senha');}}
+                blurOnSubmit={ false }
+                returnKeyType="next"
+                //onSubmitEditing={this.onGoFocus.bind("senha")}
                 placeholder="Telefone"
                 underlineColorAndroid={"#0000"}
                 value={this.state.telefone}
@@ -143,18 +155,22 @@ class CreateAccountContainer extends React.Component<Props, State> {
                 //onChangeText={this.onChangeText.bind(this)}
                 onChangeText={telefone => this.setState({ telefone })}
               />
+
             </CardView>
           </View>
 
           <KeyboardAvoidingView behavior="padding" style={{ marginTop: 20 }}>
             <CardView style={styles.inputView}>
               <TextInput
+                onSubmitEditing={() => {this.focusNextField('ConfirmaSenha');}}
+                ref={ input => {this.inputs['Senha'] = input;}}
+                blurOnSubmit={ false }
                 placeholder="Senha"
                 secureTextEntry
                 underlineColorAndroid={"#0000"}
                 returnKeyType="go"
                 //onSubmitEditing={this.onGoFocus.bind('confirmaSenha')}
-                ref="senha"
+                //ref="senha"
                 onChangeText={TextInput => this.setState({ senha: TextInput })}
               />
             </CardView>
@@ -163,11 +179,11 @@ class CreateAccountContainer extends React.Component<Props, State> {
           <KeyboardAvoidingView behavior="padding" style={{ marginTop: 20 }}>
             <CardView style={styles.inputView}>
               <TextInput
+                ref={ input => {this.inputs['ConfirmaSenha'] = input;}}
                 placeholder="Confirmar senha"
                 secureTextEntry
                 underlineColorAndroid={"#0000"}
                 returnKeyType="done"
-                ref="confirmaSenha"
                 onChangeText={TextInput =>
                   this.setState({ confirmaSenha: TextInput })
                 }
