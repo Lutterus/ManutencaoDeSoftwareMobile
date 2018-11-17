@@ -8,14 +8,14 @@ type MilesAgency = {
 type ProgramDefault = {
   nome: string,
   imagem: string
-}
+};
 
 type Milha = {
-  cod_Milha:String,
+  cod_Milha: String,
   programaNome: string,
   dt_expiracao: Date,
   quantidade: number
-}
+};
 
 type Response = {
   success: boolean,

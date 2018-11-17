@@ -11,9 +11,8 @@ const BASE_URL = "api/";
  * URLS of the service used on Category Service.
  */
 const RESOURCES = {
-    LOGIN: BASE_URL + 'resetPassword',
+  LOGIN: BASE_URL + "resetPassword"
 };
-
 
 /**
  * Params used on services methods.
@@ -39,14 +38,13 @@ class ProgramService extends AbstractService {
   resetPassword(emailUser) {
     let URL = RESOURCES.LOGIN;
     return this.axios
-    .post(URL, {email: emailUser})
-    .then(function(response){
+      .post(URL, { email: emailUser })
+      .then(function(response) {
         return true;
-     })
-     .catch((response) => {
-       return false;
-     });
-      
+      })
+      .catch(response => {
+        return false;
+      });
   }
 }
 

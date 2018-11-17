@@ -1,16 +1,16 @@
 //@flow
 import React from "react";
 import {
-    View,
-    StyleSheet,
-    Text,
-    TextInput,
-    Dimensions,
-    TouchableOpacity
+  View,
+  StyleSheet,
+  Text,
+  TextInput,
+  Dimensions,
+  TouchableOpacity
 } from "react-native";
 import CardView from "../components/GenericComponents/CardView";
 import CardButton from "../components/GenericComponents/CardButton";
-import { NavigationScreenProp} from "react-navigation";
+import { NavigationScreenProp } from "react-navigation";
 import CreateAccountContainer from "../containers/CreateAccountContainer";
 
 type State = {};
@@ -27,7 +27,7 @@ class CreateAccountScreen extends React.Component<Props, State> {
   }
 
   static navigationOptions = {
-    title: 'Cadastro',  
+    title: "Cadastro",
     headerTitleStyle: {
         fontSize: 22,
         color: "#083b66",
@@ -36,8 +36,8 @@ class CreateAccountScreen extends React.Component<Props, State> {
       }
   };
 
-  render () {
-      return <CreateAccountContainer navigation={this.props.navigation} />;
+  render() {
+    return <CreateAccountContainer navigation={this.props.navigation} />;
   }
 }
 

@@ -12,11 +12,10 @@ import {
 import { NavigationScreenProp } from "react-navigation";
 import CardView from "../components/GenericComponents/CardView";
 import CardButton from "../components/GenericComponents/CardButton";
-import ProgramService from '../services/ProgramService';
+import ProgramService from "../services/ProgramService";
 import { AsyncStorage } from "react-native";
-import DatePicker from 'react-native-datepicker';
-import DefaultProgramsService from '../services/DefaultProgramService';
-
+import DatePicker from "react-native-datepicker";
+import DefaultProgramsService from "../services/DefaultProgramService";
 
 type State = {
   quantidade: number,
@@ -28,7 +27,7 @@ type Props = {
   navigation: NavigationScreenProp<{}>
 };
 
-var programsList= []
+var programsList = [];
 class AddProgramContainer extends React.Component<Props, State> {
   ProgramService;
   DefaultProgramsService;
@@ -37,20 +36,20 @@ class AddProgramContainer extends React.Component<Props, State> {
     this.programService = new ProgramService();
     this.defaultProgramsService = new DefaultProgramsService();
     this.state = {
-      json:  this.componentDidMount(2),
+      json: this.componentDidMount(2),
       quantidade: 0,
       date: null,
       programa: null
     };
   }
 
-  setProgramsDefault = async ()  => {
-    programsList = []
+  setProgramsDefault = async () => {
+    programsList = [];
     const list = await this.defaultProgramsService.getDefaultPrograms();
     for (i in list) {
-      programsList.push(list[i].nome)
-    } 
-  }
+      programsList.push(list[i].nome);
+    }
+  };
 
   onChange = event => {
     const { name, value } = event.target;
@@ -59,80 +58,93 @@ class AddProgramContainer extends React.Component<Props, State> {
   };
 
   componentDidMount(index) {
-      AsyncStorage.getItem('login', (err, result) => { 
-      }).then(res => {
-        if(index===1){
-          this.addProgram(res);
-        }else if(index===2){
-          this.setProgramsDefault()
-        }
-      });   
+    AsyncStorage.getItem("login", (err, result) => {}).then(res => {
+      if (index === 1) {
+        this.addProgram(res);
+      } else if (index === 2) {
+        this.setProgramsDefault();
+      }
+    });
   }
-  
-  addProgram = async (accountLogin)  => {
-    if(this.state.quantidade!=0 &&
-      this.state.programa!= null &&
-      this.state.date!= null){
-        var res = await this.programService.addProgram(this.state.programa, accountLogin, this.state.quantidade, this.state.vencimento);
-        if(res===true){
-          Alert.alert(
-            'Sucesso',
-            'Milhas adicionadas com sucesso',
-            [
-              {text: 'OK', onPress: () => this.props.navigation.navigate("MilesList")}
-            ],
-          )
-          
-        }else{
-          Alert.alert(
-            'Falha',
-            'Ocorreu um erro durante o cadastro das milhas, favor verificar sua conexão com a internet',
-            [
-              {text: 'OK'}
-            ],
-          )
-        }
-    }else{
+
+  addProgram = async accountLogin => {
+    if (
+      this.state.quantidade != 0 &&
+      this.state.programa != null &&
+      this.state.date != null
+    ) {
+      var res = await this.programService.addProgram(
+        this.state.programa,
+        accountLogin,
+        this.state.quantidade,
+        this.state.vencimento
+      );
+      if (res === true) {
+        Alert.alert("Sucesso", "Milhas adicionadas com sucesso", [
+          {
+            text: "OK",
+            onPress: () => this.props.navigation.navigate("MilesList")
+          }
+        ]);
+      } else {
+        Alert.alert(
+          "Falha",
+          "Ocorreu um erro durante o cadastro das milhas, favor verificar sua conexão com a internet",
+          [{ text: "OK" }]
+        );
+      }
+    } else {
       Alert.alert(
-        'Atenção',
-        'Para cadastrar milhas, é necessário preencher todos os campos',
-        [
-          {text: 'OK'}
-        ],
-      )
+        "Atenção",
+        "Para cadastrar milhas, é necessário preencher todos os campos",
+        [{ text: "OK" }]
+      );
     }
   };
 
   render() {
     return (
       <View style={{ justifyContent: "space-evenly", alignItems: "center" }}>
-        <KeyboardAvoidingView behavior = "padding" style={{ marginTop: 55 }}>
+        <KeyboardAvoidingView behavior="padding" style={{ marginTop: 55 }}>
           <CardView>
             <Picker
-            selectedValue={this.state.programa}
-            style={{ height: 40, width: 300 }}
-            onValueChange={(itemValue, itemIndex) => this.setState({programa: itemValue})}
+              selectedValue={this.state.programa}
+              style={{ height: 40, width: 300 }}
+              onValueChange={(itemValue, itemIndex) =>
+                this.setState({ programa: itemValue })
+              }
             >
-            {programsList.map((itemValue, itemIndex) => {
-              return (<Picker.Item label={itemValue} value={itemValue} key={itemValue}/>) 
-            })}
+              {programsList.map((itemValue, itemIndex) => {
+                return (
+                  <Picker.Item
+                    label={itemValue}
+                    value={itemValue}
+                    key={itemValue}
+                  />
+                );
+              })}
             </Picker>
           </CardView>
         </KeyboardAvoidingView>
 
-        <KeyboardAvoidingView behavior = "padding" style={{ justifyContent: "space-between", marginTop: 15 }}>
+        <KeyboardAvoidingView
+          behavior="padding"
+          style={{ justifyContent: "space-between", marginTop: 15 }}
+        >
           <CardView style={styles.inputView}>
             <TextInput
               returnKeyType="done"
               keyboardType="numeric"
               placeholder="Quantidade"
               underlineColorAndroid={"#0000"}
-              onChangeText={(TextInput) => {this.setState({quantidade: TextInput})}}
+              onChangeText={TextInput => {
+                this.setState({ quantidade: TextInput });
+              }}
             />
           </CardView>
         </KeyboardAvoidingView>
 
-        <KeyboardAvoidingView behavior = "padding" style={{ marginTop: 15 }}>
+        <KeyboardAvoidingView behavior="padding" style={{ marginTop: 15 }}>
           <CardView style={styles.inputView}>
           <DatePicker
             style={{width: 265}}
@@ -160,18 +172,23 @@ class AddProgramContainer extends React.Component<Props, State> {
           </CardView>
         </KeyboardAvoidingView>
 
-        <KeyboardAvoidingView behavior = "padding" style={{ marginTop: 100 }}>
+        <KeyboardAvoidingView behavior="padding" style={{ marginTop: 100 }}>
           <CardButton
             viewStyle={{
               backgroundColor: "#1BB194",
               width: Dimensions.get("window").width * 0.4
             }}
-            textStyle={{ color: "white", fontSize: 20, textAlign: "center", justifyContent: "center", alignItems: "center"}}
+            textStyle={{
+              color: "white",
+              fontSize: 20,
+              textAlign: "center",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
             text="Cadastrar"
-            onPress={() => this.componentDidMount(1)}            
-            />
+            onPress={() => this.componentDidMount(1)}
+          />
         </KeyboardAvoidingView>
-        
       </View>
     );
   }

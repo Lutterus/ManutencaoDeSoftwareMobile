@@ -17,15 +17,15 @@ class EditMilesScreen extends React.Component<Props, State> {
   }
 
   static navigationOptions = {
-    title: 'Editar Milhas',  
+    title: "Editar Milhas",
     headerTitleStyle: {
-        textAlign: 'left',
-        flex: 1
-      }
+      textAlign: "left",
+      flex: 1
+    }
   };
 
-  render () {
-      return <EditMilesContainer navigation={this.props.navigation} />;
+  render() {
+    return <EditMilesContainer navigation={this.props.navigation} />;
   }
 }
 

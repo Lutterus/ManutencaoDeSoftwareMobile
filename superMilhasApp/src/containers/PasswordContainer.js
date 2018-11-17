@@ -1,10 +1,18 @@
 //@flow
 import React from "react";
-import { View, StyleSheet, Text, TextInput, Dimensions, KeyboardAvoidingView, Alert } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  TextInput,
+  Dimensions,
+  KeyboardAvoidingView,
+  Alert
+} from "react-native";
 import { NavigationScreenProp } from "react-navigation";
 import CardView from "../components/GenericComponents/CardView";
 import CardButton from "../components/GenericComponents/CardButton";
-import PasswordService from '../services/PasswordService';
+import PasswordService from "../services/PasswordService";
 
 type State = {
   email: string
@@ -30,37 +38,35 @@ class PasswordContainer extends React.Component<Props, State> {
     this.setState({ [name]: value });
   };
 
-  resetEmail = async() => {
-    if(this.state.email!=""){
+  resetEmail = async () => {
+    if (this.state.email != "") {
       var res = await this.passwordService.resetPassword(this.state.email);
-      if(res===true){
+      if (res === true) {
         Alert.alert(
-          'Sucesso',
-          'Para sua segurança, uma mensagem de confirmação foi enviada para seu email',
+          "Sucesso",
+          "Para sua segurança, uma mensagem de confirmação foi enviada para seu email",
           [
-            {text: 'OK', onPress: () => this.props.navigation.navigate("Login")}
-          ],
-        )
-        
-      }else{
+            {
+              text: "OK",
+              onPress: () => this.props.navigation.navigate("Login")
+            }
+          ]
+        );
+      } else {
         Alert.alert(
-          'Falha',
-          'Ocorreu um erro enquanto procurávamos seu email',
-          [
-            {text: 'OK'}
-          ],
-        )
+          "Falha",
+          "Ocorreu um erro enquanto procurávamos seu email",
+          [{ text: "OK" }]
+        );
       }
-    }else{
+    } else {
       Alert.alert(
-        'Atenção',
-        'O campo do email não foi devidamente preenchido',
-        [
-          {text: 'OK'}
-        ],
-      )
+        "Atenção",
+        "O campo do email não foi devidamente preenchido",
+        [{ text: "OK" }]
+      );
     }
-  }
+  };
 
   render() {
     return (
@@ -70,21 +76,25 @@ class PasswordContainer extends React.Component<Props, State> {
           alignItems: "center"
         }}
       >
-        <CardView
-          style={styles.inputView}
-        >
-        <TextInput 
-        placeholder="Email" 
-        underlineColorAndroid={"#0000"} 
-        returnKeyType="done"
-        keyboardType="email-address"
-        autoCorrect={false}
-        autoCapitalize="none"
-        onChangeText={(TextInput)=> this.setState({email: TextInput})}
-        />
+        <CardView style={styles.inputView}>
+          <TextInput
+            placeholder="Email"
+            underlineColorAndroid={"#0000"}
+            returnKeyType="done"
+            keyboardType="email-address"
+            autoCorrect={false}
+            autoCapitalize="none"
+            onChangeText={TextInput => this.setState({ email: TextInput })}
+          />
         </CardView>
-        <KeyboardAvoidingView behavior = "padding"
-          style={{ flex: 1, marginBottom: 50, justifyContent: "flex-end", alignItems: "center" }}
+        <KeyboardAvoidingView
+          behavior="padding"
+          style={{
+            flex: 1,
+            marginBottom: 50,
+            justifyContent: "flex-end",
+            alignItems: "center"
+          }}
         >
           <CardButton
             viewStyle={{

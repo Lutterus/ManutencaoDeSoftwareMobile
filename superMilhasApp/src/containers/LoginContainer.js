@@ -17,8 +17,8 @@ import TextField from "../components/GenericComponents/TextField";
 import { NavigationScreenProp } from "react-navigation";
 import CardButton from "../components/GenericComponents/CardButton";
 import CardView from "../components/GenericComponents/CardView";
-import Icon from 'react-native-vector-icons/FontAwesome';
-import LoginService from '../services/LoginService';
+import Icon from "react-native-vector-icons/FontAwesome";
+import LoginService from "../services/LoginService";
 import { AsyncStorage } from "react-native";
 
 type State = {
@@ -28,7 +28,7 @@ type State = {
 };
 
 type Props = {
-  navigation: NavigationScreenProp<{}>,
+  navigation: NavigationScreenProp<{}>
 };
 
 class LoginContainer extends React.Component<Props, State> {
@@ -41,8 +41,7 @@ class LoginContainer extends React.Component<Props, State> {
       email: "",
       senha: ""
     };
-    }
-  
+  }
 
   togglePasswordHandler = () => {
     this.setState({ showPassword: !this.state.showPassword });
@@ -55,20 +54,18 @@ class LoginContainer extends React.Component<Props, State> {
   };
 
   loginTest = async () => {
-    AsyncStorage.setItem('login', this.state.email);
-    AsyncStorage.setItem('password', this.state.senha);
+    AsyncStorage.setItem("login", this.state.email);
+    AsyncStorage.setItem("password", this.state.senha);
     var res = await this.loginService.login(this.state.email, this.state.senha);
 
-    if(res===true){
-      this.props.navigation.navigate("MilesList")
-    }else{
+    if (res === true) {
+      this.props.navigation.navigate("MilesList");
+    } else {
       Alert.alert(
-        'Erro durante o login',
-        'Alguma das credenciais está incorreta',
-        [
-          {text: 'OK'}
-        ],
-      )
+        "Erro durante o login",
+        "Alguma das credenciais está incorreta",
+        [{ text: "OK" }]
+      );
     }
   };
 
@@ -94,7 +91,7 @@ class LoginContainer extends React.Component<Props, State> {
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
           {/* Email */}
-          <KeyboardAvoidingView behavior = "padding">
+          <KeyboardAvoidingView behavior="padding">
             <Text style={styles.text}>E-mail</Text>
             <CardView style={styles.inputView}>
               <TextInput
@@ -105,26 +102,26 @@ class LoginContainer extends React.Component<Props, State> {
                 keyboardType="email-address"
                 autoCorrect={false}
                 autoCapitalize="none"
-                onChangeText={(TextInput)=> this.setState({email: TextInput})}
+                onChangeText={TextInput => this.setState({ email: TextInput })}
               />
             </CardView>
           </KeyboardAvoidingView>
 
           {/* Senha */}
-          <KeyboardAvoidingView behavior = "padding">
+          <KeyboardAvoidingView behavior="padding">
             <Text style={styles.text}>Senha</Text>
             <CardView style={styles.inputView}>
-              <TextInput 
+              <TextInput
                 returnKeyLabel="go"
                 secureTextEntry={this.state.showPassword}
                 underlineColorAndroid={"#0000"}
                 style={styles.textStyle}
                 autoCorrect={false}
                 autoCapitalize="none"
-                ref={(input) => this.passwordInput = input}
-                onChangeText={(TextInput)=> this.setState({senha: TextInput})}
+                ref={input => (this.passwordInput = input)}
+                onChangeText={TextInput => this.setState({ senha: TextInput })}
               />
-              <Icon 
+              <Icon
                 style={styles.eyeButton}
                 name={"eye-slash"}
                 size={25}
@@ -132,7 +129,6 @@ class LoginContainer extends React.Component<Props, State> {
                 onPress={this.togglePasswordHandler}
               />
             </CardView>
-            
           </KeyboardAvoidingView>
 
           {/* Botão de Login */}
@@ -185,7 +181,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     marginTop: 3,
     padding: 2,
-    flexDirection: 'row',
+    flexDirection: "row",
     borderBottomWidth: 1,
     paddingBottom: 10
   },
@@ -205,7 +201,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width * 1.1,
     height: Dimensions.get("window").height * 0.3
   },
-  eyeButton:{
+  eyeButton: {
     //width: Dimensions.get("window").width * 0.17,
     //backgroundColor: "#083b66",
     //borderRadius: 400,
@@ -213,7 +209,6 @@ const styles = StyleSheet.create({
     //padding: 1
     //textAlign: "right",
     //padding: 10,
-    
   }
 });
 

@@ -17,15 +17,15 @@ class AddProgramScreen extends React.Component<Props, State> {
   }
 
   static navigationOptions = {
-    title: 'Cadastrar Milhas',  
+    title: "Cadastrar Milhas",
     headerTitleStyle: {
-        textAlign: 'left',
-        flex: 1
-      }
+      textAlign: "left",
+      flex: 1
+    }
   };
 
-  render () {
-      return <AddProgramContainer navigation={this.props.navigation} />;
+  render() {
+    return <AddProgramContainer navigation={this.props.navigation} />;
   }
 }
 
