@@ -33,10 +33,7 @@ class CreateAccountScreen extends React.Component<Props, State> {
         color: "#083b66",
         textAlign: 'left',
         flex: 2
-      },
-    test: (
-        <View style={{width: 250, height: 2}}></View>
-    ) 
+      }
   };
 
   render () {

@@ -3,10 +3,10 @@ import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import MilesListContainer from "../containers/MilesListContainer";
 import { NavigationScreenProp } from "react-navigation";
-import Icon from 'react-native-vector-icons/FontAwesome';
-import MilesService from '../services/MilesService';
-import AddProgramScreen from '../screens/AddProgramScreen';
-import { AsyncStorage } from "react-native"
+import Icon from "react-native-vector-icons/FontAwesome";
+import MilesService from "../services/MilesService";
+import AddProgramScreen from "../screens/AddProgramScreen";
+import { AsyncStorage } from "react-native";
 
 type State = {};
 
@@ -25,48 +25,45 @@ class MilesListScreen extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    AsyncStorage.getItem('login', (err, result) => {
-    }).then(res => {
+    AsyncStorage.getItem("login", (err, result) => {}).then(res => {
       this.updateMilesList(res);
     });
-    
-  };
+  }
 
-  updateMilesList = async (currentUser) => {
+  updateMilesList = async currentUser => {
     const list = await this.milesService.listMiles(currentUser);
     this.setState({ milesList: list });
   };
 
-
-  static navigationOptions= ({navigation}) => {
-    return{
-    title: 'Milhas',
-    headerLeft: null,
-    headerTitleStyle: {
-      textAlign: 'center',
-      flex: 1
-    },
-    headerRight:(
-      <TouchableOpacity
-      style={{
-        paddingHorizontal: 20,
-        marginLeft: 10
-      }}
-      onPress={() => navigation.navigate("AddProgram")}
-      >
-        <Icon
-        name={'plus'}
-        size={20}
-        color="black" />
-      </TouchableOpacity>
-    )
-  }
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: "Milhas",
+      headerLeft: null,
+      headerTitleStyle: {
+        textAlign: "center",
+        flex: 1
+      },
+      headerRight: (
+        <TouchableOpacity
+          style={{
+            paddingHorizontal: 20,
+            marginLeft: 10
+          }}
+          onPress={() => navigation.navigate("AddProgram")}
+        >
+          <Icon name={"plus"} size={20} color="black" />
+        </TouchableOpacity>
+      )
+    };
   };
 
   render() {
-    return <MilesListContainer 
-            milesAgencyList={this.state.milesList} 
-            navigation={this.props.navigation}/>;
+    return (
+      <MilesListContainer
+        milesAgencyList={this.state.milesList}
+        navigation={this.props.navigation}
+      />
+    );
   }
 }
 

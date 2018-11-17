@@ -113,8 +113,8 @@ class CreateAccountContainer extends React.Component<Props, State> {
             />
           </CardView>
         </View>
-       
-        <KeyboardAvoidingView behavior="padding" style={{ marginTop: 20 }}>
+        
+        <View style={{ marginTop: 20 }}>
           <CardView style={styles.inputView}>
             <TextInput 
               returnKeyType="go"
@@ -127,9 +127,8 @@ class CreateAccountContainer extends React.Component<Props, State> {
               onChangeText={(TextInput)=> this.setState({email: TextInput})}
             />
           </CardView>
-        </KeyboardAvoidingView>
+          </View>
 
-        <KeyboardAvoidingView behavior="padding">
         <View style={{ marginTop: 20 }}>
           <CardView style={styles.inputView}>
             <TextInputMask
@@ -149,8 +148,8 @@ class CreateAccountContainer extends React.Component<Props, State> {
             />
           </CardView>
         </View>
-
-        <KeyboardAvoidingView behavior="padding" style={{ marginTop: 20 }}>
+        
+          <View style={{ marginTop: 20}}>    
           <CardView style={styles.inputView}>
             <TextInput 
               placeholder="Senha" 
@@ -161,10 +160,10 @@ class CreateAccountContainer extends React.Component<Props, State> {
               onChangeText={(TextInput)=> this.setState({senha: TextInput})}
             />
           </CardView>
-        </KeyboardAvoidingView>
-
-        <KeyboardAvoidingView behavior="padding" style={{ marginTop: 20 }}>
-          <CardView style={styles.inputView}>
+          </View>    
+        
+        <View style={{ marginTop: 20}}>      
+        <CardView style={styles.inputView}>
             <TextInput placeholder="Confirmar senha" 
               secureTextEntry 
               underlineColorAndroid={"#0000"} 
@@ -173,7 +172,7 @@ class CreateAccountContainer extends React.Component<Props, State> {
               onChangeText={(TextInput)=> this.setState({confirmaSenha: TextInput})}
               />
           </CardView>
-        </KeyboardAvoidingView>
+        </View>
 
         <KeyboardAvoidingView behavior="padding" style={{ marginTop: 20, justifyContent: "center", alignSelf: "center" }}>
           <CardButton
@@ -189,7 +188,6 @@ class CreateAccountContainer extends React.Component<Props, State> {
           />
         </KeyboardAvoidingView>
 
-      </KeyboardAvoidingView>
       </View>
     );
   }

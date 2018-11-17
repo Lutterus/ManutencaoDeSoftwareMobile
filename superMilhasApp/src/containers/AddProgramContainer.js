@@ -135,7 +135,7 @@ class AddProgramContainer extends React.Component<Props, State> {
         <KeyboardAvoidingView behavior = "padding" style={{ marginTop: 15 }}>
           <CardView style={styles.inputView}>
           <DatePicker
-            style={{width: 200}}
+            style={{width: 265}}
             date={this.state.date}
             mode="date"
             placeholder="Data de vencimento"

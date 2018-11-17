@@ -6,7 +6,7 @@ import type { MilesAgency } from "../util/types";
 const MilesListItem = ({ milesAgency }: MilesAgency) => {
   return (
     <View style={styles.generalView}>
-      <View style={{ flex: 0.7, borderColor: "#083b66", borderWidth: 1, borderRadius: 10}}>
+      <View style={{ flex: 0.6, borderColor: "#083b66", borderWidth: 1, borderRadius: 10}}>
         <Image
           style={styles.image}
           borderRadius={20}
@@ -17,7 +17,7 @@ const MilesListItem = ({ milesAgency }: MilesAgency) => {
         <View style={{ flex: 1}}>
           <Text style={styles.programName}> {milesAgency.nome} </Text>
         </View>
-        <View style={{ flex: 1}}>
+        <View style={{ flex: 0.3}}>
           <Text style={styles.date}>
             {milesAgency.milha_expiracao_maisProxima.quantidade} vencem em {milesAgency.milha_expiracao_maisProxima.dt_expiracao}
           </Text>
