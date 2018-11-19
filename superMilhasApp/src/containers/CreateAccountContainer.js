@@ -15,12 +15,14 @@ import CardButton from "../components/GenericComponents/CardButton";
 import { NavigationScreenProp } from "react-navigation";
 import { TextInputMask } from "react-native-masked-text";
 import CreateAccountService from "../services/CreateAccountService";
+import { AsyncStorage } from "react-native";
+import LoginService from "../services/LoginService";
 
 type State = {
   nome: String,
   email: string,
   senha: string,
-  telefone: number,
+  telefone: Integer,
   confirmaSenha: String
 };
 
@@ -30,10 +32,12 @@ type Props = {
 
 class CreateAccountContainer extends React.Component<Props, State> {
   CreateAccountService;
+  LoginService;
   constructor(props: Props) {
     super(props);
     this.focusNextField = this.focusNextField.bind(this);
     this.createAccountService = new CreateAccountService();
+    this.loginService = new LoginService();
     this.state = {
       nome: "",
       email: "",
@@ -53,12 +57,29 @@ class CreateAccountContainer extends React.Component<Props, State> {
     this.focusNextField('next-field');
   }
 
+  loginTest = async () => {
+    AsyncStorage.setItem("login", this.state.email);
+    AsyncStorage.setItem("password", this.state.senha);
+    var res = await this.loginService.login(this.state.email, this.state.senha);
+
+    if (res === true) {
+      this.props.navigation.navigate("MilesList");
+    } else {
+      Alert.alert(
+        "Erro durante o login",
+        "Alguma das credenciais está incorreta",
+        [{ text: "OK" }]
+      );
+    }
+  };
+
   CreateAccount = async () => {
     if (
       this.state.email != "" &&
       this.state.senha != "" &&
       this.state.telefone != "" &&
-      this.confirmaSenha != ""
+      this.confirmaSenha != "" &&
+      this.state.senha === this.state.confirmaSenha
     ) {
       var res = await this.createAccountService.addUser(
         this.state.email,
@@ -68,7 +89,7 @@ class CreateAccountContainer extends React.Component<Props, State> {
       );
       if (res === true) {
         Alert.alert("Sucesso", "Sua conta foi criada com sucesso", [
-          { text: "OK" }
+          { text: "OK", onPress: () => this.loginTest()}
         ]);
         this.props.navigation.navigate("Login");
       } else {
@@ -110,8 +131,6 @@ class CreateAccountContainer extends React.Component<Props, State> {
               blurOnSubmit={ false }
               underlineColorAndroid={"#0000"}
               placeholder="Nome"
-              autoCorrect={false}
-              autoCapitalize="none"
               onChangeText={TextInput => this.setState({ nome: TextInput })}
               ref={ input => {this.inputs['Nome'] = input;}}
             />
@@ -143,7 +162,6 @@ class CreateAccountContainer extends React.Component<Props, State> {
                 onSubmitEditing={() => {this.focusNextField('Senha');}}
                 blurOnSubmit={ false }
                 returnKeyType="next"
-                //onSubmitEditing={this.onGoFocus.bind("senha")}
                 placeholder="Telefone"
                 underlineColorAndroid={"#0000"}
                 value={this.state.telefone}
@@ -152,7 +170,6 @@ class CreateAccountContainer extends React.Component<Props, State> {
                 options={{
                   mask: "(99) 99999-9999"
                 }}
-                //onChangeText={this.onChangeText.bind(this)}
                 onChangeText={telefone => this.setState({ telefone })}
               />
 
@@ -168,9 +185,9 @@ class CreateAccountContainer extends React.Component<Props, State> {
                 placeholder="Senha"
                 secureTextEntry
                 underlineColorAndroid={"#0000"}
-                returnKeyType="go"
-                //onSubmitEditing={this.onGoFocus.bind('confirmaSenha')}
-                //ref="senha"
+                returnKeyType="next"
+                autoCorrect={false}
+                autoCapitalize="none"
                 onChangeText={TextInput => this.setState({ senha: TextInput })}
               />
             </CardView>
@@ -187,6 +204,8 @@ class CreateAccountContainer extends React.Component<Props, State> {
                 onChangeText={TextInput =>
                   this.setState({ confirmaSenha: TextInput })
                 }
+                autoCorrect={false}
+                autoCapitalize="none"
               />
             </CardView>
           </KeyboardAvoidingView>

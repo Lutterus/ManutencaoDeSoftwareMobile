@@ -70,7 +70,7 @@ class DetailProgramScreen extends React.Component<Props, State> {
             </TouchableOpacity>
             <View style={{ flexDirection: "row", justifyContent: "space-between", borderRadius:10 }}>
             <Image
-              source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Gol_Smiles_logo.svg/1200px-Gol_Smiles_logo.svg.png'}}
+              source={{uri: 'http://emalta.com.br/wp-content/uploads/2016/10/livelo-vale-a-pena-810x519.jpg'}}
               style={styles.image}
               borderRadius={20}
             />

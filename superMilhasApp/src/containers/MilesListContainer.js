@@ -35,22 +35,43 @@ class MilesListContainer extends React.Component<Props, State> {
   }
 
   render() {
-    return (
-      <View>
-        <FlatList
-          data={this.props.milesAgencyList}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => this.saveStateBeforeLaunch(item.nome)}
-            >
-              <MilesListItem milesAgency={item} />
-            </TouchableOpacity>
-          )}
-          keyExtractor={item => item.nome}
-        />
-      </View>
-    );
+    if(this.props.milesAgencyList.length!=0){
+      return (
+        <View>
+          <FlatList
+            data={this.props.milesAgencyList}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() => this.saveStateBeforeLaunch(item.nome)}
+              >
+                <MilesListItem milesAgency={item} />
+              </TouchableOpacity>
+            )}
+            keyExtractor={item => item.nome}
+          />
+        </View>
+      );
+    }else{
+      return (
+        <View>
+          <FlatList
+            data={[{key: "Não encontramos milhas nesta conta"}]}
+            renderItem={({item}) => <Text style={styles.programName}>{item.key}</Text>}
+          />
+        </View>
+      );
+    }
   }
 }
+
+const styles = StyleSheet.create({
+  programName: {
+    fontSize: 24,
+    textAlign: 'center',
+    margin: 10,
+    color: "#083b66",    
+    fontWeight: 'bold'
+  }
+});
 
 export default MilesListContainer;
