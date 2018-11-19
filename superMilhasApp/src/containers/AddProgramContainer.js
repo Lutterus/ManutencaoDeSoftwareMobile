@@ -77,7 +77,7 @@ class AddProgramContainer extends React.Component<Props, State> {
         this.state.programa,
         accountLogin,
         this.state.quantidade,
-        this.state.vencimento
+        this.state.date
       );
       if (res === true) {
         Alert.alert("Sucesso", "Milhas adicionadas com sucesso", [

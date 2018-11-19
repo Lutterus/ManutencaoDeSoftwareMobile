@@ -133,7 +133,7 @@ class CreateAccountContainer extends React.Component<Props, State> {
               onChangeText={TextInput => this.setState({ email: TextInput })}
             />
           </CardView>
-          </View>
+          </KeyboardAvoidingView>
 
         <KeyboardAvoidingView behavior="padding">
           <View style={{ marginTop: 20 }}>

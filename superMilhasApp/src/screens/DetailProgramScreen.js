@@ -4,6 +4,7 @@ import DetailProgramContainer from "../containers/DetailProgramContainer";
 import { NavigationScreenProp, Header } from "react-navigation";
 import type { MilesAgency } from "../util/types";
 import DetailService from "../services/DetailService";
+import DefaultProgramsService from "../services/DefaultProgramService";
 import {
   AsyncStorage,
   Text,
@@ -25,28 +26,38 @@ type Props = {
 
 class DetailProgramScreen extends React.Component<Props, State> {
   DetailService;
+  DefaultProgramsService;
   constructor(props: Props) {
     super(props);
     this.detailService = new DetailService();
+    this.defaultProgramsService = new DefaultProgramsService();
     this.state = {
-      detailList: []
+      detailList: [],
+      programName: "Bird's Nest",
+      programImage: "ABC"
     };
   }
 
-  componentDidMount(index) {
-    AsyncStorage.getItem("login", (err, result) => {}).then(res => {
-      AsyncStorage.getItem("nome_programa", (err, result) => {}).then(res2 => {
-        this.updateDetailList(res, res2);
+  componentDidMount() { 
+      AsyncStorage.getItem("login", (err, result) => {}).then(res => {
+        AsyncStorage.getItem("nome_programa", (err, result) => {}).then(res2 => {
+          this.updateDetailList(res, res2);
+        });
       });
-    });
-  }
+  };
 
   updateDetailList = async (currentUser, cod_program) => {
-    const list = await this.detailService.getUserProgramMiles(
-      currentUser,
-      cod_program
-    );
+    const list = await this.detailService.getUserProgramMiles(currentUser, cod_program);
     this.setState({ detailList: list });
+    const secondList = await this.defaultProgramsService.getDefaultPrograms();
+    for (j in secondList) {
+      if(secondList[j].nome===cod_program){
+        this.setState({ programName: secondList[j].nome }); 
+        this.setState({ programImage: secondList[j].imagem }); 
+        console.log(this.state.programName)
+        console.log(this.state.programImage)
+      }
+    }
   };
 
   static navigationOptions = ({ navigation }) => {
@@ -59,11 +70,13 @@ class DetailProgramScreen extends React.Component<Props, State> {
             </TouchableOpacity>
             <View style={{ flexDirection: "row", justifyContent: "space-between", borderRadius:10 }}>
             <Image
-              source={require("../assets/images/livelo.jpg")}
+              source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Gol_Smiles_logo.svg/1200px-Gol_Smiles_logo.svg.png'}}
               style={styles.image}
               borderRadius={20}
             />
-            <Text style={styles.programName}>Livelo</Text>
+            <Text style={styles.programName}>
+              Livelo
+            </Text>
           </View>
         </View>
       )
