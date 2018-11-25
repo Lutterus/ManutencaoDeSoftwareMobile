@@ -29,6 +29,7 @@ class DetailProgramScreen extends React.Component<Props, State> {
   DefaultProgramsService;
   constructor(props: Props) {
     super(props);
+    this.componentDidMount();
     this.detailService = new DetailService();
     this.defaultProgramsService = new DefaultProgramsService();
     this.state = {
@@ -47,15 +48,13 @@ class DetailProgramScreen extends React.Component<Props, State> {
   };
 
   updateDetailList = async (currentUser, cod_program) => {
+    
     const list = await this.detailService.getUserProgramMiles(currentUser, cod_program);
     this.setState({ detailList: list });
     const secondList = await this.defaultProgramsService.getDefaultPrograms();
     for (j in secondList) {
       if(secondList[j].nome===cod_program){
-        this.setState({ programName: secondList[j].nome }); 
-        this.setState({ programImage: secondList[j].imagem }); 
-        console.log(this.state.programName)
-        console.log(this.state.programImage)
+        this.props.navigation.setParams({programName: secondList[j].nome, programImage: secondList[j].imagem});
       }
     }
   };
@@ -70,12 +69,12 @@ class DetailProgramScreen extends React.Component<Props, State> {
             </TouchableOpacity>
             <View style={{ flexDirection: "row", justifyContent: "space-between", borderRadius:10 }}>
             <Image
-              source={{uri: 'http://emalta.com.br/wp-content/uploads/2016/10/livelo-vale-a-pena-810x519.jpg'}}
+              source={{uri: navigation.getParam('programImage')}}
               style={styles.image}
               borderRadius={20}
             />
             <Text style={styles.programName}>
-              Livelo
+              {navigation.getParam('programName')}
             </Text>
           </View>
         </View>
