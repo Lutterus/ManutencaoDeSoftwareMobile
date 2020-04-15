@@ -3,30 +3,31 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "jest-expo": "^37.0.0",
     "react-native-scripts": "1.14.0",
-    "jest-expo": "~27.0.0",
     "react-test-renderer": "16.3.1"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
+    "start": "expo start",
+    "eject": "expo eject",
+    "android": "expo android",
+    "ios": "expo ios",
     "test": "jest"
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.9.4",
     "@material-ui/core": "^3.4.0",
     "axios": "^0.18.0",
-    "expo": "^27.0.1",
+    "expo": "^37.0.0",
     "flow-bin": "^0.78.0",
     "moment": "^2.22.2",
-    "react": "16.3.1",
+    "react": "16.9.0",
     "react-datepicker": "^1.8.0",
-    "react-native": "~0.55.2",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.0.tar.gz",
     "react-native-datepicker": "^1.7.2",
     "react-native-masked-text": "^1.9.2",
     "react-native-text-input-mask": "^0.8.0",
