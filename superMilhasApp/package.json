@@ -24,7 +24,7 @@
     "axios": "^0.18.0",
     "expo": "^37.0.0",
     "flow-bin": "^0.78.0",
-    "moment": "^2.22.2",
+    "moment": "^2.29.2",
     "react": "16.9.0",
     "react-datepicker": "^1.8.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.0.tar.gz",
